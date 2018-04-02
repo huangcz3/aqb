@@ -1,0 +1,136 @@
+main h3{
+    width: 100%;
+    text-align: center;
+    font-size: 0.2rem;
+    font-weight: 200;
+    margin: 0.1rem 0;
+}
+main .table thead th,main .table tbody td{
+    text-align: center;
+    vertical-align: middle;
+}
+.binding-img{
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+}
+.binding-p{
+    margin-bottom: 15px;
+}
+.table-btn>button{
+    display: block;
+    outline: none;
+    border:none;
+    border-radius: 6px;
+    font-size: 14px;
+    padding: 5px 20px;
+    /*margin: 0 auto;*/
+}
+.pass{
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    margin: 0 auto 15px auto;
+}
+.reject{
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+    margin: 0 auto;
+}
+/*弹窗*/
+.reject-prompt{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,.7);
+    display: none;
+}
+.prompt{
+    width: 500px;
+    height: 300px;
+    background-color: #fff;
+    border:1px solid #c1c1c1;
+    border-radius: 6px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -150px -250px;
+}
+.prompt-title{
+    line-height: 80px;
+    font-size: 24px;
+    text-align: center;
+}
+.prompt-cont{
+    width: 400px;
+    height: 150px;
+    margin: auto;
+}
+.prompt-cont textarea{
+    width: 100%;
+    height: 100%;
+    resize: none;
+    font-size: 14px;
+    outline: none;
+    padding: 15px;
+}
+.prompt-btns{
+    width: 100%;
+    text-align: center;
+    height: 70px;
+}
+.reject-btn{
+    width: 150px;
+    height: 35px;
+    color: #fff;
+    background-color: #d9534f;
+    margin: 14px auto;
+    outline: none;
+    border-radius: 6px;
+    border: none;
+}
+/*大图预览图片*/
+.preview-pictures{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,.7);
+    display: none;
+}
+.preview{
+    text-align: center;
+    width: 600px;
+    height: 400px;
+    background-color: #fff;
+    border:1px solid #c1c1c1;
+    border-radius: 6px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -200px -300px;
+}
+.preview-picturesClone{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right:-50px;
+    top:-50px;
+    cursor: pointer;
+}
+.preview-cpont{
+    width: 100%;
+    height: 100%;
+}
+.preview-cpont img{
+    max-width: 100%;
+    max-height: 100%;
+}
+.preview-picturesClone img{
+    max-width: 100%;
+    max-height: 100%;
+}

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.WalletMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.Wallet" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="user_id" property="userId" jdbcType="CHAR" />
+    <result column="yue_id" property="yueId" jdbcType="CHAR" />
+    <result column="yue" property="yue" jdbcType="REAL" />
+    <result column="jifen_id" property="jifenId" jdbcType="CHAR" />
+    <result column="jifen" property="jifen" jdbcType="INTEGER" />
+    <result column="kajuan_id" property="kajuanId" jdbcType="CHAR" />
+    <result column="kajuan" property="kajuan" jdbcType="INTEGER" />
+    <result column="baoixan_id" property="baoixanId" jdbcType="CHAR" />
+    <result column="baoxian" property="baoxian" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, yue_id, yue, jifen_id, jifen, kajuan_id, kajuan, baoixan_id, baoxian,
+    status, found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from wallet
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wallet
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.Wallet" >
+    insert into wallet (id, user_id, yue_id, yue,
+    jifen_id, jifen, kajuan_id,
+    kajuan, baoixan_id, baoxian,
+    status, found_date)
+    values (#{id,jdbcType=CHAR}, #{userId,jdbcType=CHAR}, #{yueId,jdbcType=CHAR}, #{yue,jdbcType=REAL},
+    #{jifenId,jdbcType=CHAR}, #{jifen,jdbcType=INTEGER}, #{kajuanId,jdbcType=CHAR},
+    #{kajuan,jdbcType=INTEGER}, #{baoixanId,jdbcType=CHAR}, #{baoxian,jdbcType=INTEGER},
+    #{status,jdbcType=INTEGER}, #{foundDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.Wallet" >
+    insert into wallet
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="yueId != null" >
+        yue_id,
+      </if>
+      <if test="yue != null" >
+        yue,
+      </if>
+      <if test="jifenId != null" >
+        jifen_id,
+      </if>
+      <if test="jifen != null" >
+        jifen,
+      </if>
+      <if test="kajuanId != null" >
+        kajuan_id,
+      </if>
+      <if test="kajuan != null" >
+        kajuan,
+      </if>
+      <if test="baoixanId != null" >
+        baoixan_id,
+      </if>
+      <if test="baoxian != null" >
+        baoxian,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=CHAR},
+      </if>
+      <if test="yueId != null" >
+        #{yueId,jdbcType=CHAR},
+      </if>
+      <if test="yue != null" >
+        #{yue,jdbcType=REAL},
+      </if>
+      <if test="jifenId != null" >
+        #{jifenId,jdbcType=CHAR},
+      </if>
+      <if test="jifen != null" >
+        #{jifen,jdbcType=INTEGER},
+      </if>
+      <if test="kajuanId != null" >
+        #{kajuanId,jdbcType=CHAR},
+      </if>
+      <if test="kajuan != null" >
+        #{kajuan,jdbcType=INTEGER},
+      </if>
+      <if test="baoixanId != null" >
+        #{baoixanId,jdbcType=CHAR},
+      </if>
+      <if test="baoxian != null" >
+        #{baoxian,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.Wallet" >
+    update wallet
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=CHAR},
+      </if>
+      <if test="yueId != null" >
+        yue_id = #{yueId,jdbcType=CHAR},
+      </if>
+      <if test="yue != null" >
+        yue = #{yue,jdbcType=REAL},
+      </if>
+      <if test="jifenId != null" >
+        jifen_id = #{jifenId,jdbcType=CHAR},
+      </if>
+      <if test="jifen != null" >
+        jifen = #{jifen,jdbcType=INTEGER},
+      </if>
+      <if test="kajuanId != null" >
+        kajuan_id = #{kajuanId,jdbcType=CHAR},
+      </if>
+      <if test="kajuan != null" >
+        kajuan = #{kajuan,jdbcType=INTEGER},
+      </if>
+      <if test="baoixanId != null" >
+        baoixan_id = #{baoixanId,jdbcType=CHAR},
+      </if>
+      <if test="baoxian != null" >
+        baoxian = #{baoxian,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.Wallet" >
+    update wallet
+    set user_id = #{userId,jdbcType=CHAR},
+      yue_id = #{yueId,jdbcType=CHAR},
+      yue = #{yue,jdbcType=REAL},
+      jifen_id = #{jifenId,jdbcType=CHAR},
+      jifen = #{jifen,jdbcType=INTEGER},
+      kajuan_id = #{kajuanId,jdbcType=CHAR},
+      kajuan = #{kajuan,jdbcType=INTEGER},
+      baoixan_id = #{baoixanId,jdbcType=CHAR},
+      baoxian = #{baoxian,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <select id="queryWallet" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from wallet
+  </select>
+
+  <select id="queryByUserID" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from wallet WHERE user_id = #{userId}
+  </select>
+
+</mapper>

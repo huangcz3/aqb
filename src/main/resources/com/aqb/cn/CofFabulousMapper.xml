@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.CofFabulousMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.CofFabulous" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="cof_id" property="cofId" jdbcType="CHAR" />
+    <result column="user_id" property="userId" jdbcType="CHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, cof_id, user_id, status, found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from cof_fabulous
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from cof_fabulous
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.CofFabulous" >
+    insert into cof_fabulous (id, cof_id, user_id, status, 
+      found_date)
+    values (#{id,jdbcType=CHAR}, #{cofId,jdbcType=CHAR}, #{userId,jdbcType=CHAR}, #{status,jdbcType=INTEGER}, 
+      #{foundDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.CofFabulous" >
+    insert into cof_fabulous
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cofId != null" >
+        cof_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="cofId != null" >
+        #{cofId,jdbcType=CHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.CofFabulous" >
+    update cof_fabulous
+    <set >
+      <if test="cofId != null" >
+        cof_id = #{cofId,jdbcType=CHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.CofFabulous" >
+    update cof_fabulous
+    set cof_id = #{cofId,jdbcType=CHAR},
+      user_id = #{userId,jdbcType=CHAR},
+      status = #{status,jdbcType=INTEGER},
+      found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <select id="queryCofFabulous" parameterType="com.aqb.cn.common.QueryBase" resultMap="BaseResultMap">
+    SELECT * FROM cof_fabulous
+    ORDER BY found_date  DESC
+    LIMIT #{firstRow}, #{maxRow}
+  </select>
+
+  <select id="countCofFabulous" parameterType="com.aqb.cn.common.QueryBase" resultType="long">
+    SELECT COUNT(*) FROM cof_fabulous
+  </select>
+
+  <select id="selectByCofId" parameterType="String" resultMap="BaseResultMap">
+    select * from cof_fabulous where cof_id = #{cofId}
+  </select>
+
+  <select id="queryByUserIdCofId" resultMap="BaseResultMap">
+    SELECT * FROM cof_fabulous
+    where user_id = #{0} and cof_id = #{1}
+  </select>
+
+</mapper>

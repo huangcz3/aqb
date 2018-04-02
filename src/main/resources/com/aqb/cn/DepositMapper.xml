@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.DepositMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.Deposit" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="user_id" property="userId" jdbcType="CHAR" />
+    <result column="binding_id" property="bindingId" jdbcType="CHAR" />
+    <result column="money_id" property="moneyId" jdbcType="INTEGER" />
+    <result column="pay_status" property="payStatus" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, binding_id, money_id, pay_status, status, found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from deposit
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from deposit
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.Deposit" >
+    insert into deposit (id, user_id, binding_id,
+      money_id, pay_status, status,
+      found_date)
+    values (#{id,jdbcType=CHAR}, #{userId,jdbcType=CHAR}, #{bindingId,jdbcType=CHAR},
+      #{moneyId,jdbcType=INTEGER}, #{payStatus,jdbcType=INTEGER}, #{status,jdbcType=INTEGER},
+      #{foundDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.Deposit" >
+    insert into deposit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="bindingId != null" >
+        binding_id,
+      </if>
+      <if test="moneyId != null" >
+        money_id,
+      </if>
+      <if test="payStatus != null" >
+        pay_status,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=CHAR},
+      </if>
+      <if test="bindingId != null" >
+        #{bindingId,jdbcType=CHAR},
+      </if>
+      <if test="moneyId != null" >
+        #{moneyId,jdbcType=INTEGER},
+      </if>
+      <if test="payStatus != null" >
+        #{payStatus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.Deposit" >
+    update deposit
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=CHAR},
+      </if>
+      <if test="bindingId != null" >
+        binding_id = #{bindingId,jdbcType=CHAR},
+      </if>
+      <if test="moneyId != null" >
+        money_id = #{moneyId,jdbcType=INTEGER},
+      </if>
+      <if test="payStatus != null" >
+        pay_status = #{payStatus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.Deposit" >
+    update deposit
+    set user_id = #{userId,jdbcType=CHAR},
+      binding_id = #{bindingId,jdbcType=CHAR},
+      money_id = #{moneyId,jdbcType=INTEGER},
+      pay_status = #{payStatus,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <select id="queryDepositByUserId" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM deposit where user_id = #{userId} AND status = 0
+  </select>
+
+  <select id="queryDeposit" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM deposit where user_id = #{userId} AND status = 0 ORDER BY foun_date DESC
+  </select>
+
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT * FROM deposit where user_id = #{userId} AND status = 0
+  </select>
+
+
+</mapper>

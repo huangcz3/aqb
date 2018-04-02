@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.ShareRewardMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.ShareReward" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="user_id" property="userId" jdbcType="CHAR" />
+    <result column="reward_content" property="rewardContent" jdbcType="VARCHAR" />
+    <result column="reward_percent" property="rewardPercent" jdbcType="REAL" />
+    <result column="reward_content2" property="rewardContent2" jdbcType="VARCHAR" />
+    <result column="reward_percent2" property="rewardPercent2" jdbcType="REAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, reward_content, reward_percent, reward_content2, reward_percent2, status,
+    found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from share_reward
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from share_reward
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.ShareReward" >
+    insert into share_reward (id, user_id, reward_content,
+    reward_percent, reward_content2, reward_percent2,
+    status, found_date)
+    values (#{id,jdbcType=CHAR}, #{userId,jdbcType=CHAR}, #{rewardContent,jdbcType=VARCHAR},
+    #{rewardPercent,jdbcType=REAL}, #{rewardContent2,jdbcType=VARCHAR}, #{rewardPercent2,jdbcType=REAL},
+    #{status,jdbcType=INTEGER}, #{foundDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.ShareReward" >
+    insert into share_reward
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="rewardContent != null" >
+        reward_content,
+      </if>
+      <if test="rewardPercent != null" >
+        reward_percent,
+      </if>
+      <if test="rewardContent2 != null" >
+        reward_content2,
+      </if>
+      <if test="rewardPercent2 != null" >
+        reward_percent2,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=CHAR},
+      </if>
+      <if test="rewardContent != null" >
+        #{rewardContent,jdbcType=VARCHAR},
+      </if>
+      <if test="rewardPercent != null" >
+        #{rewardPercent,jdbcType=REAL},
+      </if>
+      <if test="rewardContent2 != null" >
+        #{rewardContent2,jdbcType=VARCHAR},
+      </if>
+      <if test="rewardPercent2 != null" >
+        #{rewardPercent2,jdbcType=REAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.ShareReward" >
+    update share_reward
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=CHAR},
+      </if>
+      <if test="rewardContent != null" >
+        reward_content = #{rewardContent,jdbcType=VARCHAR},
+      </if>
+      <if test="rewardPercent != null" >
+        reward_percent = #{rewardPercent,jdbcType=REAL},
+      </if>
+      <if test="rewardContent2 != null" >
+        reward_content2 = #{rewardContent2,jdbcType=VARCHAR},
+      </if>
+      <if test="rewardPercent2 != null" >
+        reward_percent2 = #{rewardPercent2,jdbcType=REAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.ShareReward" >
+    update share_reward
+    set user_id = #{userId,jdbcType=CHAR},
+    reward_content = #{rewardContent,jdbcType=VARCHAR},
+    reward_percent = #{rewardPercent,jdbcType=REAL},
+    reward_content2 = #{rewardContent2,jdbcType=VARCHAR},
+    reward_percent2 = #{rewardPercent2,jdbcType=REAL},
+    status = #{status,jdbcType=INTEGER},
+    found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+
+  <select id="queryShareRewardStatus" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from share_reward
+    where status = #{status}
+  </select>
+
+  <!-- 分页查询 -->
+  <select id="queryShareReward" parameterType="com.aqb.cn.common.QueryBase" resultMap="BaseResultMap">
+    SELECT *
+    FROM share_reward
+    where status = 2
+    <include refid="where_with_condition" />
+    ORDER BY found_date  DESC
+    LIMIT #{firstRow}, #{maxRow}
+  </select>
+
+  <select id="countShareReward" parameterType="com.aqb.cn.common.QueryBase" resultType="long">
+    SELECT COUNT(id) FROM share_reward where status = 2
+    <include refid="where_with_condition" />
+  </select>
+
+  <sql id="where_with_condition">
+    <trim>
+      <if test="parameters.userName != null and parameters.userName != '' ">AND
+        user_id = (select id from user where user_name = #{parameters.userName})
+      </if>
+    </trim>
+  </sql>
+
+
+  <select id="queryByUserId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT *
+    FROM share_reward
+    where user_id = #{userId}
+  </select>
+
+</mapper>

@@ -1,0 +1,251 @@
+/*弹窗*/
+.reject-prompt{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,.7);
+    display: none;
+}
+.prompt{
+    width: 500px;
+    height: 300px;
+    background-color: #fff;
+    border:1px solid #c1c1c1;
+    border-radius: 6px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -150px -250px;
+}
+.prompt-title{
+    line-height: 80px;
+    font-size: 24px;
+    text-align: center;
+}
+.prompt-cont{
+    width: 400px;
+    height: 150px;
+    margin: auto;
+}
+.prompt-cont textarea{
+    width: 100%;
+    height: 100%;
+    resize: none;
+    font-size: 14px;
+    outline: none;
+    padding: 15px;
+}
+.prompt-btns{
+    width: 100%;
+    text-align: center;
+    height: 70px;
+}
+.reject-btn{
+    width: 150px;
+    height: 35px;
+    color: #fff;
+    background-color: #d9534f;
+    margin: 14px auto;
+    outline: none;
+    border-radius: 6px;
+    border: none;
+}
+.pass-btn{
+    width: 150px;
+    height: 35px;
+    color: #fff;
+    background-color: #5cb85c;
+    margin: 14px auto;
+    outline: none;
+    border-radius: 6px;
+    border: none;
+}
+/*大图预览图片*/
+.preview-pictures{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,.7);
+    display: none;
+}
+.preview{
+    text-align: center;
+    width: 600px;
+    height: 400px;
+    background-color: #fff;
+    border:1px solid #c1c1c1;
+    border-radius: 6px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -200px -300px;
+}
+.preview-picturesClone{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right:-50px;
+    top:-50px;
+    cursor: pointer;
+}
+.preview-cpont{
+    width: 100%;
+    height: 100%;
+}
+.preview-cpont img{
+    max-width: 100%;
+    max-height: 100%;
+}
+.preview-picturesClone img{
+    max-width: 100%;
+    max-height: 100%;
+}
+/*分享奖励*/
+.rule{
+    width: 100%;
+}
+.share-title{
+    font-size: 24px;
+    margin: 15px 0;
+}
+.share-ruleLeft{
+    float: left;
+}
+.share-ruleCont{
+    width: 100%;
+    /*height: 200px;*/
+}
+.share-modify{
+    width: 120px;
+    /*margin: 0 auto;*/
+    cursor: pointer;
+}
+.share-ruleLeft input{
+    width: 170px;
+    margin:  0 10px 0 33px ;
+    padding-left: 15px;
+}
+.share-set{
+    font-size: 14px;
+    line-height: 35px;
+}
+.share-rule{
+    padding-left: 30px;
+}
+.share-text{
+    width: 300px;
+    height: 80px;
+    resize: none;
+    font-size: 14px;
+    padding: 15px;
+}
+.share-ruleRight{
+    float: left;
+    margin: 25px;
+    cursor: pointer;
+    height: 35px;
+    line-height: 26px;
+}
+.share-setSelect{
+    line-height: 35px;
+    width: 170px;
+    padding: 0 15px;
+    height: 35px;
+    margin-left: 20px;
+}
+.shaer-btnBox{
+    width: 100%;
+}
+.shaer-btnBox p{
+    float: left;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+.shaer-btn{
+    color: #fff;
+    background-color: #00a0e9;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    font-size: 14px;
+     padding: 0 20px;
+    margin-left: 15px;
+}
+.share-prompt{
+    width: 300px;
+    height: 150px;
+    background-color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -75px -150px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+.share-promptTitle{
+    line-height: 110px;
+    text-align: center;
+    font-size: 24px;
+    margin: 0;
+}
+.share-promptBtns{
+    text-align: center;
+}
+.share-promptBtns button{
+    float: left;
+    width: 50%;
+    height: 40px;
+    line-height: 40px;
+    outline: none;
+    border: none;
+    font-size: 14px;
+}
+.shaer-fail{
+    color: #fff;
+    background-color: #d9534f;
+}
+.shaer-sure{
+    color: #fff;
+    background-color: #5cb85c;
+}
+.btn-codeview{
+    display: none;
+}
+.note-insert{
+    display: none;
+}
+.shaer-alert{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,.7);
+    display: none;
+}
+.shaer{
+    width: 800px;
+    height: 600px;
+    background-color: #fff;
+    border:1px solid #c1c1c1;
+    border-radius: 6px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -300px -400px;
+}
+.share-alertModify{
+    width: 120px;
+    margin:30px auto;
+    cursor: pointer;
+}
+.share-setJifen{
+    display: none;
+}
+.share-setMoney{
+    display: none;
+}

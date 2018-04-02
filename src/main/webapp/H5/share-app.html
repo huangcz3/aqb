@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>弹幕猎人邀请分享</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta name="author" content="zhy" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <link rel="stylesheet" href="css/share-app.css">
+</head>
+<body>
+<div class="share-box">
+    <p class="share-p">
+        请验证您的手机号
+    </p>
+    <input type="text" placeholder="  请输入手机号" class="share-input">
+    <p class="share-btns">验证</p>
+    <p class="share-p1">
+        邀请成功后，你和邀请你的人均可得到积分或余额奖励（积分可提现）
+    </p>
+</div>
+<div class="share-promptbox share-promptPass">
+    <div class="share-prompt">
+        <img src="img/success.png" alt="" class="share-img">
+        <p class="share-promptP">
+            验证成功
+        </p>
+        <p class="share-promptP1">
+            手机号注册成功才算分享成功哦！
+        </p>
+        <a class="share-promptBtn share-promptBtnPass" href="javascript:;">
+            下载弹幕猎人
+        </a>
+    </div>
+</div>
+<div class="share-promptbox share-promptFail">
+    <div class="share-prompt">
+        <img src="img/fail.png" alt="" class="share-img share-imgfail">
+        <p class="share-promptP share-promptPfail" >
+            验证失败 <span id="error">长得太丑</span>
+        </p>
+        <p class="share-promptBtn share-promptBtnFail">
+            好吧
+        </p>
+    </div>
+</div>
+<div class="share-promptbox share-promptwait">
+    <div class="share-wait">
+        <img src="img/wait.gif" alt="" class=" share-waitImg">
+    </div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/share-app.js"></script>
+</body>
+</html>

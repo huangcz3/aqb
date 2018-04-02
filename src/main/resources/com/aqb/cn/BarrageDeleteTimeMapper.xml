@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.BarrageDeleteTimeMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.BarrageDeleteTime" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="name" property="name" jdbcType="CHAR" />
+    <result column="cycle" property="cycle" jdbcType="CHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, cycle, start_time, code, status, found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from barrage_delete_time
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from barrage_delete_time
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.BarrageDeleteTime" >
+    insert into barrage_delete_time (id, name, cycle, start_time,
+    code, status, found_date
+    )
+    values (#{id,jdbcType=CHAR}, #{name,jdbcType=CHAR}, #{cycle,jdbcType=CHAR}, #{startTime,jdbcType=TIMESTAMP},
+    #{code,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{foundDate,jdbcType=TIMESTAMP}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.BarrageDeleteTime" >
+    insert into barrage_delete_time
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="cycle != null" >
+        cycle,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="cycle != null" >
+        #{cycle,jdbcType=CHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.BarrageDeleteTime" >
+    update barrage_delete_time
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="cycle != null" >
+        cycle = #{cycle,jdbcType=CHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.BarrageDeleteTime" >
+    update barrage_delete_time
+    set name = #{name,jdbcType=CHAR},
+      cycle = #{cycle,jdbcType=CHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      code = #{code,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <select id="selectInUse" resultMap="BaseResultMap" >
+    SELECT <include refid="Base_Column_List" />
+    FROM barrage_delete_time WHERE status = 1
+  </select>
+
+  <select id="queryBarrageDeleteTime" resultMap="BaseResultMap" >
+    SELECT <include refid="Base_Column_List" />
+    FROM barrage_delete_time ORDER BY found_date
+  </select>
+
+</mapper>

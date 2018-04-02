@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.TopicMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.Topic" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="topic_title" property="topicTitle" jdbcType="VARCHAR" />
+    <result column="topic_content" property="topicContent" jdbcType="VARCHAR" />
+    <result column="topic_yuliu1" property="topicYuliu1" jdbcType="VARCHAR" />
+    <result column="topic_yuliu2" property="topicYuliu2" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, topic_title, topic_content, topic_yuliu1, topic_yuliu2, status, found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from topic
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from topic
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.Topic" >
+    insert into topic (id, topic_title, topic_content, 
+      topic_yuliu1, topic_yuliu2, status, 
+      found_date)
+    values (#{id,jdbcType=CHAR}, #{topicTitle,jdbcType=VARCHAR}, #{topicContent,jdbcType=VARCHAR}, 
+      #{topicYuliu1,jdbcType=VARCHAR}, #{topicYuliu2,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{foundDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.Topic" >
+    insert into topic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="topicTitle != null" >
+        topic_title,
+      </if>
+      <if test="topicContent != null" >
+        topic_content,
+      </if>
+      <if test="topicYuliu1 != null" >
+        topic_yuliu1,
+      </if>
+      <if test="topicYuliu2 != null" >
+        topic_yuliu2,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="topicTitle != null" >
+        #{topicTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="topicContent != null" >
+        #{topicContent,jdbcType=VARCHAR},
+      </if>
+      <if test="topicYuliu1 != null" >
+        #{topicYuliu1,jdbcType=VARCHAR},
+      </if>
+      <if test="topicYuliu2 != null" >
+        #{topicYuliu2,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.Topic" >
+    update topic
+    <set >
+      <if test="topicTitle != null" >
+        topic_title = #{topicTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="topicContent != null" >
+        topic_content = #{topicContent,jdbcType=VARCHAR},
+      </if>
+      <if test="topicYuliu1 != null" >
+        topic_yuliu1 = #{topicYuliu1,jdbcType=VARCHAR},
+      </if>
+      <if test="topicYuliu2 != null" >
+        topic_yuliu2 = #{topicYuliu2,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.Topic" >
+    update topic
+    set topic_title = #{topicTitle,jdbcType=VARCHAR},
+      topic_content = #{topicContent,jdbcType=VARCHAR},
+      topic_yuliu1 = #{topicYuliu1,jdbcType=VARCHAR},
+      topic_yuliu2 = #{topicYuliu2,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <select id="queryTopic" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from topic ORDER BY found_date ASC
+  </select>
+
+</mapper>

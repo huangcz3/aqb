@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.AdminModuleMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.AdminModule" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="admin_id" property="adminId" jdbcType="CHAR" />
+    <result column="module_code" property="moduleCode" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+    <association property="module" column="module_code" javaType="Module" select="com.aqb.cn.mapper.ModuleMapper.selectByModuleCode"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, admin_id, module_code, status, found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from admin_module
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from admin_module
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.AdminModule" >
+    insert into admin_module (id, admin_id, module_code, 
+      status, found_date)
+    values (#{id,jdbcType=CHAR}, #{adminId,jdbcType=CHAR}, #{moduleCode,jdbcType=VARCHAR},
+      #{status,jdbcType=INTEGER}, #{foundDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.AdminModule" >
+    insert into admin_module
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="adminId != null" >
+        admin_id,
+      </if>
+      <if test="moduleCode != null" >
+        module_code,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="adminId != null" >
+        #{adminId,jdbcType=CHAR},
+      </if>
+      <if test="moduleCode != null" >
+        #{moduleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.AdminModule" >
+    update admin_module
+    <set >
+      <if test="adminId != null" >
+        admin_id = #{adminId,jdbcType=CHAR},
+      </if>
+      <if test="moduleCode != null" >
+        module_code = #{moduleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.AdminModule" >
+    update admin_module
+    set admin_id = #{adminId,jdbcType=CHAR},
+      module_code = #{moduleCode,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+
+  <select id="selectByAdminId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from admin_module
+    where admin_id = #{adminId}
+  </select>
+
+  <insert id="addAdminModuleList" parameterType="java.util.List">
+    insert into admin_module (id, admin_id, module_code, status, found_date) values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.id,jdbcType=CHAR}, #{item.adminId,jdbcType=CHAR},
+      #{item.moduleCode,jdbcType=VARCHAR}, #{item.status,jdbcType=INTEGER},#{item.foundDate,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+
+  <delete id="deleteByAdminId" parameterType="java.lang.String" >
+    delete from admin_module
+    where admin_id = #{adminId}
+  </delete>
+
+</mapper>

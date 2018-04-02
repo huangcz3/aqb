@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.ProportionMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.Proportion" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="proportion_name" property="proportionName" jdbcType="VARCHAR" />
+    <result column="proportion_front" property="proportionFront" jdbcType="REAL" />
+    <result column="proportion_after" property="proportionAfter" jdbcType="REAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, proportion_name, proportion_front, proportion_after, status, found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from proportion
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from proportion
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.Proportion" >
+    insert into proportion (id, proportion_name, proportion_front, 
+      proportion_after, status, found_date
+      )
+    values (#{id,jdbcType=CHAR}, #{proportionName,jdbcType=VARCHAR}, #{proportionFront,jdbcType=REAL}, 
+      #{proportionAfter,jdbcType=REAL}, #{status,jdbcType=INTEGER}, #{foundDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.Proportion" >
+    insert into proportion
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="proportionName != null" >
+        proportion_name,
+      </if>
+      <if test="proportionFront != null" >
+        proportion_front,
+      </if>
+      <if test="proportionAfter != null" >
+        proportion_after,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="proportionName != null" >
+        #{proportionName,jdbcType=VARCHAR},
+      </if>
+      <if test="proportionFront != null" >
+        #{proportionFront,jdbcType=REAL},
+      </if>
+      <if test="proportionAfter != null" >
+        #{proportionAfter,jdbcType=REAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.Proportion" >
+    update proportion
+    <set >
+      <if test="proportionName != null" >
+        proportion_name = #{proportionName,jdbcType=VARCHAR},
+      </if>
+      <if test="proportionFront != null" >
+        proportion_front = #{proportionFront,jdbcType=REAL},
+      </if>
+      <if test="proportionAfter != null" >
+        proportion_after = #{proportionAfter,jdbcType=REAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.Proportion" >
+    update proportion
+    set proportion_name = #{proportionName,jdbcType=VARCHAR},
+      proportion_front = #{proportionFront,jdbcType=REAL},
+      proportion_after = #{proportionAfter,jdbcType=REAL},
+      status = #{status,jdbcType=INTEGER},
+      found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <select id="queryProportion" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from proportion
+  </select>
+
+  <select id="selectByStatus" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List" />
+    from proportion
+    where status = #{status}
+    order by proportion_front desc
+  </select>
+
+</mapper>

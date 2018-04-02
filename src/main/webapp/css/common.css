@@ -1,0 +1,168 @@
+body{
+    font-size: 0.1rem;
+}
+header{
+    /*width: 10rem;*/
+    /*height: 0.5rem;*/
+
+    /*background-color: red;*/
+}
+nav{
+    width: 1.3rem;
+    height: 100%;
+    background-color: #eee;
+    border:1px solid #c1c1c1;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+/** =======================
+ * Contenedor Principal
+ ===========================*/
+h1 {
+    color: #FFF;
+    font-size: 24px;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 80px;
+}
+
+h1 a {
+    color: #c12c42;
+    font-size: 16px;
+}
+
+.accordion {
+    width: 100%;
+    max-width: 360px;
+    margin: 30px auto 20px;
+    background: #FFF;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.accordion .link {
+    cursor: pointer;
+    display: block;
+    padding: 15px 15px 15px 42px;
+    color: #4D4D4D;
+    font-size: 14px;
+    font-weight: 700;
+    border-bottom: 1px solid #CCC;
+    position: relative;
+    -webkit-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+.accordion li:last-child .link {
+    border-bottom: 0;
+}
+
+.accordion li i {
+    position: absolute;
+    top: 16px;
+    left: 12px;
+    font-size: 18px;
+    color: #595959;
+    -webkit-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+.accordion li i.fa-chevron-down {
+    right: 12px;
+    left: auto;
+    font-size: 16px;
+}
+
+.accordion li.open .link {
+    color: #b63b4d;
+}
+
+.accordion li.open i {
+    color: #b63b4d;
+}
+.accordion li.open i.fa-chevron-down {
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+/**
+ * Submenu
+ -----------------------------*/
+.submenu {
+    display: none;
+    background: #444359;
+    font-size: 14px;
+}
+
+.submenu li {
+    border-bottom: 1px solid #4b4a5e;
+}
+
+.submenu a {
+    display: block;
+    text-decoration: none;
+    color: #d9d9d9;
+    padding: 12px;
+    padding-left: 42px;
+    -webkit-transition: all 0.25s ease;
+    -o-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+}
+
+.submenu a:hover {
+    background: #b63b4d;
+    color: #FFF;
+}
+main{
+    width: 6rem;
+    position: absolute;
+    top: 0;
+    left: 1.3rem;
+    padding-top: 0.1rem;
+    padding-left: 0.1rem;
+}
+/*分页*/
+.pagingBox{
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    font-size: 14px;
+}
+.pagingLine{
+    border:1px solid #c1c1c1;
+    margin: 0 15px;
+}
+.pagingInput{
+    width: 60px;
+}
+.paging>span{
+    cursor: pointer;
+}
+.pagBtn{
+    padding:5px 15px;
+    background-color: #c1c1c1;
+    border-radius: 6px;
+    cursor: pointer;
+}
+/*公用样式弹窗*/
+.error{
+    width: 6.1rem;
+    height: 60px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    line-height: 60px;
+    background-color: #FF6600;
+    text-align: center;
+    color: #fff;
+    font-size: 24px;
+    display: none;
+    z-index: 600;
+}
+

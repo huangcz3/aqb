@@ -1,0 +1,113 @@
+.part{
+    width: 100%;
+    height: 40px;
+    margin: 15px 0;
+    position: relative;
+}
+.share-title{
+    font-size: 24px;
+    margin: 15px 0;
+}
+.part label input[type="number"]{
+    display: inline-block;
+    width:60px;
+}
+.part span{
+    display: inline-block;
+    width: 0.2rem;
+    height: 0.2rem;
+    background-color: red;
+    position: absolute;
+    left: 3rem;
+    top: 0;
+}
+.part label input.change{
+    position: absolute;
+    left: 5rem;
+    top: 0;
+}
+.cir-color{
+    width: 100px;
+    height: 30px;
+    margin: auto;
+}
+.shaer-btnBox{
+    width: 100%;
+}
+.shaer-btnBox p{
+    float: left;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+/*弹窗*/
+.cricle-modifyBox{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,.7);
+    display: none;
+}
+.crilce-modify{
+    width: 300px;
+    height: 300px;
+    background-color: #fff;
+    border-radius: 6px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -150px -150px;
+    padding: 30px;
+}
+.crilceBox{
+    /*width: 370px;*/
+    /*margin: 0 auto;*/
+}
+.crilce{
+    clear: both;
+    font-size: 14px;
+    margin: 20px 0;
+}
+.crilce-btns{
+    text-align: center;
+    margin: 30px auto 0 auto;
+}
+.crilce-p{
+    text-align: center;
+    font-size: 18px;
+}
+.crilce-money{
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+}
+#colorpanel{
+    width: 253px;
+    height: 176px;
+    z-index: 99999;
+}
+#CT{
+    width: 253px;
+}
+#cp5text{
+    width: 150px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+}
+.cancel{
+    color: #fff;
+    background-color: #c1c1c1;
+    border: none;
+    margin: 0 auto;
+    outline: none;
+    border-radius: 6px;
+    font-size: 14px;
+    padding: 5px 20px;
+}
+#crilce-select{
+    width: 60px;
+   height: 30px;
+}

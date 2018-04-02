@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.ProfitUserMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.ProfitUser" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="advertisement_id" property="advertisementId" jdbcType="CHAR" />
+    <result column="equipment_number" property="equipmentNumber" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="CHAR" />
+    <result column="tjrtype" property="tjrtype" jdbcType="INTEGER" />
+    <result column="money" property="money" jdbcType="REAL" />
+    <result column="money1" property="money1" jdbcType="REAL" />
+    <result column="money2" property="money2" jdbcType="REAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, advertisement_id, equipment_number, user_id, tjrtype, money, money1, money2,
+    status, found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from profit_user
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from profit_user
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.ProfitUser" >
+    insert into profit_user (id, advertisement_id, equipment_number,
+    user_id, tjrtype, money, money1,
+    money2, status, found_date
+    )
+    values (#{id,jdbcType=CHAR}, #{advertisementId,jdbcType=CHAR}, #{equipmentNumber,jdbcType=VARCHAR},
+    #{userId,jdbcType=CHAR}, #{tjrtype,jdbcType=INTEGER}, #{money,jdbcType=REAL}, #{money1,jdbcType=REAL},
+    #{money2,jdbcType=REAL}, #{status,jdbcType=INTEGER}, #{foundDate,jdbcType=TIMESTAMP}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.ProfitUser" >
+    insert into profit_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="advertisementId != null" >
+        advertisement_id,
+      </if>
+      <if test="equipmentNumber != null" >
+        equipment_number,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="tjrtype != null" >
+        tjrtype,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="money1 != null" >
+        money1,
+      </if>
+      <if test="money2 != null" >
+        money2,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="advertisementId != null" >
+        #{advertisementId,jdbcType=CHAR},
+      </if>
+      <if test="equipmentNumber != null" >
+        #{equipmentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=CHAR},
+      </if>
+      <if test="tjrtype != null" >
+        #{tjrtype,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=REAL},
+      </if>
+      <if test="money1 != null" >
+        #{money1,jdbcType=REAL},
+      </if>
+      <if test="money2 != null" >
+        #{money2,jdbcType=REAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.ProfitUser" >
+    update profit_user
+    <set >
+      <if test="advertisementId != null" >
+        advertisement_id = #{advertisementId,jdbcType=CHAR},
+      </if>
+      <if test="equipmentNumber != null" >
+        equipment_number = #{equipmentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=CHAR},
+      </if>
+      <if test="tjrtype != null" >
+        tjrtype = #{tjrtype,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=REAL},
+      </if>
+      <if test="money1 != null" >
+        money1 = #{money1,jdbcType=REAL},
+      </if>
+      <if test="money2 != null" >
+        money2 = #{money2,jdbcType=REAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.ProfitUser" >
+    update profit_user
+    set advertisement_id = #{advertisementId,jdbcType=CHAR},
+      equipment_number = #{equipmentNumber,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=CHAR},
+      tjrtype = #{tjrtype,jdbcType=INTEGER},
+      money = #{money,jdbcType=REAL},
+      money1 = #{money1,jdbcType=REAL},
+      money2 = #{money2,jdbcType=REAL},
+      status = #{status,jdbcType=INTEGER},
+      found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

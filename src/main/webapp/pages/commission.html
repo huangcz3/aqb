@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>车主分成比例设置</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta name="author" content="zhy" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/pulbic.css">
+    <link rel="stylesheet" href="../css/progress.css">
+
+</head>
+<body>
+<header role="banner">
+
+</header>
+<nav role="navigation">
+    <!-- Contenedor -->
+    <ul id="accordion" class="accordion">
+        <li>
+            <div class="link"><i class="fa fa-globe"></i>设备管理<i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+                <li><a href="./binding-reviewed.html">设备绑定审核</a></li>
+                <li><a href="./unbundling.html">设备解绑</a></li>
+                <li><a href="./binding.html">在线设备查询</a></li>
+            </ul>
+        </li>
+        <li>
+            <div class="link"><i class="fa fa-globe"></i>红包提现审核<i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+                <li><a href="./withdrawals.html">提现审核</a></li>
+            </ul>
+        </li>
+        <li>
+            <div class="link"><i class="fa fa-globe"></i>广告管理<i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+                <li><a href="./advertisement.html">广告内容审核</a></li>
+                <li><a href="./order-list.html">广告内容列表</a></li>
+                <li><a href="./advertising-settings.html">公益广告</a></li>
+            </ul>
+        </li>
+        <li><div class="link"><i class="fa fa-globe"></i>修车圈管理<i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+                <li><a href="./repair-examine.html">用户评价审核</a></li>
+                <li><a href="./repair-administration.html">用户评价管理</a></li>
+                <li><a href="./merchant-management.html">商家管理</a></li>
+            </ul>
+        </li>
+        <li><div class="link"><i class="fa fa-globe"></i>押金管理<i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+                <li><a href="./deposit.html">押金管理</a></li>
+                <li><a href="./deposit-retreat.html">押金退还审核</a></li>
+                <li><a href="./modify-money.html">押金金额设置</a></li>
+            </ul>
+        </li>
+        <li><div class="link"><i class="fa fa-globe"></i>弹幕管理<i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+                <li><a href="./barrage.html">弹幕管理</a></li>
+                <li><a href="./topic.html">话题编辑</a></li>
+                <li><a href="./circle.html">大小圈金额</a></li>
+                <li><a href="./vip.html">VIP权限设置</a></li>
+                <li><a href="./keyword.html">关键词屏蔽</a></li>
+            </ul>
+        </li>
+        <li><div class="link"><i class="fa fa-globe"></i>结算与分成管理<i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+                <li><a href="./exchange.html">兑换比例设置</a></li>
+                <li><a href="./commission.html">车主分成比例设置</a></li>
+                <li><a href="./referee.html">推荐人奖励</a></li>
+                <li><a href="./timePrice.html#成都">时段价格设置</a></li>
+            </ul>
+        </li>
+        <li><div class="link"><i class="fa fa-globe"></i>其他设置<i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+                <li><a href="./integral.html">积分任务管理</a></li>
+                <li><a href="./share.html">邀请分享设置</a></li>
+                <li><a href="./pop-ads.html">弹窗广告设置</a></li>
+                <li><a href="./insurance.html">保险</a></li>
+                <li><a href="./setting.html">其他设置</a></li>
+            </ul>
+        </li>
+        <li><div class="link"><i class="fa fa-globe"></i>系统设置<i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+                <li><a href="./staff.html">员工权限设置</a></li>
+                <li><a href="./privacy.html">隐私保护</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+<main role="main">
+    <h3>车主与平台分成</h3>
+    <p class="share-title">
+        车主与平台分成比例设置
+    </p>
+   <div class="cct-progress">
+       <div class="cct-progress-bar">
+           <div>车主</div>
+           <div class="car-user"></div>
+           <div class="company"></div>
+           <div>公司</div>
+       </div>
+       <span class="ratio"></span>
+       <div class="cct-progress-drag">
+           <span></span>
+       </div>
+   </div>
+    <p class="share-title">
+        平台收益列表
+    </p>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="commit-box after">
+                <p class="commit-pLeft">
+                    选择年份   <select name=""  class="commit-year" id="year"></select>年
+                </p>
+                <p  class="commit-pRight">
+                    年收益总额 <span class="commit-money"></span>
+                    <span  class="commit-jifen"></span>
+                </p>
+            </div>
+            <table class="table table-striped table-bordered table-hover table-condensed">
+                <thead>
+                <tr>
+                    <th>月份</th>
+                    <th>金额收益</th>
+                    <th>积分收益</th>
+                </tr>
+                </thead>
+                <tbody class="commit-yearSee">
+
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="commit-box after">
+                <p class="commit-pLeft">
+                    选择月份
+                    <select name="" class="commit-month">
+                    </select>月
+                </p>
+                <p  class="commit-pRight">
+                    年收益总额 <span class="commit-monthMoney"></span>
+                    <span class="commit-monthJifen"></span>
+                </p>
+            </div>
+            <table class="table table-striped table-bordered table-hover table-condensed" >
+                <thead>
+                <tr>
+                    <th>天</th>
+                    <th>金额收益</th>
+                    <th>积分收益</th>
+                </tr>
+                </thead>
+                <tbody class="commit-monthSee">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+<script src="../js/jquery-3.1.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../H5/js/auto-size.js"></script>
+<script src="../js/paging.js"></script>
+<script src="../js/progress.js"></script>
+<script src="../js/commission.js"></script>
+</body>
+</html>

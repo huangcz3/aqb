@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.UserVipMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.UserVip" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="user_id" property="userId" jdbcType="CHAR" />
+    <result column="vip_id" property="vipId" jdbcType="CHAR" />
+    <result column="open_time" property="openTime" jdbcType="TIMESTAMP" />
+    <result column="length_time" property="lengthTime" jdbcType="INTEGER" />
+    <result column="surplus_days" property="surplusDays" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="vip_grade" property="vipGrade" jdbcType="INTEGER" />
+    <result column="stop_time" property="stopTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, vip_id, open_time, length_time, surplus_days, start_time, vip_grade,
+    stop_time, status, found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from user_vip
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from user_vip
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.UserVip" >
+    insert into user_vip (id, user_id, vip_id, open_time,
+    length_time, surplus_days, start_time,
+    vip_grade, stop_time, status,
+    found_date)
+    values (#{id,jdbcType=CHAR}, #{userId,jdbcType=CHAR}, #{vipId,jdbcType=CHAR}, #{openTime,jdbcType=TIMESTAMP},
+    #{lengthTime,jdbcType=INTEGER}, #{surplusDays,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP},
+    #{vipGrade,jdbcType=INTEGER}, #{stopTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER},
+    #{foundDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.UserVip" >
+    insert into user_vip
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="vipId != null" >
+        vip_id,
+      </if>
+      <if test="openTime != null" >
+        open_time,
+      </if>
+      <if test="lengthTime != null" >
+        length_time,
+      </if>
+      <if test="surplusDays != null" >
+        surplus_days,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="vipGrade != null" >
+        vip_grade,
+      </if>
+      <if test="stopTime != null" >
+        stop_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=CHAR},
+      </if>
+      <if test="vipId != null" >
+        #{vipId,jdbcType=CHAR},
+      </if>
+      <if test="openTime != null" >
+        #{openTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lengthTime != null" >
+        #{lengthTime,jdbcType=INTEGER},
+      </if>
+      <if test="surplusDays != null" >
+        #{surplusDays,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vipGrade != null" >
+        #{vipGrade,jdbcType=INTEGER},
+      </if>
+      <if test="stopTime != null" >
+        #{stopTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.UserVip" >
+    update user_vip
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=CHAR},
+      </if>
+      <if test="vipId != null" >
+        vip_id = #{vipId,jdbcType=CHAR},
+      </if>
+      <if test="openTime != null" >
+        open_time = #{openTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lengthTime != null" >
+        length_time = #{lengthTime,jdbcType=INTEGER},
+      </if>
+      <if test="surplusDays != null" >
+        surplus_days = #{surplusDays,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vipGrade != null" >
+        vip_grade = #{vipGrade,jdbcType=INTEGER},
+      </if>
+      <if test="stopTime != null" >
+        stop_time = #{stopTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.UserVip" >
+    update user_vip
+    set user_id = #{userId,jdbcType=CHAR},
+      vip_id = #{vipId,jdbcType=CHAR},
+      open_time = #{openTime,jdbcType=TIMESTAMP},
+      length_time = #{lengthTime,jdbcType=INTEGER},
+      surplus_days = #{surplusDays,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      vip_grade = #{vipGrade,jdbcType=INTEGER},
+      stop_time = #{stopTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <select id="queryUserVip" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from user_vip
+  </select>
+
+  <select id="countUserVip" resultType="long" >
+    SELECT COUNT(*) FROM user_vip
+    WHERE user_id = #{userId}
+  </select>
+
+  <select id="selectByUserId"  resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from user_vip WHERE user_id = #{userId} ORDER BY vip_grade ASC
+  </select>
+
+  <select id="selectByUserIdVipGrade"  resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from user_vip WHERE user_id = #{0} AND vip_grade = #{1}
+  </select>
+
+  <select id="selectUserVipUse"  resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from user_vip WHERE user_id = #{userId} AND status = 1
+  </select>
+
+  <select id="selectUserVipUnuse"  resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from user_vip WHERE user_id = #{userId} AND status = 0 ORDER BY vip_grade DESC
+  </select>
+
+  <select id="UsingUserVip"  resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from user_vip WHERE  status = 1
+  </select>
+
+  <select id="selectMyVip"  resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from user_vip WHERE user_id = #{userId} ORDER BY vip_grade DESC
+  </select>
+
+</mapper>

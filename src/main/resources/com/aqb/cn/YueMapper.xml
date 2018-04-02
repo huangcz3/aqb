@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.YueMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.Yue" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="user_id" property="userId" jdbcType="CHAR" />
+    <result column="yue_category" property="yueCategory" jdbcType="INTEGER" />
+    <result column="yue_income_out" property="yueIncomeOut" jdbcType="BIT" />
+    <result column="yue_subtotal" property="yueSubtotal" jdbcType="REAL" />
+    <result column="yue_status" property="yueStatus" jdbcType="INTEGER" />
+    <result column="yue_foud_date" property="yueFoudDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, yue_category, yue_income_out, yue_subtotal, yue_status, yue_foud_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from yue
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from yue
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.Yue" >
+    insert into yue (id, user_id, yue_category,
+    yue_income_out, yue_subtotal, yue_status,
+    yue_foud_date)
+    values (#{id,jdbcType=CHAR}, #{userId,jdbcType=CHAR}, #{yueCategory,jdbcType=INTEGER},
+    #{yueIncomeOut,jdbcType=BIT}, #{yueSubtotal,jdbcType=REAL}, #{yueStatus,jdbcType=INTEGER},
+    #{yueFoudDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.Yue" >
+    insert into yue
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="yueCategory != null" >
+        yue_category,
+      </if>
+      <if test="yueIncomeOut != null" >
+        yue_income_out,
+      </if>
+      <if test="yueSubtotal != null" >
+        yue_subtotal,
+      </if>
+      <if test="yueStatus != null" >
+        yue_status,
+      </if>
+      <if test="yueFoudDate != null" >
+        yue_foud_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=CHAR},
+      </if>
+      <if test="yueCategory != null" >
+        #{yueCategory,jdbcType=INTEGER},
+      </if>
+      <if test="yueIncomeOut != null" >
+        #{yueIncomeOut,jdbcType=BIT},
+      </if>
+      <if test="yueSubtotal != null" >
+        #{yueSubtotal,jdbcType=REAL},
+      </if>
+      <if test="yueStatus != null" >
+        #{yueStatus,jdbcType=INTEGER},
+      </if>
+      <if test="yueFoudDate != null" >
+        #{yueFoudDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.Yue" >
+    update yue
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=CHAR},
+      </if>
+      <if test="yueCategory != null" >
+        yue_category = #{yueCategory,jdbcType=INTEGER},
+      </if>
+      <if test="yueIncomeOut != null" >
+        yue_income_out = #{yueIncomeOut,jdbcType=BIT},
+      </if>
+      <if test="yueSubtotal != null" >
+        yue_subtotal = #{yueSubtotal,jdbcType=REAL},
+      </if>
+      <if test="yueStatus != null" >
+        yue_status = #{yueStatus,jdbcType=INTEGER},
+      </if>
+      <if test="yueFoudDate != null" >
+        yue_foud_date = #{yueFoudDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.Yue" >
+    update yue
+    set user_id = #{userId,jdbcType=CHAR},
+      yue_category = #{yueCategory,jdbcType=INTEGER},
+      yue_income_out = #{yueIncomeOut,jdbcType=BIT},
+      yue_subtotal = #{yueSubtotal,jdbcType=REAL},
+      yue_status = #{yueStatus,jdbcType=INTEGER},
+      yue_foud_date = #{yueFoudDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <select id="queryYue" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from yue order by yue_foud_date DESC
+  </select>
+
+  <select id="queryYueByUserId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from yue WHERE user_id = #{userId}
+    order by yue_foud_date DESC
+  </select>
+
+
+
+</mapper>

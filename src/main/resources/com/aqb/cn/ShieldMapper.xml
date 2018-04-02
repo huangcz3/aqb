@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.ShieldMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.Shield" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="shield_guanjianci" property="shieldGuanjianci" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, shield_guanjianci, status, found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from shield
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <select id="selectByWord" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from shield
+    where shield_guanjianci = #{shieldGuanjianci,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from shield
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.Shield" >
+    insert into shield (id, shield_guanjianci, status, 
+      found_date)
+    values (#{id,jdbcType=CHAR}, #{shieldGuanjianci,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{foundDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.Shield" >
+    insert into shield
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="shieldGuanjianci != null" >
+        shield_guanjianci,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="shieldGuanjianci != null" >
+        #{shieldGuanjianci,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.Shield" >
+    update shield
+    <set >
+      <if test="shieldGuanjianci != null" >
+        shield_guanjianci = #{shieldGuanjianci,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.Shield" >
+    update shield
+    set shield_guanjianci = #{shieldGuanjianci,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <select id="selectByGuanjianci" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from shield
+    where shield_guanjianci = #{shieldGuanjianci}
+  </select>
+
+  <select id="queryShield" parameterType="com.aqb.cn.common.QueryBase" resultMap="BaseResultMap">
+    SELECT *
+    FROM shield
+    ORDER BY found_date  DESC
+    LIMIT #{firstRow}, #{maxRow}
+  </select>
+
+  <select id="countShield" parameterType="com.aqb.cn.common.QueryBase" resultType="long">
+    SELECT COUNT(id) FROM shield
+  </select>
+
+  <select id="selectShieldList" resultMap="BaseResultMap">
+    SELECT * FROM shield where status = 1
+  </select>
+
+
+</mapper>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.ParameterMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.Parameter" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="admin_id" property="adminId" jdbcType="CHAR" />
+    <result column="para_name" property="paraName" jdbcType="CHAR" />
+    <result column="val_date" property="valDate" jdbcType="TIMESTAMP" />
+    <result column="val_str" property="valStr" jdbcType="VARCHAR" />
+    <result column="val_int" property="valInt" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, admin_id, para_name, val_date, val_str, val_int, status, found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from parameter
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from parameter
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.Parameter" >
+    insert into parameter (id, admin_id, para_name, 
+      val_date, val_str, val_int, 
+      status, found_date)
+    values (#{id,jdbcType=INTEGER}, #{adminId,jdbcType=CHAR}, #{paraName,jdbcType=CHAR}, 
+      #{valDate,jdbcType=TIMESTAMP}, #{valStr,jdbcType=VARCHAR}, #{valInt,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{foundDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.Parameter" >
+    insert into parameter
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="adminId != null" >
+        admin_id,
+      </if>
+      <if test="paraName != null" >
+        para_name,
+      </if>
+      <if test="valDate != null" >
+        val_date,
+      </if>
+      <if test="valStr != null" >
+        val_str,
+      </if>
+      <if test="valInt != null" >
+        val_int,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="adminId != null" >
+        #{adminId,jdbcType=CHAR},
+      </if>
+      <if test="paraName != null" >
+        #{paraName,jdbcType=CHAR},
+      </if>
+      <if test="valDate != null" >
+        #{valDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="valStr != null" >
+        #{valStr,jdbcType=VARCHAR},
+      </if>
+      <if test="valInt != null" >
+        #{valInt,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.Parameter" >
+    update parameter
+    <set >
+      <if test="adminId != null" >
+        admin_id = #{adminId,jdbcType=CHAR},
+      </if>
+      <if test="paraName != null" >
+        para_name = #{paraName,jdbcType=CHAR},
+      </if>
+      <if test="valDate != null" >
+        val_date = #{valDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="valStr != null" >
+        val_str = #{valStr,jdbcType=VARCHAR},
+      </if>
+      <if test="valInt != null" >
+        val_int = #{valInt,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.Parameter" >
+    update parameter
+    set admin_id = #{adminId,jdbcType=CHAR},
+      para_name = #{paraName,jdbcType=CHAR},
+      val_date = #{valDate,jdbcType=TIMESTAMP},
+      val_str = #{valStr,jdbcType=VARCHAR},
+      val_int = #{valInt,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryPopPara" resultMap="BaseResultMap"  >
+    select <include refid="Base_Column_List" />
+    from parameter
+    where para_name = "弹窗广告开关"
+  </select>
+</mapper>

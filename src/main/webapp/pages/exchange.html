@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>积分兑换比例设置</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <script src="../H5/js/auto-size.js"></script>
+    <script src="../js/paging.js"></script>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/exchange.css">
+</head>
+<body>
+<header role="banner">
+
+</header>
+<nav role="navigation">
+    <!-- Contenedor -->
+    <ul id="accordion" class="accordion">
+        <li>
+            <div class="link"><i class="fa fa-globe"></i>设备管理<i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+                <li><a href="./binding-reviewed.html">设备绑定审核</a></li>
+                <li><a href="./unbundling.html">设备解绑</a></li>
+                <li><a href="./binding.html">在线设备查询</a></li>
+            </ul>
+        </li>
+        <li>
+            <div class="link"><i class="fa fa-globe"></i>红包提现审核<i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+                <li><a href="./withdrawals.html">提现审核</a></li>
+            </ul>
+        </li>
+        <li>
+            <div class="link"><i class="fa fa-globe"></i>广告管理<i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+                <li><a href="./advertisement.html">广告内容审核</a></li>
+                <li><a href="./order-list.html">广告内容列表</a></li>
+                <li><a href="./advertising-settings.html">公益广告</a></li>
+            </ul>
+        </li>
+        <li><div class="link"><i class="fa fa-globe"></i>修车圈管理<i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+                <li><a href="./repair-examine.html">用户评价审核</a></li>
+                <li><a href="./repair-administration.html">用户评价管理</a></li>
+                <li><a href="./merchant-management.html">商家管理</a></li>
+            </ul>
+        </li>
+        <li><div class="link"><i class="fa fa-globe"></i>押金管理<i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+                <li><a href="./deposit.html">押金管理</a></li>
+                <li><a href="./deposit-retreat.html">押金退还审核</a></li>
+                <li><a href="./modify-money.html">押金金额设置</a></li>
+            </ul>
+        </li>
+        <li><div class="link"><i class="fa fa-globe"></i>弹幕管理<i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+                <li><a href="./barrage.html">弹幕管理</a></li>
+                <li><a href="./topic.html">话题编辑</a></li>
+                <li><a href="./circle.html">大小圈金额</a></li>
+                <li><a href="./vip.html">VIP权限设置</a></li>
+                <li><a href="./keyword.html">关键词屏蔽</a></li>
+            </ul>
+        </li>
+        <li><div class="link"><i class="fa fa-globe"></i>结算与分成管理<i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+                <li><a href="./exchange.html">兑换比例设置</a></li>
+                <li><a href="./commission.html">车主分成比例设置</a></li>
+                <li><a href="./referee.html">推荐人奖励</a></li>
+                <li><a href="./timePrice.html#成都">时段价格设置</a></li>
+            </ul>
+        </li>
+        <li><div class="link"><i class="fa fa-globe"></i>其他设置<i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+                <li><a href="./integral.html">积分任务管理</a></li>
+                <li><a href="./share.html">邀请分享设置</a></li>
+                <li><a href="./pop-ads.html">弹窗广告设置</a></li>
+                <li><a href="./insurance.html">保险</a></li>
+                <li><a href="./setting.html">其他设置</a></li>
+            </ul>
+        </li>
+        <li><div class="link"><i class="fa fa-globe"></i>系统设置<i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+                <li><a href="./staff.html">员工权限设置</a></li>
+                <li><a href="./privacy.html">隐私保护</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+<main role="main">
+    <h3 class="text-center">积分兑换比例设置</h3>
+    <div class="part">
+        <h4>提现积分与现金比例</h4>
+        <form id="withdraw">
+        </form>
+    </div>
+    <div class="part">
+        <h4>充值现金与积分比例</h4>
+        <form id="recharge">
+        </form>
+    </div>
+    <div class="part">
+        <h4>内圈现金红包与积分比例</h4>
+        <form id="pack">
+        </form>
+    </div>
+</main>
+<script>
+    var list;
+    getExangeList();
+    function getExangeList(){
+        var withdraw=$("#withdraw");
+        var recharge=$("#recharge");
+        var pack=$("#pack");
+        $.ajax({
+            url:"/aqb/api/proportion/queryProportion",
+            type:"get",
+            datatype:"json",
+            success:function(data){
+                list=data.body;
+                var str="";
+                var list1=[];
+                var list2=[];
+                var list3=[];
+                for(var no in list){
+                    var item=list[no];
+                    if(item.status==1){
+                        list1.push(item);
+                    }else if(item.status==2){
+                        list2.push(item);
+                    }else if(item.status==3){
+                        list3.push(item);
+                    }
+                }
+                var str1="";
+                var str2="";
+                var str3="";
+                for(var no in list1){
+                    str1+="<label for='withdraw"+list1[no].id+"'>" +
+                        list1[no].proportionFront+"积分 =<input type='tel' placeholder='" +
+                        list1[no].proportionAfter+"' id='withdraw"+list1[no].id+"'>元 <input type='button' value='保存' class='btn btn-success save' onclick='update(1,\"withdraw"+list1[no].id+"\",\""+list1[no].id+"\")' ></label>"
+                }
+                withdraw.empty();
+                withdraw.append(str1);
+                for(var no in list2){
+                    str2+="<label for='recharge"+list2[no].id+"'>"+
+                    list2[no].proportionAfter+"元 =<input type='tel' placeholder='" +
+                        list2[no].proportionFront+"' id='recharge"+list2[no].id+"'>积分 <input type='button' value='保存' class='btn btn-success save'onclick='update(2,\"recharge"+list2[no].id+"\",\""+list2[no].id+"\")' ></label>";
+                }
+                recharge.empty();
+                recharge.append(str2);
+                for(var no in list3){
+                    str3+="<label for='pack"+list3[no].id+"'>"+
+                        list3[no].proportionAfter+"元 =<input type='tel' placeholder='" +
+                        list3[no].proportionFront+"' id='pack"+list3[no].id+"'>积分 <input type='button' value='保存' class='btn btn-success save' onclick='update(3,\"pack"+list3[no].id+"\",\""+list3[no].id+"\")'></label>";
+                }
+                pack.empty();
+                pack.append(str3);
+            }
+        })
+    };
+    function update(type,id,eid) {
+        alert(eid);
+        var newVal=$("#"+id).val();
+        var proportion;
+        if(type==1){
+            proportion={
+                id:eid,
+                proportionAfter:newVal
+            }
+        }else{
+            proportion={
+                id:eid,
+                proportionFront:newVal
+        }
+        }
+        $.ajax(
+            {
+                url:"/aqb/api/proportion/updateproportion",
+                type:"post",
+                contentType:"applycation/json",
+                dataType:"json",
+                data:JSON.stringify(proportion),
+                success:function (data) {
+                    //0--成功, 10--验证码错误, 7 --客户不存在,9-- 密码不正确
+                    alert(data.message);
+                    getExangeList();
+                }
+            }
+        )
+    }
+</script>
+
+</body>
+</html>

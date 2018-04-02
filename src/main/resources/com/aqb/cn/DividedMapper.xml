@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.DividedMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.Divided" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="divided_name" property="dividedName" jdbcType="VARCHAR" />
+    <result column="divided_bili" property="dividedBili" jdbcType="REAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, divided_name, divided_bili, status, found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from divided
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from divided
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.Divided" >
+    insert into divided (id, divided_name, divided_bili, 
+      status, found_date)
+    values (#{id,jdbcType=CHAR}, #{dividedName,jdbcType=VARCHAR}, #{dividedBili,jdbcType=REAL}, 
+      #{status,jdbcType=INTEGER}, #{foundDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.Divided" >
+    insert into divided
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="dividedName != null" >
+        divided_name,
+      </if>
+      <if test="dividedBili != null" >
+        divided_bili,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="dividedName != null" >
+        #{dividedName,jdbcType=VARCHAR},
+      </if>
+      <if test="dividedBili != null" >
+        #{dividedBili,jdbcType=REAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.Divided" >
+    update divided
+    <set >
+      <if test="dividedName != null" >
+        divided_name = #{dividedName,jdbcType=VARCHAR},
+      </if>
+      <if test="dividedBili != null" >
+        divided_bili = #{dividedBili,jdbcType=REAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.Divided" >
+    update divided
+    set divided_name = #{dividedName,jdbcType=VARCHAR},
+      divided_bili = #{dividedBili,jdbcType=REAL},
+      status = #{status,jdbcType=INTEGER},
+      found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <select id="queryDivided" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from divided
+    where id = 'KDSJHFIO8943HIUJHDSF9978H9HHSUIH'
+  </select>
+
+</mapper>

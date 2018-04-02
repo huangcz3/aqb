@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.DeliveryPlatformMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.DeliveryPlatform" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="adver_platform_id" property="adverPlatformId" jdbcType="CHAR" />
+    <result column="adver_platform_content" property="adverPlatformContent" jdbcType="VARCHAR" />
+    <result column="longitude" property="longitude" jdbcType="DOUBLE" />
+    <result column="latitude" property="latitude" jdbcType="DOUBLE" />
+    <result column="adver_platform_money" property="adverPlatformMoney" jdbcType="REAL" />
+    <result column="adver_platform_score" property="adverPlatformScore" jdbcType="REAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, adver_platform_id, adver_platform_content, longitude, latitude, adver_platform_money, 
+    adver_platform_score, status, found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from delivery_platform
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from delivery_platform
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.DeliveryPlatform" >
+    insert into delivery_platform (id, user_id, adver_platform_id, 
+      adver_platform_content, longitude, latitude, 
+      adver_platform_money, adver_platform_score, status, 
+      found_date)
+    values (#{id,jdbcType=CHAR}, #{userId,jdbcType=VARCHAR}, #{adverPlatformId,jdbcType=CHAR},
+      #{adverPlatformContent,jdbcType=VARCHAR}, #{longitude,jdbcType=DOUBLE}, #{latitude,jdbcType=DOUBLE}, 
+      #{adverPlatformMoney,jdbcType=REAL}, #{adverPlatformScore,jdbcType=REAL}, #{status,jdbcType=INTEGER}, 
+      #{foundDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.DeliveryPlatform" >
+    insert into delivery_platform
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="adverPlatformId != null" >
+        adver_platform_id,
+      </if>
+      <if test="adverPlatformContent != null" >
+        adver_platform_content,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="adverPlatformMoney != null" >
+        adver_platform_money,
+      </if>
+      <if test="adverPlatformScore != null" >
+        adver_platform_score,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="adverPlatformId != null" >
+        #{adverPlatformId,jdbcType=CHAR},
+      </if>
+      <if test="adverPlatformContent != null" >
+        #{adverPlatformContent,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="adverPlatformMoney != null" >
+        #{adverPlatformMoney,jdbcType=REAL},
+      </if>
+      <if test="adverPlatformScore != null" >
+        #{adverPlatformScore,jdbcType=REAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.DeliveryPlatform" >
+    update delivery_platform
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="adverPlatformId != null" >
+        adver_platform_id = #{adverPlatformId,jdbcType=CHAR},
+      </if>
+      <if test="adverPlatformContent != null" >
+        adver_platform_content = #{adverPlatformContent,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="adverPlatformMoney != null" >
+        adver_platform_money = #{adverPlatformMoney,jdbcType=REAL},
+      </if>
+      <if test="adverPlatformScore != null" >
+        adver_platform_score = #{adverPlatformScore,jdbcType=REAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.DeliveryPlatform" >
+    update delivery_platform
+    set user_id = #{userId,jdbcType=VARCHAR},
+      adver_platform_id = #{adverPlatformId,jdbcType=CHAR},
+      adver_platform_content = #{adverPlatformContent,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=DOUBLE},
+      latitude = #{latitude,jdbcType=DOUBLE},
+      adver_platform_money = #{adverPlatformMoney,jdbcType=REAL},
+      adver_platform_score = #{adverPlatformScore,jdbcType=REAL},
+      status = #{status,jdbcType=INTEGER},
+      found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

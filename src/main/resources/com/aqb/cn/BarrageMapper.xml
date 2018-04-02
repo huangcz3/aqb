@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.BarrageMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.Barrage" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="user_id" property="userId" jdbcType="CHAR" />
+    <result column="barrage_content" property="barrageContent" jdbcType="VARCHAR" />
+    <result column="barrage_type" property="barrageType" jdbcType="INTEGER" />
+    <result column="topic_id" property="topicId" jdbcType="CHAR" />
+    <result column="barrage_color" property="barrageColor" jdbcType="INTEGER" />
+    <result column="b_like" property="bLike" jdbcType="INTEGER" />
+    <result column="b_unlike" property="bUnlike" jdbcType="INTEGER" />
+    <result column="found_time" property="foundTime" jdbcType="TIME" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <resultMap id="barra" type="com.aqb.cn.pojo.BarrageAndUser">
+    <id column="id" property="id"/>
+    <result column="topic_title" property="topicTitle"/>
+    <result column="user_id" property="userId"/>
+    <result column="barrage_content" property="barrageContent"/>
+    <result column="topic_id" property="topicId"/>
+    <result column="found_time" property="foundTime"/>
+    <!--<result column="id1" property="id1"/>-->
+    <result column="user_full" property="userFull"/>
+  </resultMap>
+
+
+  <sql id="Base_Column_List" >
+    id, user_id, barrage_content, barrage_type, topic_id, barrage_color, b_like, b_unlike,
+    found_time, status, found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from barrage
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from barrage
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.Barrage" >
+    insert into barrage (id, user_id, barrage_content,
+    barrage_type, topic_id, barrage_color,
+    b_like, b_unlike, found_time,
+    status, found_date)
+    values (#{id,jdbcType=CHAR}, #{userId,jdbcType=CHAR}, #{barrageContent,jdbcType=VARCHAR},
+    #{barrageType,jdbcType=INTEGER}, #{topicId,jdbcType=CHAR}, #{barrageColor,jdbcType=INTEGER},
+    #{bLike,jdbcType=INTEGER}, #{bUnlike,jdbcType=INTEGER}, #{foundTime,jdbcType=TIME},
+    #{status,jdbcType=INTEGER}, #{foundDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.Barrage" >
+    insert into barrage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="barrageContent != null" >
+        barrage_content,
+      </if>
+      <if test="barrageType != null" >
+        barrage_type,
+      </if>
+      <if test="topicId != null" >
+        topic_id,
+      </if>
+      <if test="barrageColor != null" >
+        barrage_color,
+      </if>
+      <if test="bLike != null" >
+        b_like,
+      </if>
+      <if test="bUnlike != null" >
+        b_unlike,
+      </if>
+      <if test="foundTime != null" >
+        found_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=CHAR},
+      </if>
+      <if test="barrageContent != null" >
+        #{barrageContent,jdbcType=VARCHAR},
+      </if>
+      <if test="barrageType != null" >
+        #{barrageType,jdbcType=INTEGER},
+      </if>
+      <if test="topicId != null" >
+        #{topicId,jdbcType=CHAR},
+      </if>
+      <if test="barrageColor != null" >
+        #{barrageColor,jdbcType=INTEGER},
+      </if>
+      <if test="bLike != null" >
+        #{bLike,jdbcType=INTEGER},
+      </if>
+      <if test="bUnlike != null" >
+        #{bUnlike,jdbcType=INTEGER},
+      </if>
+      <if test="foundTime != null" >
+        #{foundTime,jdbcType=TIME},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.Barrage" >
+    update barrage
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=CHAR},
+      </if>
+      <if test="barrageContent != null" >
+        barrage_content = #{barrageContent,jdbcType=VARCHAR},
+      </if>
+      <if test="barrageType != null" >
+        barrage_type = #{barrageType,jdbcType=INTEGER},
+      </if>
+      <if test="topicId != null" >
+        topic_id = #{topicId,jdbcType=CHAR},
+      </if>
+      <if test="barrageColor != null" >
+        barrage_color = #{barrageColor,jdbcType=INTEGER},
+      </if>
+      <if test="bLike != null" >
+        b_like = #{bLike,jdbcType=INTEGER},
+      </if>
+      <if test="bUnlike != null" >
+        b_unlike = #{bUnlike,jdbcType=INTEGER},
+      </if>
+      <if test="foundTime != null" >
+        found_time = #{foundTime,jdbcType=TIME},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.Barrage" >
+    update barrage
+    set user_id = #{userId,jdbcType=CHAR},
+      barrage_content = #{barrageContent,jdbcType=VARCHAR},
+      barrage_type = #{barrageType,jdbcType=INTEGER},
+      topic_id = #{topicId,jdbcType=CHAR},
+      barrage_color = #{barrageColor,jdbcType=INTEGER},
+      b_like = #{bLike,jdbcType=INTEGER},
+      b_unlike = #{bUnlike,jdbcType=INTEGER},
+      found_time = #{foundTime,jdbcType=TIME},
+      status = #{status,jdbcType=INTEGER},
+      found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <select id="queryAll" resultMap="BaseResultMap">
+    select * from barrage
+  </select>
+
+
+
+  <!-- 分页查询 -->
+  <select id="queryBarrage" parameterType="com.aqb.cn.common.QueryBase" resultMap="barra">
+   SELECT t.topic_title,b.id,b.user_id,b.barrage_content,b.topic_id,b.found_time,u.id,u.user_full,t.id as tid
+    FROM barrage b , `user` u,topic t  where  b.user_id = u.id
+    AND b.topic_id=t.id
+    AND u.user_full LIKE concat('%',#{parameters.userFull},'%')
+    ORDER BY t.found_date DESC  LIMIT #{firstRow}, #{maxRow}
+  </select>
+
+  <select id="countBarrage" parameterType="com.aqb.cn.common.QueryBase" resultType="long">
+    SELECT COUNT(barrage.id) FROM barrage LEFT JOIN user as user ON barrage.user_id = user.id
+    WHERE user_full like concat('%',#{parameters.userFull},'%')
+  </select>
+
+  <select id="queryBarrage1" parameterType="com.aqb.cn.common.QueryBase" resultMap="BaseResultMap">
+    SELECT * FROM barrage
+    ORDER BY found_date  DESC
+
+  </select>
+
+  <select id="countBarrage1" parameterType="com.aqb.cn.common.QueryBase" resultType="long">
+    SELECT COUNT(*) FROM barrage
+  </select>
+
+
+  <select id="queryBarrageByTime" resultMap="BaseResultMap">
+    select * from barrage
+    where #{1} > found_time and found_time > #{0} ORDER BY found_date
+  </select>
+
+  <select id="queryByTopicId" resultMap="BaseResultMap">
+    select * from barrage
+    where topic_id = #{topicId} ORDER BY found_date
+  </select>
+
+</mapper>

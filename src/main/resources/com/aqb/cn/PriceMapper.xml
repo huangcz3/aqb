@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.PriceMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.Price" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="price_start" property="priceStart" jdbcType="TIME" />
+    <result column="price_end" property="priceEnd" jdbcType="TIME" />
+    <result column="price_jiage" property="priceJiage" jdbcType="REAL" />
+    <result column="price_city" property="priceCity" jdbcType="VARCHAR" />
+    <result column="times" property="times" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, price_start, price_end, price_jiage, price_city, times, status, found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from price
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from price
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.Price" >
+    insert into price (id, price_start, price_end, 
+      price_jiage, price_city, times,status, 
+      found_date)
+    values (#{id,jdbcType=CHAR}, #{priceStart,jdbcType=TIME}, #{priceEnd,jdbcType=TIME}, 
+      #{priceJiage,jdbcType=REAL}, #{priceCity,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{foundDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.Price" >
+    insert into price
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="priceStart != null" >
+        price_start,
+      </if>
+      <if test="priceEnd != null" >
+        price_end,
+      </if>
+      <if test="priceJiage != null" >
+        price_jiage,
+      </if>
+      <if test="priceCity != null" >
+        price_city,
+      </if> 
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="priceStart != null" >
+        #{priceStart,jdbcType=TIME},
+      </if>
+      <if test="priceEnd != null" >
+        #{priceEnd,jdbcType=TIME},
+      </if>
+      <if test="priceJiage != null" >
+        #{priceJiage,jdbcType=REAL},
+      </if>
+      <if test="priceCity != null" >
+        #{priceCity,jdbcType=VARCHAR},
+      </if> 
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.Price" >
+    update price
+    <set >
+      <if test="priceStart != null" >
+        price_start = #{priceStart,jdbcType=TIME},
+      </if>
+      <if test="priceEnd != null" >
+        price_end = #{priceEnd,jdbcType=TIME},
+      </if>
+      <if test="priceJiage != null" >
+        price_jiage = #{priceJiage,jdbcType=REAL},
+      </if>
+      <if test="priceCity != null" >
+        price_city = #{priceCity,jdbcType=VARCHAR},
+      </if>
+      <if test="times != null" >
+        times = #{times,jdbcType=LONG},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.Price" >
+    update price
+    set price_start = #{priceStart,jdbcType=TIME},
+      price_end = #{priceEnd,jdbcType=TIME},
+      price_jiage = #{priceJiage,jdbcType=REAL},
+      price_city = #{priceCity,jdbcType=VARCHAR},
+      times= #{times,jdbcType=LONG},
+      status = #{status,jdbcType=INTEGER},
+      found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <select id="queryPrice" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from price
+    where price_city = #{priceCity}
+    ORDER BY price_start ASC
+  </select>
+
+  <select id="selectJiage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from price
+    where price_end > now() and now() > price_start
+  </select>
+
+
+</mapper>

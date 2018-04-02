@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.ShareMapper" >
+    <resultMap id="findSC" type="com.aqb.cn.bean.ShareComment">
+        <result column="share_comment_id" property="shareCommentId"></result>
+        <result column="rule" property="rule"></result>
+        <result column="admin_id" property="adminId"></result>
+        <result column="time" property="time"></result>
+        <result column="state" property="state"></result>
+    </resultMap>
+
+    <resultMap id="findSR" type="com.aqb.cn.bean.ShareRule">
+        <result column="share_set_id" property="shareSetId"></result>
+        <result column="integral" property="integral"></result>
+        <result column="money" property="money"></result>
+        <result column="share_rule" property="shareRule"></result>
+        <result column="admin_id" property="adminId"></result>
+        <result column="time" property="time"></result>
+        <result column="state" property="state"></result>
+    </resultMap>
+
+    <resultMap id="findSA" type="com.aqb.cn.bean.ShareAward">
+        <result column="share_award_id" property="shareAwardId"></result>
+        <result column="user_id" property="userId"></result>
+        <result column="share_tel" property="shareTel"></result>
+        <result column="integral" property="integral"></result>
+        <result column="money" property="money"></result>
+        <result column="share_time" property="shareTime"></result>
+        <result column="ranking_state" property="rankingState"></result>
+        <result column="award_state" property="awardState"></result>
+        <result column="admin_id" property="adminId"></result>
+        <result column="time" property="time"></result>
+        <result column="state" property="state"></result>
+    </resultMap>
+
+
+    <resultMap id="findUser" type="com.aqb.cn.bean.User" >
+        <id column="id" property="id" jdbcType="CHAR" />
+        <result column="user_name" property="userName" jdbcType="VARCHAR" />
+        <result column="im_user_name" property="imUserName" jdbcType="VARCHAR" />
+        <result column="user_pass" property="userPass" jdbcType="VARCHAR" />
+        <result column="user_code1" property="userCode1" jdbcType="VARCHAR" />
+        <result column="user_code2" property="userCode2" jdbcType="VARCHAR" />
+        <result column="user_code3" property="userCode3" jdbcType="VARCHAR" />
+        <result column="login_mode" property="loginMode" jdbcType="INTEGER" />
+        <result column="user_full" property="userFull" jdbcType="VARCHAR" />
+        <result column="user_nick" property="userNick" jdbcType="VARCHAR" />
+        <result column="user_sex" property="userSex" jdbcType="VARCHAR" />
+        <result column="user_age" property="userAge" jdbcType="VARCHAR" />
+        <result column="user_constellation" property="userConstellation" jdbcType="VARCHAR" />
+        <result column="user_card" property="userCard" jdbcType="VARCHAR" />
+        <result column="user_email" property="userEmail" jdbcType="VARCHAR" />
+        <result column="user_address" property="userAddress" jdbcType="CHAR" />
+        <result column="user_pay" property="userPay" jdbcType="VARCHAR" />
+        <result column="user_head" property="userHead" jdbcType="VARCHAR" />
+        <result column="vip_id" property="vipId" jdbcType="CHAR" />
+        <result column="user_cover" property="userCover" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <resultMap id="findSAS" type="java.util.TreeMap">
+        <result column="" property=""></result>
+    </resultMap>
+
+    <!--将其他规则说明状态改为不可用-->
+    <update id="updateShareCommentState">
+        UPDATE share_comment SET state = 0
+    </update>
+
+    <!--添加新规则说明-->
+    <insert id="addShareComment" parameterType="com.aqb.cn.bean.ShareComment">
+        INSERT INTO share_comment(rule,admin_id,time) VALUES (#{rule},#{adminId},#{time})
+    </insert>
+
+
+    <!--进入页面时查询正在使用的规则-->
+    <select id="findShareComment" resultMap="findSC">
+        SELECT sc.share_comment_id,sc.admin_id,sc.rule,sc.time FROM share_comment sc WHERE sc.state not in(0)
+    </select>
+
+    <!--进入该管理页面查询出正在使用的分享规则-->
+    <select id="findShareRule" resultMap="findSR">
+        SELECT * from share_rule sr WHERE sr.state not in(0)
+    </select>
+
+    <!--管理员新建规则前将其他规则禁用-->
+    <update id="updateShareRuleState">
+        UPDATE share_rule SET state = 0
+    </update>
+
+    <!--管理员新建规则-->
+    <insert id="addShareRule" parameterType="com.aqb.cn.bean.ShareRule">
+        insert into share_rule
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="integral != null" >
+                integral,
+            </if>
+            <if test="money != null" >
+                money,
+            </if>
+            <if test="shareRule != null" >
+                share_rule,
+            </if>
+            <if test="adminId != null" >
+                admin_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="integral != null" >
+                #{integral},
+            </if>
+            <if test="money != null" >
+                #{money},
+            </if>
+            <if test="shareRule != null" >
+                #{shareRule},
+            </if>
+            <if test="adminId != null" >
+                #{adminId},
+            </if>
+        </trim>
+    </insert>
+
+    <!--管理员清空排行状态-->
+    <update id="updateShare" parameterType="com.aqb.cn.bean.ShareAward">
+        UPDATE share_award
+        SET ranking_state = 0,admin_id=#{adminId},time=#{time}
+        WHERE
+        share_time &lt; #{time} AND ranking_state not in (0)
+    </update>
+
+    <!--查询接受分享的人是否已接受过分享了-->
+    <select id="findSAByShareTel" resultMap="findSA" parameterType="com.aqb.cn.bean.ShareAward">
+        SELECT * FROM share_award sa WHERE sa.share_tel = #{shareTel}
+    </select>
+
+    <!--将分享信息添加到记录表-->
+    <insert id="addShareAward" parameterType="com.aqb.cn.bean.ShareAward">
+        insert into share_award
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="userId != null" >
+                user_id,
+            </if>
+            <if test="shareTel != null" >
+                share_tel,
+            </if>
+            <if test="integral != null" >
+                integral,
+            </if>
+            <if test="money != null" >
+                money,
+            </if>
+            <if test="shareTime != null" >
+                share_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="userId != null" >
+                #{userId},
+            </if>
+            <if test="shareTel != null" >
+                #{shareTel},
+            </if>
+            <if test="integral != null" >
+                #{integral},
+            </if>
+            <if test="money != null" >
+                #{money},
+            </if>
+            <if test="shareTime != null" >
+                #{shareTime},
+            </if>
+        </trim>
+    </insert>
+
+
+    <!--查询接受分享人是否已注册-->
+    <select id="findUserByShareTel" parameterType="com.aqb.cn.bean.ShareAward" resultMap="findUser">
+        SELECT u.id FROM user u WHERE u.user_name = #{shareTel}
+    </select>
+
+    <!--为注册后的双方发放奖励-->
+    <insert id="addJifen" parameterType="com.aqb.cn.bean.Jifen">
+        insert into jifen
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="userId != null" >
+                user_id,
+            </if>
+            <if test="jifenCategory != null" >
+                jifen_category,
+            </if>
+            <if test="jifenIncomeOut != null" >
+                jifen_income_out,
+            </if>
+            <if test="jifenSubtotal != null" >
+                jifen_subtotal,
+            </if>
+            <if test="jifenStatus != null" >
+                jifen_status,
+            </if>
+            <if test="jifenFoudDate != null" >
+                jifen_foud_date,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id},
+            </if>
+            <if test="userId != null" >
+                #{userId},
+            </if>
+            <if test="jifenCategory != null" >
+                #{jifenCategory},
+            </if>
+            <if test="jifenIncomeOut != null" >
+                #{jifenIncomeOut},
+            </if>
+            <if test="jifenSubtotal != null" >
+                #{jifenSubtotal},
+            </if>
+            <if test="jifenStatus != null" >
+                #{jifenStatus},
+            </if>
+            <if test="jifenFoudDate != null" >
+                #{jifenFoudDate},
+            </if>
+        </trim>
+    </insert>
+
+    <!--将此条分享信息状态修改为已发放奖励,并更新时间-->
+    <update id="updateAwardState" parameterType="com.aqb.cn.bean.ShareAward">
+        UPDATE share_award
+        SET award_state = 1, share_time = #{shareTime}
+        WHERE
+        user_id=#{userId} AND share_tel=#{shareTel}
+    </update>
+
+    <resultMap id="findShare" type="java.util.LinkedHashMap">
+        <result column="u.user_name" property="user_name"></result>
+        <result column="u.user_full" property="user_full"></result>
+        <result column="u.user_nick" property="user_nick"></result>
+        <result column="sa2.integral" property="integral"></result>
+        <result column="sa2.money" property="money"></result>
+        <result column="sa2.share_time" property="share_time"></result>
+    </resultMap>
+
+
+    <!--查询个人邀请排行榜-->
+    <select id="findShareByUserId" parameterType="com.aqb.cn.bean.User" resultMap="findShare">
+        SELECT
+        u.user_name,u.user_full,u.user_nick,sa2.integral,sa2.money,sa2.share_time
+        FROM user u,share_award sa2
+        WHERE
+        u.user_name in (SELECT sa.share_tel FROM share_award sa WHERE sa.user_id=#{id} AND sa.award_state not in (0))
+        AND
+        u.user_name = sa2.share_tel
+        ORDER BY sa2.share_time DESC
+    </select>
+
+    <resultMap id="find" type="java.util.LinkedHashMap">
+        <result column="u.user_name" property="user_name"></result>
+        <result column="u.user_full" property="user_full"></result>
+        <result column="u.user_nick" property="user_nick"></result>
+        <result column="count(sa2.user_id)" property="count"></result>
+        <result column="sum(sa2.integral)" property="integrals"></result>
+        <result column="sum(sa2.money)" property="moneys"></result>
+    </resultMap>
+
+    <!--查询奖励排行榜-->
+    <select id="findShareRanking" resultMap="find">
+        SELECT
+         u.user_name,u.user_full,u.user_nick,count(sa2.user_id),sum(sa2.integral),sum(sa2.money)
+         FROM
+         user u,share_award sa2
+         WHERE
+         u.id in (SELECT DISTINCT(sa.user_id) FROM share_award sa WHERE sa.award_state not in (0) AND sa.ranking_state not in (0))
+         AND
+         u.id = sa2.user_id
+         GROUP BY sa2.user_id
+         ORDER BY count(sa2.user_id) DESC ,sum(sa2.integral) DESC ,sum(sa2.money) DESC
+         limit 1,10
+    </select>
+
+    <!--管理员查询奖励排行榜-->
+    <select id="findShareRankingPaging" resultMap="find"  flushCache="true" useCache="false">
+        {call sp_MvcCommonDataSource(
+        #{fields},
+        #{tables},
+        #{where},
+        #{groupby},
+        #{orderby},
+        #{pageindex},
+        #{pageSize},
+        #{sumfields},
+        @totalcount,
+        @pagecount,
+        @sumResult)}
+    </select>
+
+    <resultMap id="findCC" type="java.util.LinkedHashMap">
+        <result property="totalcount" column="totalcount"></result>
+        <result property="pagecount" column="pagecount"></result>
+        <result property="sumResult" column="sumResult"></result>
+    </resultMap>
+
+    <select id="findStatistics" resultMap="findCC">
+        select @totalcount,@pagecount,@sumResult
+    </select>
+</mapper>

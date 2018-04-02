@@ -1,0 +1,104 @@
+body{
+    background-color: #ffffff;
+}
+.share-box{
+    padding: 0 10px;
+}
+.share-p{
+    font-size: 15px;
+    color: #000000;
+    line-height: 40px;
+}
+.share-input{
+    display: block;
+    height: 40px;
+    color:#666;
+    border-radius: 4px;
+    margin: 20px 0;
+    font-size: 12px;
+    outline: none;
+    border:1px solid #434343;
+    width: 100%;
+}
+.share-btns{
+    background-color: #0da8aa;
+    height: 40px;
+    text-align: center;
+    color: #fff;
+    font-size: 15px;
+    margin-bottom: 20px;
+    line-height: 40px;
+    border-radius: 4px;
+}
+.share-p1{
+    font-size: 10px;
+    color: #555555;
+}
+.share-promptbox{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top:0;
+    bottom:0;
+    background-color: rgba(0,0,0,.5);
+    display: none;
+}
+.share-prompt{
+    width: 250px;
+    height: 200px;
+    background-color: #fff;
+    border-radius: 10px;
+    position: absolute;
+    left: 50%;
+    top:50%;
+    margin: -100px -125px;
+    text-align: center;
+    /*overflow: hidden;*/
+}
+.share-img{
+    width: 55px;
+    height: 55px;
+    margin: 16px auto 10px auto;
+}
+.share-promptP{
+    font-size: 15px;
+    color: #0da8aa;
+    margin: 0 0 13px 0;
+}
+.share-promptP1{
+    font-size: 9px;
+    color: #222;
+    margin: 0 0 16px 0;
+}
+.share-promptBtn{
+    width: 100%;
+    background-color: #0da8aa;
+    color: #fff;
+    font-size: 15px;
+    line-height: 50px;
+    display: block;
+}
+a{
+    text-decoration: none;
+}
+.share-imgfail{
+    margin: 20px auto;
+}
+.share-promptPfail{
+    margin: 0 0 33px 0;
+}
+.share-wait{
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    border-radius: 10px;
+    position: absolute;
+    left: 50%;
+    top:50%;
+    margin: -50px -50px;
+    text-align: center;
+    overflow: hidden;
+}
+.share-waitImg{
+    margin: 20px auto;
+}

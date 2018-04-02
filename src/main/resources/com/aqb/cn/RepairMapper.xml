@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.RepairMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.Repair" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="repair_name" property="repairName" jdbcType="VARCHAR" />
+    <result column="repair_introduce" property="repairIntroduce" jdbcType="VARCHAR" />
+    <result column="repair_cover" property="repairCover" jdbcType="VARCHAR" />
+    <result column="repair_popularity" property="repairPopularity" jdbcType="INTEGER" />
+    <result column="repair_longitude" property="repairLongitude" jdbcType="DOUBLE" />
+    <result column="repair_latitude" property="repairLatitude" jdbcType="DOUBLE" />
+    <result column="repair_address" property="repairAddress" jdbcType="VARCHAR" />
+    <result column="repair_phone" property="repairPhone" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, repair_name, repair_introduce, repair_cover, repair_popularity, repair_longitude, 
+    repair_latitude, repair_address, repair_phone, status, found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from repair
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from repair
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.Repair" >
+    insert into repair (id, repair_name, repair_introduce, 
+      repair_cover, repair_popularity, repair_longitude, 
+      repair_latitude, repair_address, repair_phone, 
+      status, found_date)
+    values (#{id,jdbcType=CHAR}, #{repairName,jdbcType=VARCHAR}, #{repairIntroduce,jdbcType=VARCHAR}, 
+      #{repairCover,jdbcType=VARCHAR}, #{repairPopularity,jdbcType=INTEGER}, #{repairLongitude,jdbcType=DOUBLE}, 
+      #{repairLatitude,jdbcType=DOUBLE}, #{repairAddress,jdbcType=VARCHAR}, #{repairPhone,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{foundDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.Repair" >
+    insert into repair
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="repairName != null" >
+        repair_name,
+      </if>
+      <if test="repairIntroduce != null" >
+        repair_introduce,
+      </if>
+      <if test="repairCover != null" >
+        repair_cover,
+      </if>
+      <if test="repairPopularity != null" >
+        repair_popularity,
+      </if>
+      <if test="repairLongitude != null" >
+        repair_longitude,
+      </if>
+      <if test="repairLatitude != null" >
+        repair_latitude,
+      </if>
+      <if test="repairAddress != null" >
+        repair_address,
+      </if>
+      <if test="repairPhone != null" >
+        repair_phone,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="repairName != null" >
+        #{repairName,jdbcType=VARCHAR},
+      </if>
+      <if test="repairIntroduce != null" >
+        #{repairIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="repairCover != null" >
+        #{repairCover,jdbcType=VARCHAR},
+      </if>
+      <if test="repairPopularity != null" >
+        #{repairPopularity,jdbcType=INTEGER},
+      </if>
+      <if test="repairLongitude != null" >
+        #{repairLongitude,jdbcType=DOUBLE},
+      </if>
+      <if test="repairLatitude != null" >
+        #{repairLatitude,jdbcType=DOUBLE},
+      </if>
+      <if test="repairAddress != null" >
+        #{repairAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="repairPhone != null" >
+        #{repairPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.Repair" >
+    update repair
+    <set >
+      <if test="repairName != null" >
+        repair_name = #{repairName,jdbcType=VARCHAR},
+      </if>
+      <if test="repairIntroduce != null" >
+        repair_introduce = #{repairIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="repairCover != null" >
+        repair_cover = #{repairCover,jdbcType=VARCHAR},
+      </if>
+      <if test="repairPopularity != null" >
+        repair_popularity = #{repairPopularity,jdbcType=INTEGER},
+      </if>
+      <if test="repairLongitude != null" >
+        repair_longitude = #{repairLongitude,jdbcType=DOUBLE},
+      </if>
+      <if test="repairLatitude != null" >
+        repair_latitude = #{repairLatitude,jdbcType=DOUBLE},
+      </if>
+      <if test="repairAddress != null" >
+        repair_address = #{repairAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="repairPhone != null" >
+        repair_phone = #{repairPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.Repair" >
+    update repair
+    set repair_name = #{repairName,jdbcType=VARCHAR},
+      repair_introduce = #{repairIntroduce,jdbcType=VARCHAR},
+      repair_cover = #{repairCover,jdbcType=VARCHAR},
+      repair_popularity = #{repairPopularity,jdbcType=INTEGER},
+      repair_longitude = #{repairLongitude,jdbcType=DOUBLE},
+      repair_latitude = #{repairLatitude,jdbcType=DOUBLE},
+      repair_address = #{repairAddress,jdbcType=VARCHAR},
+      repair_phone = #{repairPhone,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <select id="queryRepair1" resultMap="BaseResultMap" parameterType="com.aqb.cn.common.QueryBase" >
+    select
+    <include refid="Base_Column_List" />
+    from repair ORDER BY found_date  DESC
+  </select>
+
+  <select id="queryRepair2" resultMap="BaseResultMap" parameterType="com.aqb.cn.common.QueryBase" >
+    select
+    <include refid="Base_Column_List" />
+    from repair
+    where status = 1 or status = 4 or status = 5 or status = 7
+    ORDER BY found_date  DESC
+  </select>
+
+  <select id="queryRepair3" resultMap="BaseResultMap" parameterType="com.aqb.cn.common.QueryBase" >
+    select
+    <include refid="Base_Column_List" />
+    from repair
+    where status = 2 or status = 4 or status = 6 or status = 7
+    ORDER BY found_date  DESC
+  </select>
+
+  <select id="queryRepair4" resultMap="BaseResultMap" parameterType="com.aqb.cn.common.QueryBase" >
+    select
+    <include refid="Base_Column_List" />
+    from repair
+    where status = 3 or status = 5 or status = 6 or status = 7
+    ORDER BY found_date  DESC
+  </select>
+
+  <select id="countRepair1" resultType="long" parameterType="com.aqb.cn.common.QueryBase" >
+    select COUNT(*) from repair
+  </select>
+
+  <select id="countRepair2" resultType="long" parameterType="com.aqb.cn.common.QueryBase">
+    select COUNT(*) from repair
+    where status = 1 or status = 4 or status = 5 or status = 7
+  </select>
+
+  <select id="countRepair3" resultType="long" parameterType="com.aqb.cn.common.QueryBase">
+    select COUNT(*) from repair
+    where status = 2 or status = 4 or status = 6 or status = 7
+  </select>
+
+  <select id="countRepair4" resultType="long" parameterType="com.aqb.cn.common.QueryBase">
+    select COUNT(*) from repair
+    where status = 3 or status = 5 or status = 6 or status = 7
+  </select>
+
+
+  <select id="queryShop" resultMap="BaseResultMap" parameterType="com.aqb.cn.common.QueryBase" >
+    select
+    <include refid="Base_Column_List" />
+    from repair ORDER BY found_date  DESC
+  </select>
+
+  <select id="countShop" resultType="long" parameterType="com.aqb.cn.common.QueryBase">
+    select COUNT(*) from repair
+  </select>
+
+  <select id="queryById" resultMap="BaseResultMap" parameterType="String" >
+    select <include refid="Base_Column_List" />
+    from repair WHERE id = #{id}
+  </select>
+
+
+
+</mapper>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.BarrageUnlikeMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.BarrageUnlike" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="barrage_id" property="barrageId" jdbcType="CHAR" />
+    <result column="user_id" property="userId" jdbcType="CHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, barrage_id, user_id, status, found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from barrage_unlike
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from barrage_unlike
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.BarrageUnlike" >
+    insert into barrage_unlike (id, barrage_id, user_id, 
+      status, found_date)
+    values (#{id,jdbcType=CHAR}, #{barrageId,jdbcType=CHAR}, #{userId,jdbcType=CHAR}, 
+      #{status,jdbcType=INTEGER}, #{foundDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.BarrageUnlike" >
+    insert into barrage_unlike
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="barrageId != null" >
+        barrage_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="barrageId != null" >
+        #{barrageId,jdbcType=CHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.BarrageUnlike" >
+    update barrage_unlike
+    <set >
+      <if test="barrageId != null" >
+        barrage_id = #{barrageId,jdbcType=CHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.BarrageUnlike" >
+    update barrage_unlike
+    set barrage_id = #{barrageId,jdbcType=CHAR},
+      user_id = #{userId,jdbcType=CHAR},
+      status = #{status,jdbcType=INTEGER},
+      found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <select id="queryByUserIdBarrageId" resultMap="BaseResultMap">
+    SELECT * FROM barrage_unlike
+    where user_id = #{0} and barrage_id = #{1}
+  </select>
+
+  <select id="queryBarrageUnlike" parameterType="com.aqb.cn.common.QueryBase" resultMap="BaseResultMap">
+    SELECT * FROM barrage_like
+    ORDER BY found_date  DESC
+    LIMIT #{firstRow}, #{maxRow}
+  </select>
+
+  <select id="countBarrageUnlike" parameterType="com.aqb.cn.common.QueryBase" resultType="long">
+    SELECT COUNT(*) FROM barrage_like
+  </select>
+
+</mapper>

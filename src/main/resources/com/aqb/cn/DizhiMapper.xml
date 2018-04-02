@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.DizhiMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.Dizhi" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="dizhi_name" property="dizhiName" jdbcType="VARCHAR" />
+    <result column="dizhi_phone" property="dizhiPhone" jdbcType="VARCHAR" />
+    <result column="dizhi_diqu" property="dizhiDiqu" jdbcType="VARCHAR" />
+    <result column="dizhi_jiedao" property="dizhiJiedao" jdbcType="VARCHAR" />
+    <result column="dizhi_xiangxi" property="dizhiXiangxi" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="CHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, dizhi_name, dizhi_phone, dizhi_diqu, dizhi_jiedao, dizhi_xiangxi, user_id, status, 
+    found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from dizhi
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from dizhi
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.Dizhi" >
+    insert into dizhi (id, dizhi_name, dizhi_phone, 
+      dizhi_diqu, dizhi_jiedao, dizhi_xiangxi, 
+      user_id, status, found_date
+      )
+    values (#{id,jdbcType=CHAR}, #{dizhiName,jdbcType=VARCHAR}, #{dizhiPhone,jdbcType=VARCHAR}, 
+      #{dizhiDiqu,jdbcType=VARCHAR}, #{dizhiJiedao,jdbcType=VARCHAR}, #{dizhiXiangxi,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=CHAR}, #{status,jdbcType=INTEGER}, #{foundDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.Dizhi" >
+    insert into dizhi
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="dizhiName != null" >
+        dizhi_name,
+      </if>
+      <if test="dizhiPhone != null" >
+        dizhi_phone,
+      </if>
+      <if test="dizhiDiqu != null" >
+        dizhi_diqu,
+      </if>
+      <if test="dizhiJiedao != null" >
+        dizhi_jiedao,
+      </if>
+      <if test="dizhiXiangxi != null" >
+        dizhi_xiangxi,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="dizhiName != null" >
+        #{dizhiName,jdbcType=VARCHAR},
+      </if>
+      <if test="dizhiPhone != null" >
+        #{dizhiPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="dizhiDiqu != null" >
+        #{dizhiDiqu,jdbcType=VARCHAR},
+      </if>
+      <if test="dizhiJiedao != null" >
+        #{dizhiJiedao,jdbcType=VARCHAR},
+      </if>
+      <if test="dizhiXiangxi != null" >
+        #{dizhiXiangxi,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.Dizhi" >
+    update dizhi
+    <set >
+      <if test="dizhiName != null" >
+        dizhi_name = #{dizhiName,jdbcType=VARCHAR},
+      </if>
+      <if test="dizhiPhone != null" >
+        dizhi_phone = #{dizhiPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="dizhiDiqu != null" >
+        dizhi_diqu = #{dizhiDiqu,jdbcType=VARCHAR},
+      </if>
+      <if test="dizhiJiedao != null" >
+        dizhi_jiedao = #{dizhiJiedao,jdbcType=VARCHAR},
+      </if>
+      <if test="dizhiXiangxi != null" >
+        dizhi_xiangxi = #{dizhiXiangxi,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.Dizhi" >
+    update dizhi
+    set dizhi_name = #{dizhiName,jdbcType=VARCHAR},
+      dizhi_phone = #{dizhiPhone,jdbcType=VARCHAR},
+      dizhi_diqu = #{dizhiDiqu,jdbcType=VARCHAR},
+      dizhi_jiedao = #{dizhiJiedao,jdbcType=VARCHAR},
+      dizhi_xiangxi = #{dizhiXiangxi,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=CHAR},
+      status = #{status,jdbcType=INTEGER},
+      found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+
+  <select id="queryDizhi" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from dizhi
+    where user_id = #{userId}
+  </select>
+
+  <select id="queryByUserId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from dizhi
+    where user_id = #{userId}
+  </select>
+
+</mapper>

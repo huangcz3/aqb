@@ -1,0 +1,32 @@
+main h3{
+    width: 100%;
+    text-align: center;
+    font-size: 0.2rem;
+    font-weight: 200;
+    margin: 0.1rem 0;
+}
+main .table{
+    margin: 0.1rem 0;
+}
+main .table thead th,main .table tbody td{
+    text-align: center;
+    vertical-align: middle;
+}
+main .table thead th:nth-child(1){
+    width: 10%;
+}
+main .table thead th:nth-child(2){
+    width: 65%;
+}
+main .table thead th:nth-child(3){
+    width: 25%;
+}
+main a.add{
+    position: absolute;
+    top: 0.075rem;;
+    right: 0.1rem;
+}
+main #dropdownMenu1{
+    width: 1.1rem;
+    margin-left: 7.6rem;
+}

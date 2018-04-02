@@ -1,0 +1,160 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html,body{
+    overflow-x:hidden ;
+    overflow-y:auto ;
+}
+a{
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+}
+li{
+    list-style: none;
+}
+a:link {text-decoration: none;} /* 未访问的链接 */
+a:visited {text-decoration: none;} /* 已访问的链接 */
+a:hover{text-decoration: none;} /* 鼠标在链接上 */
+a:active {text-decoration: none;}
+main h3{
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 200;
+    margin: 0.1rem 0;
+}
+main .table thead th,main .table tbody td{
+    text-align: center;
+    vertical-align: middle;
+}
+.binding-img{
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+}
+.binding-p{
+    margin-bottom: 15px;
+}
+
+.table-btn>button{
+    display: block;
+    outline: none;
+    border:none;
+    border-radius: 6px;
+    font-size: 14px;
+    padding: 5px 20px;
+    /*margin: 0 auto;*/
+}
+.examine img{
+    display: block;
+    margin:0 auto 15px auto;
+}
+.pass{
+    color: #fff;
+    background-color: #5cb85c;
+    border:none;
+    margin: 0 auto;
+    outline: none;
+    border-radius: 6px;
+    font-size: 14px;
+    padding: 5px 20px;
+}
+.reject{
+    color: #fff;
+    background-color: #d9534f;
+    border:none;
+    margin: 0 auto;
+    outline: none;
+    border-radius: 6px;
+    font-size: 14px;
+    padding: 5px 20px;
+}
+.modify{
+    color: #fff;
+    background-color:#00a0e9;
+    border:none;
+    margin: 0 auto ;
+    outline: none;
+    border-radius: 6px;
+    font-size: 14px;
+    padding: 5px 20px;
+    margin-left: 15px;
+}
+.after:after{
+    display: block;
+    clear: both;
+    content: "";
+}
+.deposit-search{
+    margin: 30px 0;
+    font-size: 16px;
+}
+.searchSelect{
+    width: 170px;
+    height: 35px;
+    margin-right: 30px;
+    padding-left: 15px;
+}
+.searchInput{
+    width: 170px;
+    height: 35px;
+    padding-left: 15px;
+}
+/*广告投放*/
+.delivery{
+    margin: 0 30px;
+}
+.complete{
+    margin-left: 30px;
+}
+/*公益广告*/
+.adv-sttText{
+    height: auto;
+    resize: none;
+    background-color: transparent;
+    outline: none;
+    overflow: hidden;
+    min-width: 230px;
+  width: 100%;
+}
+textarea[class="adv-sttText"]:disabled{
+    border:none;
+    display: none;
+}
+.adv-p{
+    max-width: 400px;
+}
+/*弹幕删除*/
+.search{
+    margin: 0 50px 0 20px;
+    font-size: 14px;
+    padding: 5px 10px;
+}
+.check{
+    width: 18px;
+    height: 18px;
+}
+.set-upTitle{
+    height: 50px;
+    padding:0 20px;
+    border: 2px solid #c1c1c1;
+}
+.set-upBtn{
+    float: left;
+}
+.set-upTitleBox{
+    float: right;
+}
+.set-upTitleBox p{
+    float: left;
+    margin-left: 22px;
+    color: #fff;
+    background-color: #00a0e9;
+    border-radius: 6px;
+    padding: 5px 15px;
+    margin-top: 7px;
+    font-size: 14px;
+    cursor: pointer;
+}

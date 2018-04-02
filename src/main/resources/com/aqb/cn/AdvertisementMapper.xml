@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.AdvertisementMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.Advertisement" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="advertisement_content" property="advertisementContent" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="CHAR" />
+    <result column="jingdu" property="jingdu" jdbcType="DOUBLE" />
+    <result column="weidu" property="weidu" jdbcType="DOUBLE" />
+    <result column="daquan" property="daquan" jdbcType="REAL" />
+    <result column="daquan_money_status" property="daquanMoneyStatus" jdbcType="INTEGER" />
+    <result column="daquan_money_number" property="daquanMoneyNumber" jdbcType="REAL" />
+    <result column="daquan_jifen" property="daquanJifen" jdbcType="REAL" />
+    <result column="daquan_tiaoshu" property="daquanTiaoshu" jdbcType="INTEGER" />
+    <result column="daquan_danjia" property="daquanDanjia" jdbcType="REAL" />
+    <result column="daquan_status" property="daquanStatus" jdbcType="INTEGER" />
+    <result column="neiquan" property="neiquan" jdbcType="REAL" />
+    <result column="neiquan_money_status" property="neiquanMoneyStatus" jdbcType="INTEGER" />
+    <result column="neiquan_money_number" property="neiquanMoneyNumber" jdbcType="REAL" />
+    <result column="neiquan_tiaoshu" property="neiquanTiaoshu" jdbcType="INTEGER" />
+    <result column="neiquan_danjia" property="neiquanDanjia" jdbcType="REAL" />
+    <result column="neiquan_status" property="neiquanStatus" jdbcType="INTEGER" />
+    <result column="pay_status" property="payStatus" jdbcType="INTEGER" />
+    <result column="sh_status" property="shStatus" jdbcType="INTEGER" />
+    <result column="bh_content" property="bhContent" jdbcType="VARCHAR" />
+    <result column="rf_status" property="rfStatus" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+    <association column="user_id"  property="user" javaType="User" select="com.aqb.cn.mapper.UserMapper.selectByPrimaryKey"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, advertisement_content, user_id, jingdu, weidu, daquan, daquan_money_status, daquan_money_number,
+    daquan_jifen, daquan_tiaoshu, daquan_danjia, daquan_status, neiquan, neiquan_money_status,
+    neiquan_money_number, neiquan_tiaoshu, neiquan_danjia, neiquan_status, pay_status,
+    sh_status, bh_content, rf_status, status, found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from advertisement
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from advertisement
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.Advertisement" >
+    insert into advertisement (id, advertisement_content, user_id,
+    jingdu, weidu, daquan, daquan_money_status,
+    daquan_money_number, daquan_jifen, daquan_tiaoshu,
+    daquan_danjia, daquan_status, neiquan,
+    neiquan_money_status, neiquan_money_number, neiquan_tiaoshu,
+    neiquan_danjia, neiquan_status, pay_status,
+    sh_status, bh_content, rf_status,
+    status, found_date)
+    values (#{id,jdbcType=CHAR}, #{advertisementContent,jdbcType=VARCHAR}, #{userId,jdbcType=CHAR},
+    #{jingdu,jdbcType=DOUBLE}, #{weidu,jdbcType=DOUBLE}, #{daquan,jdbcType=REAL}, #{daquanMoneyStatus,jdbcType=INTEGER},
+    #{daquanMoneyNumber,jdbcType=REAL}, #{daquanJifen,jdbcType=REAL}, #{daquanTiaoshu,jdbcType=INTEGER},
+    #{daquanDanjia,jdbcType=REAL}, #{daquanStatus,jdbcType=INTEGER}, #{neiquan,jdbcType=REAL},
+    #{neiquanMoneyStatus,jdbcType=INTEGER}, #{neiquanMoneyNumber,jdbcType=REAL}, #{neiquanTiaoshu,jdbcType=INTEGER},
+    #{neiquanDanjia,jdbcType=REAL}, #{neiquanStatus,jdbcType=INTEGER}, #{payStatus,jdbcType=INTEGER},
+    #{shStatus,jdbcType=INTEGER}, #{bhContent,jdbcType=VARCHAR}, #{rfStatus,jdbcType=INTEGER},
+    #{status,jdbcType=INTEGER}, #{foundDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.Advertisement" >
+    insert into advertisement
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="advertisementContent != null" >
+        advertisement_content,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="jingdu != null" >
+        jingdu,
+      </if>
+      <if test="weidu != null" >
+        weidu,
+      </if>
+      <if test="daquan != null" >
+        daquan,
+      </if>
+      <if test="daquanMoneyStatus != null" >
+        daquan_money_status,
+      </if>
+      <if test="daquanMoneyNumber != null" >
+        daquan_money_number,
+      </if>
+      <if test="daquanJifen != null" >
+        daquan_jifen,
+      </if>
+      <if test="daquanTiaoshu != null" >
+        daquan_tiaoshu,
+      </if>
+      <if test="daquanDanjia != null" >
+        daquan_danjia,
+      </if>
+      <if test="daquanStatus != null" >
+        daquan_status,
+      </if>
+      <if test="neiquan != null" >
+        neiquan,
+      </if>
+      <if test="neiquanMoneyStatus != null" >
+        neiquan_money_status,
+      </if>
+      <if test="neiquanMoneyNumber != null" >
+        neiquan_money_number,
+      </if>
+      <if test="neiquanTiaoshu != null" >
+        neiquan_tiaoshu,
+      </if>
+      <if test="neiquanDanjia != null" >
+        neiquan_danjia,
+      </if>
+      <if test="neiquanStatus != null" >
+        neiquan_status,
+      </if>
+      <if test="payStatus != null" >
+        pay_status,
+      </if>
+      <if test="shStatus != null" >
+        sh_status,
+      </if>
+      <if test="bhContent != null" >
+        bh_content,
+      </if>
+      <if test="rfStatus != null" >
+        rf_status,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="advertisementContent != null" >
+        #{advertisementContent,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=CHAR},
+      </if>
+      <if test="jingdu != null" >
+        #{jingdu,jdbcType=DOUBLE},
+      </if>
+      <if test="weidu != null" >
+        #{weidu,jdbcType=DOUBLE},
+      </if>
+      <if test="daquan != null" >
+        #{daquan,jdbcType=REAL},
+      </if>
+      <if test="daquanMoneyStatus != null" >
+        #{daquanMoneyStatus,jdbcType=INTEGER},
+      </if>
+      <if test="daquanMoneyNumber != null" >
+        #{daquanMoneyNumber,jdbcType=REAL},
+      </if>
+      <if test="daquanJifen != null" >
+        #{daquanJifen,jdbcType=REAL},
+      </if>
+      <if test="daquanTiaoshu != null" >
+        #{daquanTiaoshu,jdbcType=INTEGER},
+      </if>
+      <if test="daquanDanjia != null" >
+        #{daquanDanjia,jdbcType=REAL},
+      </if>
+      <if test="daquanStatus != null" >
+        #{daquanStatus,jdbcType=INTEGER},
+      </if>
+      <if test="neiquan != null" >
+        #{neiquan,jdbcType=REAL},
+      </if>
+      <if test="neiquanMoneyStatus != null" >
+        #{neiquanMoneyStatus,jdbcType=INTEGER},
+      </if>
+      <if test="neiquanMoneyNumber != null" >
+        #{neiquanMoneyNumber,jdbcType=REAL},
+      </if>
+      <if test="neiquanTiaoshu != null" >
+        #{neiquanTiaoshu,jdbcType=INTEGER},
+      </if>
+      <if test="neiquanDanjia != null" >
+        #{neiquanDanjia,jdbcType=REAL},
+      </if>
+      <if test="neiquanStatus != null" >
+        #{neiquanStatus,jdbcType=INTEGER},
+      </if>
+      <if test="payStatus != null" >
+        #{payStatus,jdbcType=INTEGER},
+      </if>
+      <if test="shStatus != null" >
+        #{shStatus,jdbcType=INTEGER},
+      </if>
+      <if test="bhContent != null" >
+        #{bhContent,jdbcType=VARCHAR},
+      </if>
+      <if test="rfStatus != null" >
+        #{rfStatus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.Advertisement" >
+    update advertisement
+    <set >
+      <if test="advertisementContent != null" >
+        advertisement_content = #{advertisementContent,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=CHAR},
+      </if>
+      <if test="jingdu != null" >
+        jingdu = #{jingdu,jdbcType=DOUBLE},
+      </if>
+      <if test="weidu != null" >
+        weidu = #{weidu,jdbcType=DOUBLE},
+      </if>
+      <if test="daquan != null" >
+        daquan = #{daquan,jdbcType=REAL},
+      </if>
+      <if test="daquanMoneyStatus != null" >
+        daquan_money_status = #{daquanMoneyStatus,jdbcType=INTEGER},
+      </if>
+      <if test="daquanMoneyNumber != null" >
+        daquan_money_number = #{daquanMoneyNumber,jdbcType=REAL},
+      </if>
+      <if test="daquanJifen != null" >
+        daquan_jifen = #{daquanJifen,jdbcType=REAL},
+      </if>
+      <if test="daquanTiaoshu != null" >
+        daquan_tiaoshu = #{daquanTiaoshu,jdbcType=INTEGER},
+      </if>
+      <if test="daquanDanjia != null" >
+        daquan_danjia = #{daquanDanjia,jdbcType=REAL},
+      </if>
+      <if test="daquanStatus != null" >
+        daquan_status = #{daquanStatus,jdbcType=INTEGER},
+      </if>
+      <if test="neiquan != null" >
+        neiquan = #{neiquan,jdbcType=REAL},
+      </if>
+      <if test="neiquanMoneyStatus != null" >
+        neiquan_money_status = #{neiquanMoneyStatus,jdbcType=INTEGER},
+      </if>
+      <if test="neiquanMoneyNumber != null" >
+        neiquan_money_number = #{neiquanMoneyNumber,jdbcType=REAL},
+      </if>
+      <if test="neiquanTiaoshu != null" >
+        neiquan_tiaoshu = #{neiquanTiaoshu,jdbcType=INTEGER},
+      </if>
+      <if test="neiquanDanjia != null" >
+        neiquan_danjia = #{neiquanDanjia,jdbcType=REAL},
+      </if>
+      <if test="neiquanStatus != null" >
+        neiquan_status = #{neiquanStatus,jdbcType=INTEGER},
+      </if>
+      <if test="payStatus != null" >
+        pay_status = #{payStatus,jdbcType=INTEGER},
+      </if>
+      <if test="shStatus != null" >
+        sh_status = #{shStatus,jdbcType=INTEGER},
+      </if>
+      <if test="bhContent != null" >
+        bh_content = #{bhContent,jdbcType=VARCHAR},
+      </if>
+      <if test="rfStatus != null" >
+        rf_status = #{rfStatus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.Advertisement" >
+    update advertisement
+    set advertisement_content = #{advertisementContent,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=CHAR},
+      jingdu = #{jingdu,jdbcType=DOUBLE},
+      weidu = #{weidu,jdbcType=DOUBLE},
+      daquan = #{daquan,jdbcType=REAL},
+      daquan_money_status = #{daquanMoneyStatus,jdbcType=INTEGER},
+      daquan_money_number = #{daquanMoneyNumber,jdbcType=REAL},
+      daquan_jifen = #{daquanJifen,jdbcType=REAL},
+      daquan_tiaoshu = #{daquanTiaoshu,jdbcType=INTEGER},
+      daquan_danjia = #{daquanDanjia,jdbcType=REAL},
+      daquan_status = #{daquanStatus,jdbcType=INTEGER},
+      neiquan = #{neiquan,jdbcType=REAL},
+      neiquan_money_status = #{neiquanMoneyStatus,jdbcType=INTEGER},
+      neiquan_money_number = #{neiquanMoneyNumber,jdbcType=REAL},
+      neiquan_tiaoshu = #{neiquanTiaoshu,jdbcType=INTEGER},
+      neiquan_danjia = #{neiquanDanjia,jdbcType=REAL},
+      neiquan_status = #{neiquanStatus,jdbcType=INTEGER},
+      pay_status = #{payStatus,jdbcType=INTEGER},
+      sh_status = #{shStatus,jdbcType=INTEGER},
+      bh_content = #{bhContent,jdbcType=VARCHAR},
+      rf_status = #{rfStatus,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <!-- 分页查询 -->
+  <select id="queryAdvertisement" parameterType="com.aqb.cn.common.QueryBase" resultMap="BaseResultMap">
+    SELECT *
+    FROM advertisement
+    <include refid="where_with_condition" />
+    ORDER BY found_date  DESC
+    LIMIT #{firstRow}, #{maxRow}
+  </select>
+
+  <select id="countAdvertisement" parameterType="com.aqb.cn.common.QueryBase" resultType="long">
+    SELECT COUNT(id) FROM advertisement
+    <include refid="where_with_condition" />
+  </select>
+
+  <sql id="where_with_condition">
+    <trim prefix="WHERE" prefixOverrides="AND">
+      <if test="parameters.shStatus != null and parameters.shStatus != '' ">AND sh_status = #{parameters.shStatus}
+      </if>
+      <if test="parameters.rfStatus != null and parameters.rfStatus != '' ">AND rf_status = #{parameters.rfStatus}
+      </if>
+      <if test="parameters.status != null and parameters.status != '' ">AND status = #{parameters.status}
+      </if>
+      <if test="parameters.aStatus != null and parameters.aStatus != '' ">AND status != #{parameters.aStatus}
+      </if>
+    </trim>
+  </sql>
+
+
+
+  <select id="queryAdvertisementList" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from advertisement
+    where status = 2 and sh_status = 3 and rf_status = 1
+    and id in (select distinct advertisement_id from adver_date where end_date > now() and now() > start_date)
+    order by found_date asc
+  </select>
+
+  <select id="queryByUserId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from advertisement
+    where user_id = #{userId}
+    order by found_date DESC
+  </select>
+
+  <select id="adminAdvertisement" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from advertisement
+    where sh_status = #{shstatus} and rf_status = 1
+    order by found_date DESC
+  </select>
+
+  <select id="adminAdvertisementstatus" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from advertisement
+    where sh_status = 3 and rf_status = 1 and (status = 1 or status = 2)
+    order by found_date DESC
+  </select>
+
+  <select id="adminAdvertisementrfStatus" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from advertisement
+    where rf_status = 2
+    order by found_date DESC
+  </select>
+
+  <select id="adminAdvertisementstatus3" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from advertisement
+    where rf_status = 1 and status = 3 and sh_status = 3
+    order by found_date DESC
+  </select>
+
+</mapper>

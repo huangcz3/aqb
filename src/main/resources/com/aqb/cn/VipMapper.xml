@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.VipMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.Vip" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="vip_name" property="vipName" jdbcType="VARCHAR" />
+    <result column="vip_grade" property="vipGrade" jdbcType="INTEGER" />
+    <result column="vip_money" property="vipMoney" jdbcType="REAL" />
+    <result column="vip_jifen" property="vipJifen" jdbcType="INTEGER" />
+    <result column="green" property="green" jdbcType="BIT" />
+    <result column="yellow" property="yellow" jdbcType="BIT" />
+    <result column="red" property="red" jdbcType="BIT" />
+    <result column="blue" property="blue" jdbcType="BIT" />
+    <result column="bottom" property="bottom" jdbcType="BIT" />
+    <result column="top" property="top" jdbcType="BIT" />
+    <result column="send" property="send" jdbcType="BIT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, vip_name, vip_grade, vip_money, vip_jifen, green, yellow, red, blue, bottom,
+    top, send, status, found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from vip
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from vip
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.Vip" >
+    insert into vip (id, vip_name, vip_grade,
+    vip_money, vip_jifen, green,
+    yellow, red, blue, bottom,
+    top, send, status, found_date
+    )
+    values (#{id,jdbcType=CHAR}, #{vipName,jdbcType=VARCHAR}, #{vipGrade,jdbcType=INTEGER},
+    #{vipMoney,jdbcType=REAL}, #{vipJifen,jdbcType=INTEGER}, #{green,jdbcType=BIT},
+    #{yellow,jdbcType=BIT}, #{red,jdbcType=BIT}, #{blue,jdbcType=BIT}, #{bottom,jdbcType=BIT},
+    #{top,jdbcType=BIT}, #{send,jdbcType=BIT}, #{status,jdbcType=INTEGER}, #{foundDate,jdbcType=TIMESTAMP}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.Vip" >
+    insert into vip
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="vipName != null" >
+        vip_name,
+      </if>
+      <if test="vipGrade != null" >
+        vip_grade,
+      </if>
+      <if test="vipMoney != null" >
+        vip_money,
+      </if>
+      <if test="vipJifen != null" >
+        vip_jifen,
+      </if>
+      <if test="green != null" >
+        green,
+      </if>
+      <if test="yellow != null" >
+        yellow,
+      </if>
+      <if test="red != null" >
+        red,
+      </if>
+      <if test="blue != null" >
+        blue,
+      </if>
+      <if test="bottom != null" >
+        bottom,
+      </if>
+      <if test="top != null" >
+        top,
+      </if>
+      <if test="send != null" >
+        send,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="vipName != null" >
+        #{vipName,jdbcType=VARCHAR},
+      </if>
+      <if test="vipGrade != null" >
+        #{vipGrade,jdbcType=INTEGER},
+      </if>
+      <if test="vipMoney != null" >
+        #{vipMoney,jdbcType=REAL},
+      </if>
+      <if test="vipJifen != null" >
+        #{vipJifen,jdbcType=INTEGER},
+      </if>
+      <if test="green != null" >
+        #{green,jdbcType=BIT},
+      </if>
+      <if test="yellow != null" >
+        #{yellow,jdbcType=BIT},
+      </if>
+      <if test="red != null" >
+        #{red,jdbcType=BIT},
+      </if>
+      <if test="blue != null" >
+        #{blue,jdbcType=BIT},
+      </if>
+      <if test="bottom != null" >
+        #{bottom,jdbcType=BIT},
+      </if>
+      <if test="top != null" >
+        #{top,jdbcType=BIT},
+      </if>
+      <if test="send != null" >
+        #{send,jdbcType=BIT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.Vip" >
+    update vip
+    <set >
+      <if test="vipName != null" >
+        vip_name = #{vipName,jdbcType=VARCHAR},
+      </if>
+      <if test="vipGrade != null" >
+        vip_grade = #{vipGrade,jdbcType=INTEGER},
+      </if>
+      <if test="vipMoney != null" >
+        vip_money = #{vipMoney,jdbcType=REAL},
+      </if>
+      <if test="vipJifen != null" >
+        vip_jifen = #{vipJifen,jdbcType=INTEGER},
+      </if>
+      <if test="green != null" >
+        green = #{green,jdbcType=BIT},
+      </if>
+      <if test="yellow != null" >
+        yellow = #{yellow,jdbcType=BIT},
+      </if>
+      <if test="red != null" >
+        red = #{red,jdbcType=BIT},
+      </if>
+      <if test="blue != null" >
+        blue = #{blue,jdbcType=BIT},
+      </if>
+      <if test="bottom != null" >
+        bottom = #{bottom,jdbcType=BIT},
+      </if>
+      <if test="top != null" >
+        top = #{top,jdbcType=BIT},
+      </if>
+      <if test="send != null" >
+        send = #{send,jdbcType=BIT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.Vip" >
+    update vip
+    set vip_name = #{vipName,jdbcType=VARCHAR},
+      vip_grade = #{vipGrade,jdbcType=INTEGER},
+      vip_money = #{vipMoney,jdbcType=REAL},
+      vip_jifen = #{vipJifen,jdbcType=INTEGER},
+      green = #{green,jdbcType=BIT},
+      yellow = #{yellow,jdbcType=BIT},
+      red = #{red,jdbcType=BIT},
+      blue = #{blue,jdbcType=BIT},
+      bottom = #{bottom,jdbcType=BIT},
+      top = #{top,jdbcType=BIT},
+      send = #{send,jdbcType=BIT},
+      status = #{status,jdbcType=INTEGER},
+      found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <select id="queryVip" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from vip
+  </select>
+
+  <select id="selectByGrade" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from vip WHERE vip_grade = #{vipGrade}
+  </select>
+  
+</mapper>

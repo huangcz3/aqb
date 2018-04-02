@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.DaxiaoquanMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.Daxiaoquan" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="daxiaoquan_name" property="daxiaoquanName" jdbcType="VARCHAR" />
+    <result column="daxiaoquan_canshu" property="daxiaoquanCanshu" jdbcType="REAL" />
+    <result column="daxiaoquan_yanse" property="daxiaoquanYanse" jdbcType="VARCHAR" />
+    <result column="xulie" property="xulie" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, daxiaoquan_name, daxiaoquan_canshu, daxiaoquan_yanse, xulie, status, found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from daxiaoquan
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from daxiaoquan
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.Daxiaoquan" >
+    insert into daxiaoquan (id, daxiaoquan_name, daxiaoquan_canshu,
+    daxiaoquan_yanse, xulie, status,
+    found_date)
+    values (#{id,jdbcType=CHAR}, #{daxiaoquanName,jdbcType=VARCHAR}, #{daxiaoquanCanshu,jdbcType=REAL},
+    #{daxiaoquanYanse,jdbcType=VARCHAR}, #{xulie,jdbcType=INTEGER}, #{status,jdbcType=INTEGER},
+    #{foundDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.Daxiaoquan" >
+    insert into daxiaoquan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="daxiaoquanName != null" >
+        daxiaoquan_name,
+      </if>
+      <if test="daxiaoquanCanshu != null" >
+        daxiaoquan_canshu,
+      </if>
+      <if test="daxiaoquanYanse != null" >
+        daxiaoquan_yanse,
+      </if>
+      <if test="xulie != null" >
+        xulie,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="daxiaoquanName != null" >
+        #{daxiaoquanName,jdbcType=VARCHAR},
+      </if>
+      <if test="daxiaoquanCanshu != null" >
+        #{daxiaoquanCanshu,jdbcType=REAL},
+      </if>
+      <if test="daxiaoquanYanse != null" >
+        #{daxiaoquanYanse,jdbcType=VARCHAR},
+      </if>
+      <if test="xulie != null" >
+        #{xulie,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.Daxiaoquan" >
+    update daxiaoquan
+    <set >
+      <if test="daxiaoquanName != null" >
+        daxiaoquan_name = #{daxiaoquanName,jdbcType=VARCHAR},
+      </if>
+      <if test="daxiaoquanCanshu != null" >
+        daxiaoquan_canshu = #{daxiaoquanCanshu,jdbcType=REAL},
+      </if>
+      <if test="daxiaoquanYanse != null" >
+        daxiaoquan_yanse = #{daxiaoquanYanse,jdbcType=VARCHAR},
+      </if>
+      <if test="xulie != null" >
+        xulie = #{xulie,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.Daxiaoquan" >
+    update daxiaoquan
+    set daxiaoquan_name = #{daxiaoquanName,jdbcType=VARCHAR},
+      daxiaoquan_canshu = #{daxiaoquanCanshu,jdbcType=REAL},
+      daxiaoquan_yanse = #{daxiaoquanYanse,jdbcType=VARCHAR},
+      xulie = #{xulie,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <select id="queryDaxiaoquan" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from daxiaoquan where status = #{status}
+    ORDER BY xulie,daxiaoquan_canshu ASC
+  </select>
+
+  <select id="queryDaxiaoquanStatus" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from daxiaoquan where status = #{0} AND xulie = #{1}
+    ORDER BY daxiaoquan_canshu ASC
+  </select>
+
+  <select id="selectByCanshu" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from daxiaoquan
+    where status = #{0} and xulie = #{1} and daxiaoquan_canshu = #{2}
+  </select>
+
+
+</mapper>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.WithdrawalsMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.Withdrawals" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="user_id" property="userId" jdbcType="CHAR" />
+    <result column="withdrawals_money" property="withdrawalsMoney" jdbcType="REAL" />
+    <result column="account_number_type" property="accountNumberType" jdbcType="INTEGER" />
+    <result column="account_number" property="accountNumber" jdbcType="VARCHAR" />
+    <result column="admin_id" property="adminId" jdbcType="CHAR" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="operation_date" property="operationDate" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+    <association property="user" column="user_id" javaType="User" select="com.aqb.cn.mapper.UserMapper.selectByPrimaryKey"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, withdrawals_money, account_number_type, account_number, admin_id, reason, 
+    operation_date, status, found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from withdrawals
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from withdrawals
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.Withdrawals" >
+    insert into withdrawals (id, user_id, withdrawals_money, 
+      account_number_type, account_number, admin_id, 
+      reason, operation_date, status, 
+      found_date)
+    values (#{id,jdbcType=CHAR}, #{userId,jdbcType=CHAR}, #{withdrawalsMoney,jdbcType=REAL}, 
+      #{accountNumberType,jdbcType=INTEGER}, #{accountNumber,jdbcType=VARCHAR}, #{adminId,jdbcType=CHAR}, 
+      #{reason,jdbcType=VARCHAR}, #{operationDate,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
+      #{foundDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.Withdrawals" >
+    insert into withdrawals
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="withdrawalsMoney != null" >
+        withdrawals_money,
+      </if>
+      <if test="accountNumberType != null" >
+        account_number_type,
+      </if>
+      <if test="accountNumber != null" >
+        account_number,
+      </if>
+      <if test="adminId != null" >
+        admin_id,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="operationDate != null" >
+        operation_date,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=CHAR},
+      </if>
+      <if test="withdrawalsMoney != null" >
+        #{withdrawalsMoney,jdbcType=REAL},
+      </if>
+      <if test="accountNumberType != null" >
+        #{accountNumberType,jdbcType=INTEGER},
+      </if>
+      <if test="accountNumber != null" >
+        #{accountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="adminId != null" >
+        #{adminId,jdbcType=CHAR},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="operationDate != null" >
+        #{operationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.Withdrawals" >
+    update withdrawals
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=CHAR},
+      </if>
+      <if test="withdrawalsMoney != null" >
+        withdrawals_money = #{withdrawalsMoney,jdbcType=REAL},
+      </if>
+      <if test="accountNumberType != null" >
+        account_number_type = #{accountNumberType,jdbcType=INTEGER},
+      </if>
+      <if test="accountNumber != null" >
+        account_number = #{accountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="adminId != null" >
+        admin_id = #{adminId,jdbcType=CHAR},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="operationDate != null" >
+        operation_date = #{operationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.Withdrawals" >
+    update withdrawals
+    set user_id = #{userId,jdbcType=CHAR},
+      withdrawals_money = #{withdrawalsMoney,jdbcType=REAL},
+      account_number_type = #{accountNumberType,jdbcType=INTEGER},
+      account_number = #{accountNumber,jdbcType=VARCHAR},
+      admin_id = #{adminId,jdbcType=CHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+      operation_date = #{operationDate,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+
+  <!-- 分页查询 -->
+  <select id="queryWithdrawals" parameterType="com.aqb.cn.common.QueryBase" resultMap="BaseResultMap">
+    SELECT *
+    FROM withdrawals
+    <include refid="where_with_condition" />
+    ORDER BY found_date  DESC
+    LIMIT #{firstRow}, #{maxRow}
+  </select>
+
+  <select id="countWithdrawals" parameterType="com.aqb.cn.common.QueryBase" resultType="long">
+    SELECT COUNT(id) FROM withdrawals
+    <include refid="where_with_condition" />
+  </select>
+
+  <sql id="where_with_condition">
+    <trim prefix="WHERE" prefixOverrides="AND">
+      <if test="parameters.status != null and parameters.status != '' ">AND status = #{parameters.status}
+      </if>
+    </trim>
+  </sql>
+
+</mapper>

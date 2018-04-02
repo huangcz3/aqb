@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.RepairCommentMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.RepairComment" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="user_id" property="userId" jdbcType="CHAR" />
+    <result column="repair_id" property="repairId" jdbcType="CHAR" />
+    <result column="repair_comment_content" property="repairCommentContent" jdbcType="VARCHAR" />
+    <result column="repair_comment_money" property="repairCommentMoney" jdbcType="REAL" />
+    <result column="population" property="population" jdbcType="REAL" />
+    <result column="technology" property="technology" jdbcType="REAL" />
+    <result column="services" property="services" jdbcType="REAL" />
+    <result column="environment" property="environment" jdbcType="REAL" />
+    <result column="picture1" property="picture1" jdbcType="VARCHAR" />
+    <result column="picture2" property="picture2" jdbcType="VARCHAR" />
+    <result column="picture3" property="picture3" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <resultMap id="RC" type="com.aqb.cn.pojo.RcAndUser">
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="user_id" property="userId" jdbcType="CHAR" />
+    <result column="repair_id" property="repairId" jdbcType="CHAR" />
+    <result column="repair_comment_content" property="repairCommentContent" jdbcType="VARCHAR" />
+    <result column="repair_comment_money" property="repairCommentMoney" jdbcType="REAL" />
+    <result column="population" property="population" jdbcType="REAL" />
+    <result column="technology" property="technology" jdbcType="REAL" />
+    <result column="services" property="services" jdbcType="REAL" />
+    <result column="environment" property="environment" jdbcType="REAL" />
+    <result column="picture1" property="picture1" jdbcType="VARCHAR" />
+    <result column="picture2" property="picture2" jdbcType="VARCHAR" />
+    <result column="picture3" property="picture3" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+    <result column="user_name" property="userName"/>
+    <result column="repair_name" property="repairName"/>
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, user_id, repair_id, repair_comment_content, repair_comment_money, population,
+    technology, services, environment, picture1, picture2, picture3, status, found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from repair_comment
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from repair_comment
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.RepairComment" >
+    insert into repair_comment (id, user_id, repair_id,
+    repair_comment_content, repair_comment_money,
+    population, technology, services,
+    environment, picture1, picture2,
+    picture3, status, found_date
+    )
+    values (#{id,jdbcType=CHAR}, #{userId,jdbcType=CHAR}, #{repairId,jdbcType=CHAR},
+    #{repairCommentContent,jdbcType=VARCHAR}, #{repairCommentMoney,jdbcType=REAL},
+    #{population,jdbcType=REAL}, #{technology,jdbcType=REAL}, #{services,jdbcType=REAL},
+    #{environment,jdbcType=REAL}, #{picture1,jdbcType=VARCHAR}, #{picture2,jdbcType=VARCHAR},
+    #{picture3,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{foundDate,jdbcType=TIMESTAMP}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.RepairComment" >
+    insert into repair_comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="repairId != null" >
+        repair_id,
+      </if>
+      <if test="repairCommentContent != null" >
+        repair_comment_content,
+      </if>
+      <if test="repairCommentMoney != null" >
+        repair_comment_money,
+      </if>
+      <if test="population != null" >
+        population,
+      </if>
+      <if test="technology != null" >
+        technology,
+      </if>
+      <if test="services != null" >
+        services,
+      </if>
+      <if test="environment != null" >
+        environment,
+      </if>
+      <if test="picture1 != null" >
+        picture1,
+      </if>
+      <if test="picture2 != null" >
+        picture2,
+      </if>
+      <if test="picture3 != null" >
+        picture3,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=CHAR},
+      </if>
+      <if test="repairId != null" >
+        #{repairId,jdbcType=CHAR},
+      </if>
+      <if test="repairCommentContent != null" >
+        #{repairCommentContent,jdbcType=VARCHAR},
+      </if>
+      <if test="repairCommentMoney != null" >
+        #{repairCommentMoney,jdbcType=REAL},
+      </if>
+      <if test="population != null" >
+        #{population,jdbcType=REAL},
+      </if>
+      <if test="technology != null" >
+        #{technology,jdbcType=REAL},
+      </if>
+      <if test="services != null" >
+        #{services,jdbcType=REAL},
+      </if>
+      <if test="environment != null" >
+        #{environment,jdbcType=REAL},
+      </if>
+      <if test="picture1 != null" >
+        #{picture1,jdbcType=VARCHAR},
+      </if>
+      <if test="picture2 != null" >
+        #{picture2,jdbcType=VARCHAR},
+      </if>
+      <if test="picture3 != null" >
+        #{picture3,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.RepairComment" >
+    update repair_comment
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=CHAR},
+      </if>
+      <if test="repairId != null" >
+        repair_id = #{repairId,jdbcType=CHAR},
+      </if>
+      <if test="repairCommentContent != null" >
+        repair_comment_content = #{repairCommentContent,jdbcType=VARCHAR},
+      </if>
+      <if test="repairCommentMoney != null" >
+        repair_comment_money = #{repairCommentMoney,jdbcType=REAL},
+      </if>
+      <if test="population != null" >
+        population = #{population,jdbcType=REAL},
+      </if>
+      <if test="technology != null" >
+        technology = #{technology,jdbcType=REAL},
+      </if>
+      <if test="services != null" >
+        services = #{services,jdbcType=REAL},
+      </if>
+      <if test="environment != null" >
+        environment = #{environment,jdbcType=REAL},
+      </if>
+      <if test="picture1 != null" >
+        picture1 = #{picture1,jdbcType=VARCHAR},
+      </if>
+      <if test="picture2 != null" >
+        picture2 = #{picture2,jdbcType=VARCHAR},
+      </if>
+      <if test="picture3 != null" >
+        picture3 = #{picture3,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.RepairComment" >
+    update repair_comment
+    set user_id = #{userId,jdbcType=CHAR},
+      repair_id = #{repairId,jdbcType=CHAR},
+      repair_comment_content = #{repairCommentContent,jdbcType=VARCHAR},
+      repair_comment_money = #{repairCommentMoney,jdbcType=REAL},
+      population = #{population,jdbcType=REAL},
+      technology = #{technology,jdbcType=REAL},
+      services = #{services,jdbcType=REAL},
+      environment = #{environment,jdbcType=REAL},
+      picture1 = #{picture1,jdbcType=VARCHAR},
+      picture2 = #{picture2,jdbcType=VARCHAR},
+      picture3 = #{picture3,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <select id="queryRepairComment" parameterType="com.aqb.cn.common.QueryBase" resultMap="BaseResultMap">
+    SELECT * FROM repair_comment WHERE status = 1
+    ORDER BY found_date  DESC
+    LIMIT #{firstRow}, #{maxRow}
+  </select>
+
+  <select id="countRepairComment" parameterType="com.aqb.cn.common.QueryBase" resultType="long">
+    SELECT COUNT(*) FROM repair_comment
+  </select>
+
+  <select id="queryByUserId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from repair_comment
+    WHERE userId = #{userId} AND status = 1
+    ORDER BY found_date  DESC
+  </select>
+
+  <select id="queryByRepairId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from repair_comment
+    WHERE repair_id = #{repairId} AND status = 1
+    ORDER BY found_date  DESC
+  </select>
+
+  <select id="queryRC" parameterType="com.aqb.cn.common.QueryBase" resultMap="RC">
+    SELECT rc.*,u.user_name,r.repair_name FROM repair_comment rc , `user` u,repair r
+    where  rc.user_id = u.id AND rc.repair_id=r.id AND rc.status = 2
+    ORDER BY rc.found_date DESC
+    LIMIT #{firstRow}, #{maxRow}
+  </select>
+
+  <select id="countRC" parameterType="com.aqb.cn.common.QueryBase" resultType="long">
+    SELECT COUNT(rc.id) FROM repair_comment rc , `user` u,repair r
+    where  rc.user_id = u.id AND rc.repair_id=r.id AND rc.status = 2
+  </select>
+
+  <select id="searchRCByComment" parameterType="com.aqb.cn.common.QueryBase" resultMap="RC">
+    SELECT rc.*,u.user_name,r.repair_name FROM repair_comment rc , `user` u,repair r
+    where  rc.user_id = u.id AND rc.repair_id=r.id AND rc.status = 1
+    AND rc.repair_comment_content LIKE concat('%',#{parameters.repairCommentContent},'%')
+    ORDER BY rc.found_date DESC
+    LIMIT #{firstRow}, #{maxRow}
+  </select>
+
+  <select id="countRCByComment" parameterType="com.aqb.cn.common.QueryBase" resultType="long">
+    SELECT COUNT(rc.id) FROM repair_comment rc , `user` u,repair r
+    where  rc.user_id = u.id AND rc.repair_id=r.id AND rc.status = 1
+    AND rc.repair_comment_content LIKE concat('%',#{parameters.repairCommentContent},'%')
+  </select>
+
+  <select id="searchRCByRepairName" parameterType="com.aqb.cn.common.QueryBase" resultMap="RC">
+    SELECT rc.*,u.user_name,r.repair_name FROM repair_comment rc , `user` u,repair r
+    where  rc.user_id = u.id AND rc.repair_id=r.id AND rc.status = 1
+    AND r.repair_name LIKE concat('%',#{parameters.repairName},'%')
+    ORDER BY rc.found_date DESC
+    LIMIT #{firstRow}, #{maxRow}
+  </select>
+
+  <select id="countRCByRepairName" parameterType="com.aqb.cn.common.QueryBase" resultType="long">
+    SELECT COUNT(rc.id) FROM repair_comment rc , `user` u,repair r
+    where  rc.user_id = u.id AND rc.repair_id=r.id AND rc.status = 1
+    AND r.repair_name LIKE concat('%',#{parameters.repairName},'%')
+  </select>
+
+  <select id="searchRCByUserName" parameterType="com.aqb.cn.common.QueryBase" resultMap="RC">
+    SELECT rc.*,u.user_name,r.repair_name FROM repair_comment rc , `user` u,repair r
+    where  rc.user_id = u.id AND rc.repair_id=r.id AND rc.status = 1
+    AND u.user_name LIKE concat('%',#{parameters.userName},'%')
+    ORDER BY rc.found_date DESC
+    LIMIT #{firstRow}, #{maxRow}
+  </select>
+
+  <select id="countRCByUserName" parameterType="com.aqb.cn.common.QueryBase" resultType="long">
+    SELECT COUNT(rc.id) FROM repair_comment rc , `user` u,repair r
+    where  rc.user_id = u.id AND rc.repair_id=r.id AND rc.status = 1
+    AND u.user_name LIKE concat('%',#{parameters.userName},'%')
+  </select>
+
+
+  <!--<sql id="where_with_condition">-->
+    <!--<trim prefix="WHERE" prefixOverrides="AND">-->
+      <!--<if test="parameters.userId != null and parameters.userId != '' ">AND user_id LIKE '%${parameters.userName}%'-->
+      <!--</if>-->
+    <!--</trim>-->
+  <!--</sql>-->
+
+</mapper>

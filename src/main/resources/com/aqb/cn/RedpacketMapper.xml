@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.RedpacketMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.Redpacket" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="user_id" property="userId" jdbcType="CHAR" />
+    <result column="red_category" property="redCategory" jdbcType="INTEGER" />
+    <result column="red_income_out" property="redIncomeOut" jdbcType="BIT" />
+    <result column="red_subtotal" property="redSubtotal" jdbcType="REAL" />
+    <result column="red_status" property="redStatus" jdbcType="INTEGER" />
+    <result column="red_found_date" property="redFoundDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, red_category, red_income_out, red_subtotal, red_status, red_found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from redpacket
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from redpacket
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.Redpacket" >
+    insert into redpacket (id, user_id, red_category, 
+      red_income_out, red_subtotal, red_status, 
+      red_found_date)
+    values (#{id,jdbcType=CHAR}, #{userId,jdbcType=CHAR}, #{redCategory,jdbcType=INTEGER}, 
+      #{redIncomeOut,jdbcType=BIT}, #{redSubtotal,jdbcType=REAL}, #{redStatus,jdbcType=INTEGER}, 
+      #{redFoundDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.Redpacket" >
+    insert into redpacket
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="redCategory != null" >
+        red_category,
+      </if>
+      <if test="redIncomeOut != null" >
+        red_income_out,
+      </if>
+      <if test="redSubtotal != null" >
+        red_subtotal,
+      </if>
+      <if test="redStatus != null" >
+        red_status,
+      </if>
+      <if test="redFoundDate != null" >
+        red_found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=CHAR},
+      </if>
+      <if test="redCategory != null" >
+        #{redCategory,jdbcType=INTEGER},
+      </if>
+      <if test="redIncomeOut != null" >
+        #{redIncomeOut,jdbcType=BIT},
+      </if>
+      <if test="redSubtotal != null" >
+        #{redSubtotal,jdbcType=REAL},
+      </if>
+      <if test="redStatus != null" >
+        #{redStatus,jdbcType=INTEGER},
+      </if>
+      <if test="redFoundDate != null" >
+        #{redFoundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.Redpacket" >
+    update redpacket
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=CHAR},
+      </if>
+      <if test="redCategory != null" >
+        red_category = #{redCategory,jdbcType=INTEGER},
+      </if>
+      <if test="redIncomeOut != null" >
+        red_income_out = #{redIncomeOut,jdbcType=BIT},
+      </if>
+      <if test="redSubtotal != null" >
+        red_subtotal = #{redSubtotal,jdbcType=REAL},
+      </if>
+      <if test="redStatus != null" >
+        red_status = #{redStatus,jdbcType=INTEGER},
+      </if>
+      <if test="redFoundDate != null" >
+        red_found_date = #{redFoundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.Redpacket" >
+    update redpacket
+    set user_id = #{userId,jdbcType=CHAR},
+      red_category = #{redCategory,jdbcType=INTEGER},
+      red_income_out = #{redIncomeOut,jdbcType=BIT},
+      red_subtotal = #{redSubtotal,jdbcType=REAL},
+      red_status = #{redStatus,jdbcType=INTEGER},
+      red_found_date = #{redFoundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <select id="queryRedpacket" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from redpacket ORDER BY red_found_date  DESC
+  </select>
+
+  <select id="queryRedpacketByUserId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from redpacket WHERE user_id = #{userId}
+    ORDER BY red_found_date  DESC
+  </select>
+
+
+  <select id="sumSubtotal" resultType="java.lang.Float">
+    select sum(red_subtotal) from redpacket WHERE user_id = #{0} and red_income_out = #{1}
+  </select>
+
+</mapper>

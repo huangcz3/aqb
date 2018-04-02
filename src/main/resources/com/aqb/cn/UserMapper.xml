@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.User" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="im_user_name" property="imUserName" jdbcType="VARCHAR" />
+    <result column="user_pass" property="userPass" jdbcType="VARCHAR" />
+    <result column="user_code1" property="userCode1" jdbcType="VARCHAR" />
+    <result column="user_code2" property="userCode2" jdbcType="VARCHAR" />
+    <result column="user_code3" property="userCode3" jdbcType="VARCHAR" />
+    <result column="login_mode" property="loginMode" jdbcType="INTEGER" />
+    <result column="user_full" property="userFull" jdbcType="VARCHAR" />
+    <result column="user_nick" property="userNick" jdbcType="VARCHAR" />
+    <result column="user_sex" property="userSex" jdbcType="VARCHAR" />
+    <result column="user_age" property="userAge" jdbcType="VARCHAR" />
+    <result column="user_constellation" property="userConstellation" jdbcType="VARCHAR" />
+    <result column="user_card" property="userCard" jdbcType="VARCHAR" />
+    <result column="user_email" property="userEmail" jdbcType="VARCHAR" />
+    <result column="user_address" property="userAddress" jdbcType="CHAR" />
+    <result column="user_pay" property="userPay" jdbcType="VARCHAR" />
+    <result column="user_head" property="userHead" jdbcType="VARCHAR" />
+    <result column="vip_id" property="vipId" jdbcType="CHAR" />
+    <result column="user_cover" property="userCover" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_name, im_user_name, user_pass, user_code1, user_code2, user_code3, login_mode,
+    user_full, user_nick, user_sex, user_age, user_constellation, user_card, user_email,
+    user_address, user_pay, user_head, vip_id, user_cover, status, found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from user
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.User" >
+    insert into user (id, user_name, im_user_name,
+    user_pass, user_code1, user_code2,
+    user_code3, login_mode, user_full,
+    user_nick, user_sex, user_age,
+    user_constellation, user_card, user_email,
+    user_address, user_pay, user_head,
+    vip_id, user_cover, status,
+    found_date)
+    values (#{id,jdbcType=CHAR}, #{userName,jdbcType=VARCHAR}, #{imUserName,jdbcType=VARCHAR},
+    #{userPass,jdbcType=VARCHAR}, #{userCode1,jdbcType=VARCHAR}, #{userCode2,jdbcType=VARCHAR},
+    #{userCode3,jdbcType=VARCHAR}, #{loginMode,jdbcType=INTEGER}, #{userFull,jdbcType=VARCHAR},
+    #{userNick,jdbcType=VARCHAR}, #{userSex,jdbcType=VARCHAR}, #{userAge,jdbcType=VARCHAR},
+    #{userConstellation,jdbcType=VARCHAR}, #{userCard,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR},
+    #{userAddress,jdbcType=CHAR}, #{userPay,jdbcType=VARCHAR}, #{userHead,jdbcType=VARCHAR},
+    #{vipId,jdbcType=CHAR}, #{userCover,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
+    #{foundDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="imUserName != null" >
+        im_user_name,
+      </if>
+      <if test="userPass != null" >
+        user_pass,
+      </if>
+      <if test="userCode1 != null" >
+        user_code1,
+      </if>
+      <if test="userCode2 != null" >
+        user_code2,
+      </if>
+      <if test="userCode3 != null" >
+        user_code3,
+      </if>
+      <if test="loginMode != null" >
+        login_mode,
+      </if>
+      <if test="userFull != null" >
+        user_full,
+      </if>
+      <if test="userNick != null" >
+        user_nick,
+      </if>
+      <if test="userSex != null" >
+        user_sex,
+      </if>
+      <if test="userAge != null" >
+        user_age,
+      </if>
+      <if test="userConstellation != null" >
+        user_constellation,
+      </if>
+      <if test="userCard != null" >
+        user_card,
+      </if>
+      <if test="userEmail != null" >
+        user_email,
+      </if>
+      <if test="userAddress != null" >
+        user_address,
+      </if>
+      <if test="userPay != null" >
+        user_pay,
+      </if>
+      <if test="userHead != null" >
+        user_head,
+      </if>
+      <if test="vipId != null" >
+        vip_id,
+      </if>
+      <if test="userCover != null" >
+        user_cover,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="imUserName != null" >
+        #{imUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPass != null" >
+        #{userPass,jdbcType=VARCHAR},
+      </if>
+      <if test="userCode1 != null" >
+        #{userCode1,jdbcType=VARCHAR},
+      </if>
+      <if test="userCode2 != null" >
+        #{userCode2,jdbcType=VARCHAR},
+      </if>
+      <if test="userCode3 != null" >
+        #{userCode3,jdbcType=VARCHAR},
+      </if>
+      <if test="loginMode != null" >
+        #{loginMode,jdbcType=INTEGER},
+      </if>
+      <if test="userFull != null" >
+        #{userFull,jdbcType=VARCHAR},
+      </if>
+      <if test="userNick != null" >
+        #{userNick,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null" >
+        #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="userAge != null" >
+        #{userAge,jdbcType=VARCHAR},
+      </if>
+      <if test="userConstellation != null" >
+        #{userConstellation,jdbcType=VARCHAR},
+      </if>
+      <if test="userCard != null" >
+        #{userCard,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null" >
+        #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userAddress != null" >
+        #{userAddress,jdbcType=CHAR},
+      </if>
+      <if test="userPay != null" >
+        #{userPay,jdbcType=VARCHAR},
+      </if>
+      <if test="userHead != null" >
+        #{userHead,jdbcType=VARCHAR},
+      </if>
+      <if test="vipId != null" >
+        #{vipId,jdbcType=CHAR},
+      </if>
+      <if test="userCover != null" >
+        #{userCover,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.User" >
+    update user
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="imUserName != null" >
+        im_user_name = #{imUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPass != null" >
+        user_pass = #{userPass,jdbcType=VARCHAR},
+      </if>
+      <if test="userCode1 != null" >
+        user_code1 = #{userCode1,jdbcType=VARCHAR},
+      </if>
+      <if test="userCode2 != null" >
+        user_code2 = #{userCode2,jdbcType=VARCHAR},
+      </if>
+      <if test="userCode3 != null" >
+        user_code3 = #{userCode3,jdbcType=VARCHAR},
+      </if>
+      <if test="loginMode != null" >
+        login_mode = #{loginMode,jdbcType=INTEGER},
+      </if>
+      <if test="userFull != null" >
+        user_full = #{userFull,jdbcType=VARCHAR},
+      </if>
+      <if test="userNick != null" >
+        user_nick = #{userNick,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null" >
+        user_sex = #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="userAge != null" >
+        user_age = #{userAge,jdbcType=VARCHAR},
+      </if>
+      <if test="userConstellation != null" >
+        user_constellation = #{userConstellation,jdbcType=VARCHAR},
+      </if>
+      <if test="userCard != null" >
+        user_card = #{userCard,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null" >
+        user_email = #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userAddress != null" >
+        user_address = #{userAddress,jdbcType=CHAR},
+      </if>
+      <if test="userPay != null" >
+        user_pay = #{userPay,jdbcType=VARCHAR},
+      </if>
+      <if test="userHead != null" >
+        user_head = #{userHead,jdbcType=VARCHAR},
+      </if>
+      <if test="vipId != null" >
+        vip_id = #{vipId,jdbcType=CHAR},
+      </if>
+      <if test="userCover != null" >
+        user_cover = #{userCover,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.User" >
+    update user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      im_user_name = #{imUserName,jdbcType=VARCHAR},
+      user_pass = #{userPass,jdbcType=VARCHAR},
+      user_code1 = #{userCode1,jdbcType=VARCHAR},
+      user_code2 = #{userCode2,jdbcType=VARCHAR},
+      user_code3 = #{userCode3,jdbcType=VARCHAR},
+      login_mode = #{loginMode,jdbcType=INTEGER},
+      user_full = #{userFull,jdbcType=VARCHAR},
+      user_nick = #{userNick,jdbcType=VARCHAR},
+      user_sex = #{userSex,jdbcType=VARCHAR},
+      user_age = #{userAge,jdbcType=VARCHAR},
+      user_constellation = #{userConstellation,jdbcType=VARCHAR},
+      user_card = #{userCard,jdbcType=VARCHAR},
+      user_email = #{userEmail,jdbcType=VARCHAR},
+      user_address = #{userAddress,jdbcType=CHAR},
+      user_pay = #{userPay,jdbcType=VARCHAR},
+      user_head = #{userHead,jdbcType=VARCHAR},
+      vip_id = #{vipId,jdbcType=CHAR},
+      user_cover = #{userCover,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <select id="queryByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where user_name = #{userName}
+  </select>
+
+  <update id="updateAddressToNull" parameterType="java.lang.String" >
+    update user set user_address = NULL
+    where id = #{id}
+  </update>
+
+  <select id="queryByCode1" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where user_code1 = #{userCode1}
+  </select>
+
+  <select id="queryByCode2" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where user_code2 = #{userCode2}
+  </select>
+
+  <select id="queryByCode3" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where user_code3 = #{userCode3}
+  </select>
+
+  <select id="queryUser1" parameterType="com.aqb.cn.utils.Request"  resultMap="BaseResultMap">
+    select *
+    from user
+    where user_name  like '%${userName}%'
+    OR user_full LIKE '%${userName}%'
+    LIMIT ${limit}, 10
+  </select>
+
+  <select id="countUser1" parameterType="com.aqb.cn.utils.Request" resultType="long">
+    SELECT COUNT(id) FROM user
+    where user_name  like '%${userName}%'
+    OR user_full LIKE '%${userName}%'
+
+  </select>
+
+  <select id="queryUsermohu" resultMap="BaseResultMap">
+    select *
+    from user
+    where user_name  like '%${value}%'
+    OR user_full LIKE '%${value}%'
+    ORDER BY found_date  DESC
+    LIMIT #{firstRow}, #{maxRow}
+  </select>
+
+  <select id="queryUser2" resultType="com.aqb.cn.bean.User">
+    {call sp_MvcCommonDataSource(
+        #{fields},
+        #{tables},
+        #{where},
+        #{orderby},
+        #{pageindex},
+        #{pageSize},
+        #{sumfields},
+        @totalcount,
+        @pagecount,
+        @sumResult)}
+  </select>
+
+  <select id="queryUser3" resultMap="BaseResultMap">
+    {call sp_MvcCommonDataSource(
+    #{fields},
+    #{tables},
+    #{where},
+    #{orderby},
+    #{pageindex},
+    #{pageSize},
+    #{sumfields},
+    @totalcount,
+    @pagecount,
+    @sumResult)}
+  </select>
+
+  <resultMap id="findCC" type="java.util.LinkedHashMap">
+    <result property="totalcount" column="totalcount"></result>
+    <result property="pagecount" column="pagecount"></result>
+    <result property="sumResult" column="sumResult"></result>
+  </resultMap>
+
+  <select id="findC" resultMap="findCC">
+    select @totalcount,@pagecount,@sumResult
+  </select>
+
+
+  <select id="queryUserFriends" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select id, user_name, im_user_name,
+    user_full, user_nick, user_sex, user_age, user_constellation, user_card, user_email
+    ,user_head, user_cover
+    from user where id in
+    <!-- 查询朋友的id -->
+    (select user_id2 from user_friends where user_id = #{userId}
+    UNION
+    select user_id from user_friends where user_id2 = #{userId})
+  </select>
+
+
+</mapper>

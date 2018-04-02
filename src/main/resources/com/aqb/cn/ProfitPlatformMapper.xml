@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.ProfitPlatformMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.ProfitPlatform" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="advertisement_id" property="advertisementId" jdbcType="CHAR" />
+    <result column="equipment_number" property="equipmentNumber" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="REAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, advertisement_id, equipment_number, money, status, found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from profit_platform
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from profit_platform
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.ProfitPlatform" >
+    insert into profit_platform (id, advertisement_id, equipment_number, 
+      money, status, found_date
+      )
+    values (#{id,jdbcType=CHAR}, #{advertisementId,jdbcType=CHAR}, #{equipmentNumber,jdbcType=VARCHAR}, 
+      #{money,jdbcType=REAL}, #{status,jdbcType=INTEGER}, #{foundDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.ProfitPlatform" >
+    insert into profit_platform
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="advertisementId != null" >
+        advertisement_id,
+      </if>
+      <if test="equipmentNumber != null" >
+        equipment_number,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="advertisementId != null" >
+        #{advertisementId,jdbcType=CHAR},
+      </if>
+      <if test="equipmentNumber != null" >
+        #{equipmentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=REAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.ProfitPlatform" >
+    update profit_platform
+    <set >
+      <if test="advertisementId != null" >
+        advertisement_id = #{advertisementId,jdbcType=CHAR},
+      </if>
+      <if test="equipmentNumber != null" >
+        equipment_number = #{equipmentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=REAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.ProfitPlatform" >
+    update profit_platform
+    set advertisement_id = #{advertisementId,jdbcType=CHAR},
+      equipment_number = #{equipmentNumber,jdbcType=VARCHAR},
+      money = #{money,jdbcType=REAL},
+      status = #{status,jdbcType=INTEGER},
+      found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <!-- 统计某一年的数据 -->
+  <select id="sumMoneyByYear" resultType="java.lang.Float">
+    select sum(money) from profit_platform where status = #{0} and date_format(found_date,'%Y') = #{1}
+  </select>
+
+  <!-- 统计某一个月的数据 -->
+  <select id="sumMoneyByMonth" resultType="java.lang.Float">
+    select sum(money) from profit_platform where status = #{0} and date_format(found_date,'%Y-%m') = #{1}
+  </select>
+
+  <!-- 统计某一个天的数据 -->
+  <select id="sumMoneyByDay" resultType="java.lang.Float">
+    select sum(money) from profit_platform where status = #{0} and date_format(found_date,'%Y-%m-%d') = #{1}
+  </select>
+
+  <!-- 统计某一个月中每一天的数据 -->
+  <!--<select id="sumMoneyByMonth" resultType="java.lang.Float">-->
+    <!--SELECT-->
+    <!--sum(money),-->
+    <!--DATE_FORMAT(profit_platform.found_date, '%Y-%m-%d') AS count_by_date-->
+    <!--FROM-->
+    <!--profit_platform-->
+    <!--WHERE-->
+    <!--status = #{0} AND-->
+    <!--DATE_FORMAT(profit_platform.found_date, '%Y-%m') = #{1}-->
+    <!--GROUP BY-->
+    <!--count_by_date-->
+    <!--ORDER BY count_by_date ASC-->
+  <!--</select>-->
+
+
+</mapper>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.DeliveryMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.Delivery" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="advertisement_id" property="advertisementId" jdbcType="CHAR" />
+    <result column="delivery_money" property="deliveryMoney" jdbcType="REAL" />
+    <result column="red_packet_status" property="redPacketStatus" jdbcType="INTEGER" />
+    <result column="red_packet_type" property="redPacketType" jdbcType="INTEGER" />
+    <result column="red_packet_money" property="redPacketMoney" jdbcType="REAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, advertisement_id, delivery_money, red_packet_status, red_packet_type,
+    red_packet_money, status, found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from delivery
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from delivery
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.Delivery" >
+    insert into delivery (id, user_id, advertisement_id,
+      delivery_money, red_packet_status, red_packet_type,
+      red_packet_money, status, found_date
+      )
+    values (#{id,jdbcType=CHAR}, #{userId,jdbcType=VARCHAR}, #{advertisementId,jdbcType=CHAR},
+      #{deliveryMoney,jdbcType=REAL}, #{redPacketStatus,jdbcType=INTEGER}, #{redPacketType,jdbcType=INTEGER},
+      #{redPacketMoney,jdbcType=REAL}, #{status,jdbcType=INTEGER}, #{foundDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.Delivery" >
+    insert into delivery
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="advertisementId != null" >
+        advertisement_id,
+      </if>
+      <if test="deliveryMoney != null" >
+        delivery_money,
+      </if>
+      <if test="redPacketStatus != null" >
+        red_packet_status,
+      </if>
+      <if test="redPacketType != null" >
+        red_packet_type,
+      </if>
+      <if test="redPacketMoney != null" >
+        red_packet_money,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="advertisementId != null" >
+        #{advertisementId,jdbcType=CHAR},
+      </if>
+      <if test="deliveryMoney != null" >
+        #{deliveryMoney,jdbcType=REAL},
+      </if>
+      <if test="redPacketStatus != null" >
+        #{redPacketStatus,jdbcType=INTEGER},
+      </if>
+      <if test="redPacketType != null" >
+        #{redPacketType,jdbcType=INTEGER},
+      </if>
+      <if test="redPacketMoney != null" >
+        #{redPacketMoney,jdbcType=REAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.Delivery" >
+    update delivery
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="advertisementId != null" >
+        advertisement_id = #{advertisementId,jdbcType=CHAR},
+      </if>
+      <if test="deliveryMoney != null" >
+        delivery_money = #{deliveryMoney,jdbcType=REAL},
+      </if>
+      <if test="redPacketStatus != null" >
+        red_packet_status = #{redPacketStatus,jdbcType=INTEGER},
+      </if>
+      <if test="redPacketType != null" >
+        red_packet_type = #{redPacketType,jdbcType=INTEGER},
+      </if>
+      <if test="redPacketMoney != null" >
+        red_packet_money = #{redPacketMoney,jdbcType=REAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.Delivery" >
+    update delivery
+    set user_id = #{userId,jdbcType=VARCHAR},
+      advertisement_id = #{advertisementId,jdbcType=CHAR},
+      delivery_money = #{deliveryMoney,jdbcType=REAL},
+      red_packet_status = #{redPacketStatus,jdbcType=INTEGER},
+      red_packet_type = #{redPacketType,jdbcType=INTEGER},
+      red_packet_money = #{redPacketMoney,jdbcType=REAL},
+      status = #{status,jdbcType=INTEGER},
+      found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <select id="selectByDevNum" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from delivery
+    where user_id = #{0}
+    ORDER BY found_date DESC
+    LIMIT #{1}
+  </select>
+
+  <select id="sumByDeliveryMoney" resultType="java.lang.Float">
+    select sum(delivery_money) from delivery where advertisement_id = #{0} and status = #{1}
+  </select>
+
+  <select id="sumByDeliveryNumber" resultType="java.lang.Integer">
+    select COUNT(id) from delivery where advertisement_id = #{0} and status = #{1}
+  </select>
+
+  <select id="queryRed" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    id,red_packet_status,found_date,red_packet_type,red_packet_money
+    from delivery
+    where user_id = #{userId} and red_packet_status = 1
+    ORDER BY found_date DESC
+  </select>
+
+  <!-- 一键领取所有红包 -->
+  <!-- mybatis执行批量update操作 -->
+  <update id="updateRed" parameterType="Map">
+    update delivery
+    set
+    red_packet_status = #{redPacketStatus}
+    where id in
+    (<foreach collection="deliverys" index="index" item="item" open="" close="" separator=",">
+    #{item.id}
+    </foreach>)
+  </update>
+
+
+
+</mapper>

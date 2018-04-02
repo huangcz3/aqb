@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.ShareAwardMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.a.ShareAward" >
+    <id column="share_award_id" property="shareAwardId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="CHAR" />
+    <result column="share_tel" property="shareTel" jdbcType="VARCHAR" />
+    <result column="integral" property="integral" jdbcType="INTEGER" />
+    <result column="money" property="money" jdbcType="DECIMAL" />
+    <result column="share_time" property="shareTime" jdbcType="TIMESTAMP" />
+    <result column="ranking_state" property="rankingState" jdbcType="INTEGER" />
+    <result column="award_state" property="awardState" jdbcType="INTEGER" />
+    <result column="admin_id" property="adminId" jdbcType="CHAR" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    share_award_id, user_id, share_tel, integral, money, share_time, ranking_state, award_state, 
+    admin_id, time, state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from share_award
+    where share_award_id = #{shareAwardId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from share_award
+    where share_award_id = #{shareAwardId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.a.ShareAward" >
+    insert into share_award (share_award_id, user_id, share_tel, 
+      integral, money, share_time, 
+      ranking_state, award_state, admin_id, 
+      time, state)
+    values (#{shareAwardId,jdbcType=INTEGER}, #{userId,jdbcType=CHAR}, #{shareTel,jdbcType=VARCHAR}, 
+      #{integral,jdbcType=INTEGER}, #{money,jdbcType=DECIMAL}, #{shareTime,jdbcType=TIMESTAMP}, 
+      #{rankingState,jdbcType=INTEGER}, #{awardState,jdbcType=INTEGER}, #{adminId,jdbcType=CHAR}, 
+      #{time,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.a.ShareAward" >
+    insert into share_award
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shareAwardId != null" >
+        share_award_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="shareTel != null" >
+        share_tel,
+      </if>
+      <if test="integral != null" >
+        integral,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="shareTime != null" >
+        share_time,
+      </if>
+      <if test="rankingState != null" >
+        ranking_state,
+      </if>
+      <if test="awardState != null" >
+        award_state,
+      </if>
+      <if test="adminId != null" >
+        admin_id,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shareAwardId != null" >
+        #{shareAwardId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=CHAR},
+      </if>
+      <if test="shareTel != null" >
+        #{shareTel,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null" >
+        #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="shareTime != null" >
+        #{shareTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rankingState != null" >
+        #{rankingState,jdbcType=INTEGER},
+      </if>
+      <if test="awardState != null" >
+        #{awardState,jdbcType=INTEGER},
+      </if>
+      <if test="adminId != null" >
+        #{adminId,jdbcType=CHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.a.ShareAward" >
+    update share_award
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=CHAR},
+      </if>
+      <if test="shareTel != null" >
+        share_tel = #{shareTel,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null" >
+        integral = #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="shareTime != null" >
+        share_time = #{shareTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rankingState != null" >
+        ranking_state = #{rankingState,jdbcType=INTEGER},
+      </if>
+      <if test="awardState != null" >
+        award_state = #{awardState,jdbcType=INTEGER},
+      </if>
+      <if test="adminId != null" >
+        admin_id = #{adminId,jdbcType=CHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+    </set>
+    where share_award_id = #{shareAwardId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.a.ShareAward" >
+    update share_award
+    set user_id = #{userId,jdbcType=CHAR},
+      share_tel = #{shareTel,jdbcType=VARCHAR},
+      integral = #{integral,jdbcType=INTEGER},
+      money = #{money,jdbcType=DECIMAL},
+      share_time = #{shareTime,jdbcType=TIMESTAMP},
+      ranking_state = #{rankingState,jdbcType=INTEGER},
+      award_state = #{awardState,jdbcType=INTEGER},
+      admin_id = #{adminId,jdbcType=CHAR},
+      time = #{time,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=INTEGER}
+    where share_award_id = #{shareAwardId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByShareTel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from share_award
+    where share_tel = #{shareTel} and award_state = 1 and state = 1
+  </select>
+
+  <select id="selectByShareTelStatus" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from share_award
+    where share_tel = #{shareTel} and award_state = 0 and state = 1
+  </select>
+  
+</mapper>

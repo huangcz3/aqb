@@ -1,0 +1,11 @@
+main div.panel{
+    margin-top: 0.2rem;
+    text-align: center;
+}
+main .table{
+    margin: 0.1rem 0;
+}
+main .table thead th,main .table tbody td{
+    text-align: center;
+    vertical-align: middle;
+}

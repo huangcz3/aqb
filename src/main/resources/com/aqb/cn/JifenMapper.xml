@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.JifenMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.Jifen" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="user_id" property="userId" jdbcType="CHAR" />
+    <result column="jifen_category" property="jifenCategory" jdbcType="INTEGER" />
+    <result column="jifen_income_out" property="jifenIncomeOut" jdbcType="BIT" />
+    <result column="jifen_subtotal" property="jifenSubtotal" jdbcType="REAL" />
+    <result column="jifen_status" property="jifenStatus" jdbcType="INTEGER" />
+    <result column="jifen_foud_date" property="jifenFoudDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, jifen_category, jifen_income_out, jifen_subtotal, jifen_status, jifen_foud_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from jifen
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from jifen
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.Jifen" >
+    insert into jifen (id, user_id, jifen_category,
+    jifen_income_out, jifen_subtotal, jifen_status,
+    jifen_foud_date)
+    values (#{id,jdbcType=CHAR}, #{userId,jdbcType=CHAR}, #{jifenCategory,jdbcType=INTEGER},
+    #{jifenIncomeOut,jdbcType=BIT}, #{jifenSubtotal,jdbcType=REAL}, #{jifenStatus,jdbcType=INTEGER},
+    #{jifenFoudDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.Jifen" >
+    insert into jifen
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="jifenCategory != null" >
+        jifen_category,
+      </if>
+      <if test="jifenIncomeOut != null" >
+        jifen_income_out,
+      </if>
+      <if test="jifenSubtotal != null" >
+        jifen_subtotal,
+      </if>
+      <if test="jifenStatus != null" >
+        jifen_status,
+      </if>
+      <if test="jifenFoudDate != null" >
+        jifen_foud_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=CHAR},
+      </if>
+      <if test="jifenCategory != null" >
+        #{jifenCategory,jdbcType=INTEGER},
+      </if>
+      <if test="jifenIncomeOut != null" >
+        #{jifenIncomeOut,jdbcType=BIT},
+      </if>
+      <if test="jifenSubtotal != null" >
+        #{jifenSubtotal,jdbcType=REAL},
+      </if>
+      <if test="jifenStatus != null" >
+        #{jifenStatus,jdbcType=INTEGER},
+      </if>
+      <if test="jifenFoudDate != null" >
+        #{jifenFoudDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.Jifen" >
+    update jifen
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=CHAR},
+      </if>
+      <if test="jifenCategory != null" >
+        jifen_category = #{jifenCategory,jdbcType=INTEGER},
+      </if>
+      <if test="jifenIncomeOut != null" >
+        jifen_income_out = #{jifenIncomeOut,jdbcType=BIT},
+      </if>
+      <if test="jifenSubtotal != null" >
+        jifen_subtotal = #{jifenSubtotal,jdbcType=REAL},
+      </if>
+      <if test="jifenStatus != null" >
+        jifen_status = #{jifenStatus,jdbcType=INTEGER},
+      </if>
+      <if test="jifenFoudDate != null" >
+        jifen_foud_date = #{jifenFoudDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.Jifen" >
+    update jifen
+    set user_id = #{userId,jdbcType=CHAR},
+      jifen_category = #{jifenCategory,jdbcType=INTEGER},
+      jifen_income_out = #{jifenIncomeOut,jdbcType=BIT},
+      jifen_subtotal = #{jifenSubtotal,jdbcType=REAL},
+      jifen_status = #{jifenStatus,jdbcType=INTEGER},
+      jifen_foud_date = #{jifenFoudDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <select id="queryJifen" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jifen ORDER BY jifen_foud_date  DESC
+  </select>
+
+  <select id="queryJifenByUserId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jifen WHERE user_id = #{userId}
+    ORDER BY jifen_foud_date  DESC
+  </select>
+
+</mapper>

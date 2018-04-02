@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.BindingNumberMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.BindingNumber" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="batch_number" property="batchNumber" jdbcType="VARCHAR" />
+    <result column="batch_describe" property="batchDescribe" jdbcType="VARCHAR" />
+    <result column="device_number" property="deviceNumber" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, batch_number, batch_describe, device_number, status, found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from binding_number
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from binding_number
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.BindingNumber" >
+    insert into binding_number (id, batch_number, batch_describe, 
+      device_number, status, found_date
+      )
+    values (#{id,jdbcType=CHAR}, #{batchNumber,jdbcType=VARCHAR}, #{batchDescribe,jdbcType=VARCHAR}, 
+      #{deviceNumber,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{foundDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.BindingNumber" >
+    insert into binding_number
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="batchNumber != null" >
+        batch_number,
+      </if>
+      <if test="batchDescribe != null" >
+        batch_describe,
+      </if>
+      <if test="deviceNumber != null" >
+        device_number,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="batchNumber != null" >
+        #{batchNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="batchDescribe != null" >
+        #{batchDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceNumber != null" >
+        #{deviceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.BindingNumber" >
+    update binding_number
+    <set >
+      <if test="batchNumber != null" >
+        batch_number = #{batchNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="batchDescribe != null" >
+        batch_describe = #{batchDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceNumber != null" >
+        device_number = #{deviceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.BindingNumber" >
+    update binding_number
+    set batch_number = #{batchNumber,jdbcType=VARCHAR},
+      batch_describe = #{batchDescribe,jdbcType=VARCHAR},
+      device_number = #{deviceNumber,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+
+  <select id="selectByDeviceNumber" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from binding_number
+    where device_number = #{deviceNumber}
+  </select>
+
+  <select id="queryWhole" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from binding_number
+  </select>
+
+
+  <insert id="insertBindingNumberList" parameterType="java.util.List">
+    insert into binding_number (id, batch_number, batch_describe,
+    device_number, status, found_date
+    )
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.id,jdbcType=CHAR}, #{item.batchNumber,jdbcType=VARCHAR}, #{item.batchDescribe,jdbcType=VARCHAR},
+      #{item.deviceNumber,jdbcType=VARCHAR}, #{item.status,jdbcType=INTEGER}, #{item.foundDate,jdbcType=TIMESTAMP}
+      )
+    </foreach>
+  </insert>
+
+
+  <!-- 分页查询 -->
+  <select id="queryBindingAdmin" parameterType="com.aqb.cn.common.QueryBase" resultMap="BaseResultMap">
+    SELECT *
+    FROM binding_number
+    <include refid="where_with_condition" />
+    ORDER BY device_number  DESC
+    LIMIT #{firstRow}, #{maxRow}
+  </select>
+
+  <select id="countBindingAdmin" parameterType="com.aqb.cn.common.QueryBase" resultType="long">
+    SELECT COUNT(id) FROM binding_number
+    <include refid="where_with_condition" />
+  </select>
+
+  <sql id="where_with_condition">
+    <trim prefix="WHERE" prefixOverrides="AND">
+      <if test="parameters.bindingNumber != null and parameters.bindingNumber != '' ">AND device_number = #{parameters.bindingNumber}
+      </if>
+    </trim>
+  </sql>
+
+</mapper>

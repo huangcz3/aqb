@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>关键词屏蔽</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta name="author" content="zhy" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-switch.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/keyword.css">
+</head>
+<body>
+<header role="banner">
+
+</header>
+<nav role="navigation">
+    <!-- Contenedor -->
+    <ul id="accordion" class="accordion">
+        <li>
+            <div class="link"><i class="fa fa-globe"></i>设备管理<i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+                <li><a href="./binding-reviewed.html">设备绑定审核</a></li>
+                <li><a href="./unbundling.html">设备解绑</a></li>
+                <li><a href="./binding.html">在线设备查询</a></li>
+            </ul>
+        </li>
+        <li>
+            <div class="link"><i class="fa fa-globe"></i>红包提现审核<i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+                <li><a href="./withdrawals.html">提现审核</a></li>
+            </ul>
+        </li>
+        <li>
+            <div class="link"><i class="fa fa-globe"></i>广告管理<i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+                <li><a href="./advertisement.html">广告内容审核</a></li>
+                <li><a href="./order-list.html">广告内容列表</a></li>
+                <li><a href="./advertising-settings.html">公益广告</a></li>
+            </ul>
+        </li>
+        <li><div class="link"><i class="fa fa-globe"></i>修车圈管理<i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+                <li><a href="./repair-examine.html">用户评价审核</a></li>
+                <li><a href="./repair-administration.html">用户评价管理</a></li>
+                <li><a href="./merchant-management.html">商家管理</a></li>
+            </ul>
+        </li>
+        <li><div class="link"><i class="fa fa-globe"></i>押金管理<i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+                <li><a href="./deposit.html">押金管理</a></li>
+                <li><a href="./deposit-retreat.html">押金退还审核</a></li>
+                <li><a href="./modify-money.html">押金金额设置</a></li>
+            </ul>
+        </li>
+        <li><div class="link"><i class="fa fa-globe"></i>弹幕管理<i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+                <li><a href="./barrage.html">弹幕管理</a></li>
+                <li><a href="./topic.html">话题编辑</a></li>
+                <li><a href="./circle.html">大小圈金额</a></li>
+                <li><a href="./vip.html">VIP权限设置</a></li>
+                <li><a href="./keyword.html">关键词屏蔽</a></li>
+            </ul>
+        </li>
+        <li><div class="link"><i class="fa fa-globe"></i>结算与分成管理<i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+                <li><a href="./exchange.html">兑换比例设置</a></li>
+                <li><a href="./commission.html">车主分成比例设置</a></li>
+                <li><a href="./referee.html">推荐人奖励</a></li>
+                <li><a href="./timePrice.html#成都">时段价格设置</a></li>
+            </ul>
+        </li>
+        <li><div class="link"><i class="fa fa-globe"></i>其他设置<i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+                <li><a href="./integral.html">积分任务管理</a></li>
+                <li><a href="./share.html">邀请分享设置</a></li>
+                <li><a href="./pop-ads.html">弹窗广告设置</a></li>
+                <li><a href="./insurance.html">保险</a></li>
+                <li><a href="./setting.html">其他设置</a></li>
+            </ul>
+        </li>
+        <li><div class="link"><i class="fa fa-globe"></i>系统设置<i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+                <li><a href="./staff.html">员工权限设置</a></li>
+                <li><a href="./privacy.html">隐私保护</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+<main role="main">
+    <h3>关键词屏蔽</h3>
+    <a class="btn btn-primary add"    data-toggle="modal" data-target="#addKeywordModal">添加关键词</a>
+    <div class="dropdown">
+        <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">排序方式
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
+            <li role="presentation">
+                <a role="menuitem" tabindex="-1" href="#">按时间排序</a>
+            </li>
+            <li role="presentation">
+                <a role="menuitem" tabindex="-1" href="#">按热度排序</a>
+            </li>
+        </ul>
+    </div>
+    <table class="table table-striped table-bordered table-hover table-condensed">
+        <thead>
+        <tr>
+            <th>关键词</th>
+            <th>屏蔽状态</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody id="list">
+        </tbody>
+    </table>
+    <!--弹窗-->
+    <div class="error">
+        你好，操作有误！
+    </div>
+</main>
+
+<div class="modal fade" id="addKeywordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="exampleModalLabel"  >添加屏蔽词</h4><p>（默认屏蔽状态关闭/OFF）</p>
+            </div>
+            <div class="modal-body">
+
+                <form>
+                    <div class="form-group">
+                        <label for="shieldGuanjianci" class="control-label">屏蔽词:</label>
+                        <input type="text" class="form-control" id="shieldGuanjianci">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="submitShield">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../js/jquery-3.1.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap-switch.min.js"></script>
+<script src="../H5/js/auto-size.js"></script>
+<script src="../js/paging.js"></script>
+<script>
+
+    getList(1);
+    function getList(currentPage,pageSize){
+        $.ajax({
+            type:"get",
+            url:"../api/shield/queryShield?currentPage="+currentPage+"&pageSize="+pageSize,
+            datatype:"json",
+            success:function(data){
+                console.log(data)
+                list=data.body;
+                var str="";
+                var idList=[];
+                for(var i in list){
+                    if(list[i].status==0){
+                        str+="<tr><td>"+list[i].shieldGuanjianci+"</td><td id='check_" +list[i].id+"_"+list[i].status+"'><input type=\"checkbox\" name=\"my-checkbox\"></td>" +
+                                "<td><input class=\"change btn btn-primary\" value=\"删除\" type=\"button\" onclick='deleteKey(\"" +list[i].id+ "\")'></td> </tr>";
+                    }else{
+                        str+="<tr><td>"+list[i].shieldGuanjianci+"</td><td id='check_" +list[i].id+"_"+list[i].status+"'><input type=\"checkbox\" name=\"my-checkbox\" checked></td>" +
+                                "<td><input class=\"change btn btn-primary\" value=\"删除\" type=\"button\" onclick='deleteKey(\"" +list[i].id+ "\")'></td> </tr>";
+                    }
+                    idList.push("check_"+list[i].id+"_"+list[i].status);
+                }
+                $("#list").empty();
+                $("#list").append(str);
+                $.fn.bootstrapSwitch.defaults.onColor = 'success';
+                $.fn.bootstrapSwitch.defaults.offColor = 'danger';
+                $("[name='my-checkbox']").bootstrapSwitch();
+
+                for(var idNum in idList){
+                    $("#"+idList[idNum]).on({
+                        'switchChange.bootstrapSwitch': function(event, state) {
+                            var group=$(this).attr("id").split("_");
+                            var id=group[1];
+                            var status=group[2];
+                            if(status==1){
+                                val=0;
+                            }else{
+                                val=1;
+                            }
+                            var keyword={
+                                id:id
+                            }
+                            keyword["status"]=val;
+                            $.ajax(
+                                    {
+                                        url:"../api/shield/updateShield",
+                                        type:"post",
+                                        contentType:"applycation/json",
+                                        dataType:"json",
+                                        data:JSON.stringify(keyword),
+                                        success:function (data) {
+                                            $(".error").text(data.message).fadeToggle(300,function () {
+                                                $(".error").fadeToggle(3000)
+                                            })
+                                            getList(1,10);
+                                        }
+                                    }
+                            )
+                        }
+                    });
+                }
+            }
+        });
+    }
+    function deleteKey(id){
+        var keyword={
+            id:id
+        };
+        $.ajax(
+                {
+                    url:"../api/shield/deleteShield",
+                    type:"post",
+                    contentType:"applycation/json",
+                    dataType:"json",
+                    data:JSON.stringify(keyword),
+                    success:function (data) {
+                        //0--成功, 10--验证码错误, 7 --客户不存在,9-- 密码不正确
+                        $(".error").text(data.message).fadeToggle(300,function () {
+                            $(".error").fadeToggle(3000)
+                        })
+                        getList(1,10);
+                    }
+                }
+        )
+    }
+
+    $('#submitShield').on('click', function (event) {
+        var keyword={
+            shieldGuanjianci:$("#shieldGuanjianci").val(),
+            status:0
+        }
+        $.ajax(
+                {
+                    url:"../api/shield/addShield",
+                    type:"post",
+                    contentType:"applycation/json",
+                    dataType:"json",
+                    data:JSON.stringify(keyword),
+                    success:function (data) {
+                        //0--成功, 10--验证码错误, 7 --客户不存在,9-- 密码不正确
+                        $(".error").text(data.message).fadeToggle(300,function () {
+                            $(".error").fadeToggle(3000)
+                        })
+                        getList(1,10);
+                        $('#addKeywordModal').modal('hide');
+                        $("#shieldGuanjianci").val("");
+                    }
+                }
+        )
+    })
+</script>
+</body>
+</html>

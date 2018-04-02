@@ -1,0 +1,14 @@
+main h3{
+    width: 100%;
+    text-align: center;
+    font-size: 0.2rem;
+    font-weight: 200;
+    margin: 0.1rem 0;
+}
+main form{
+    width: 4rem;
+    margin: 0.5rem auto;
+}
+main form input[type=button]{
+    margin-left: 1.8rem;
+}

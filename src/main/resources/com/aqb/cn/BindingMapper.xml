@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.BindingMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.Binding" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="binding_number" property="bindingNumber" jdbcType="VARCHAR" />
+    <result column="binding_car" property="bindingCar" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="CHAR" />
+    <result column="binding_full" property="bindingFull" jdbcType="VARCHAR" />
+    <result column="binding_idcard" property="bindingIdcard" jdbcType="VARCHAR" />
+    <result column="binding_travel" property="bindingTravel" jdbcType="VARCHAR" />
+    <result column="idcard_front" property="idcardFront" jdbcType="VARCHAR" />
+    <result column="idcard_back" property="idcardBack" jdbcType="VARCHAR" />
+    <result column="travel_front" property="travelFront" jdbcType="VARCHAR" />
+    <result column="travel_back" property="travelBack" jdbcType="VARCHAR" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="relieve" property="relieve" jdbcType="VARCHAR" />
+    <result column="deposit_status" property="depositStatus" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, binding_number, binding_car, user_id, binding_full, binding_idcard, binding_travel,
+    idcard_front, idcard_back, travel_front, travel_back, reason, relieve, deposit_status,
+    status, found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from binding
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from binding
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.Binding" >
+    insert into binding (id, binding_number, binding_car,
+    user_id, binding_full, binding_idcard,
+    binding_travel, idcard_front, idcard_back,
+    travel_front, travel_back, reason,
+    relieve, deposit_status, status,
+    found_date)
+    values (#{id,jdbcType=CHAR}, #{bindingNumber,jdbcType=VARCHAR}, #{bindingCar,jdbcType=VARCHAR},
+    #{userId,jdbcType=CHAR}, #{bindingFull,jdbcType=VARCHAR}, #{bindingIdcard,jdbcType=VARCHAR},
+    #{bindingTravel,jdbcType=VARCHAR}, #{idcardFront,jdbcType=VARCHAR}, #{idcardBack,jdbcType=VARCHAR},
+    #{travelFront,jdbcType=VARCHAR}, #{travelBack,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR},
+    #{relieve,jdbcType=VARCHAR}, #{depositStatus,jdbcType=INTEGER}, #{status,jdbcType=INTEGER},
+    #{foundDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.Binding" >
+    insert into binding
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="bindingNumber != null" >
+        binding_number,
+      </if>
+      <if test="bindingCar != null" >
+        binding_car,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="bindingFull != null" >
+        binding_full,
+      </if>
+      <if test="bindingIdcard != null" >
+        binding_idcard,
+      </if>
+      <if test="bindingTravel != null" >
+        binding_travel,
+      </if>
+      <if test="idcardFront != null" >
+        idcard_front,
+      </if>
+      <if test="idcardBack != null" >
+        idcard_back,
+      </if>
+      <if test="travelFront != null" >
+        travel_front,
+      </if>
+      <if test="travelBack != null" >
+        travel_back,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="relieve != null" >
+        relieve,
+      </if>
+      <if test="depositStatus != null" >
+        deposit_status,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="bindingNumber != null" >
+        #{bindingNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bindingCar != null" >
+        #{bindingCar,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=CHAR},
+      </if>
+      <if test="bindingFull != null" >
+        #{bindingFull,jdbcType=VARCHAR},
+      </if>
+      <if test="bindingIdcard != null" >
+        #{bindingIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="bindingTravel != null" >
+        #{bindingTravel,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardFront != null" >
+        #{idcardFront,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardBack != null" >
+        #{idcardBack,jdbcType=VARCHAR},
+      </if>
+      <if test="travelFront != null" >
+        #{travelFront,jdbcType=VARCHAR},
+      </if>
+      <if test="travelBack != null" >
+        #{travelBack,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="relieve != null" >
+        #{relieve,jdbcType=VARCHAR},
+      </if>
+      <if test="depositStatus != null" >
+        #{depositStatus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.Binding" >
+    update binding
+    <set >
+      <if test="bindingNumber != null" >
+        binding_number = #{bindingNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bindingCar != null" >
+        binding_car = #{bindingCar,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=CHAR},
+      </if>
+      <if test="bindingFull != null" >
+        binding_full = #{bindingFull,jdbcType=VARCHAR},
+      </if>
+      <if test="bindingIdcard != null" >
+        binding_idcard = #{bindingIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="bindingTravel != null" >
+        binding_travel = #{bindingTravel,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardFront != null" >
+        idcard_front = #{idcardFront,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardBack != null" >
+        idcard_back = #{idcardBack,jdbcType=VARCHAR},
+      </if>
+      <if test="travelFront != null" >
+        travel_front = #{travelFront,jdbcType=VARCHAR},
+      </if>
+      <if test="travelBack != null" >
+        travel_back = #{travelBack,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="relieve != null" >
+        relieve = #{relieve,jdbcType=VARCHAR},
+      </if>
+      <if test="depositStatus != null" >
+        deposit_status = #{depositStatus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.Binding" >
+    update binding
+    set binding_number = #{bindingNumber,jdbcType=VARCHAR},
+      binding_car = #{bindingCar,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=CHAR},
+      binding_full = #{bindingFull,jdbcType=VARCHAR},
+      binding_idcard = #{bindingIdcard,jdbcType=VARCHAR},
+      binding_travel = #{bindingTravel,jdbcType=VARCHAR},
+      idcard_front = #{idcardFront,jdbcType=VARCHAR},
+      idcard_back = #{idcardBack,jdbcType=VARCHAR},
+      travel_front = #{travelFront,jdbcType=VARCHAR},
+      travel_back = #{travelBack,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+      relieve = #{relieve,jdbcType=VARCHAR},
+      deposit_status = #{depositStatus,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+
+  <select id="selectByBindingNumber" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from binding
+    where binding_number = #{bindingNumber}
+    and status = 1
+  </select>
+
+  <select id="queryBinding" parameterType="com.aqb.cn.common.QueryBase" resultMap="BaseResultMap">
+    SELECT * FROM binding
+    ORDER BY found_date  DESC
+    LIMIT #{firstRow}, #{maxRow}
+  </select>
+
+  <select id="countBinding" parameterType="com.aqb.cn.common.QueryBase" resultType="long">
+    SELECT COUNT(*) FROM binding
+  </select>
+
+  <select id="queryByUserId" resultMap="BaseResultMap">
+    SELECT * FROM binding
+    where user_id = #{userId}
+  </select>
+
+  <select id="queryByUserId1" resultMap="BaseResultMap">
+    SELECT * FROM binding
+    where user_id = #{userId} AND status = 1
+  </select>
+
+  <select id="queryByUserId2" resultMap="BaseResultMap">
+    SELECT * FROM binding
+    where user_id = #{userId}
+  </select>
+
+  <select id="queryByUserId3" resultMap="BaseResultMap">
+    SELECT * FROM binding
+    where user_id = #{userId} AND status = 2
+  </select>
+
+  <select id="queryByUserId4" resultMap="BaseResultMap">
+    SELECT * FROM binding
+    where user_id = #{userId} AND status = 0 ORDER BY found_date DESC
+  </select>
+
+  <select id="queryByBindingNumber" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from binding
+    where binding_number = #{bindingNumber} and deposit_status = 1 AND status = 1
+  </select>
+
+  <select id="adminBinding" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select <include refid="Base_Column_List" /> from binding
+    where status = 2 order by found_date DESC
+  </select>
+
+  <select id="selectByStatus" resultMap="BaseResultMap">
+    SELECT * FROM binding
+    where binding_number = #{0} AND deposit_status = 1 AND status = 1
+  </select>
+
+
+  <update id="updateByUserId" parameterType="java.lang.String" >
+    update binding set status = 1 where user_id = #{userId}
+  </update>
+
+  <select id="selectByBN" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from binding
+    where binding_number = #{bindingNumber} and deposit_status = 1 AND (status = 1 OR status = 5)
+  </select>
+
+  <select id="queryRelieveByUserId" resultMap="BaseResultMap">
+    SELECT * FROM binding
+    where user_id = #{userId} AND status = 4 ORDER BY found_date DESC
+  </select>
+
+  <select id="queryUnRelieveByUserId" resultMap="BaseResultMap">
+    SELECT * FROM binding
+    where user_id = #{userId} AND status = 5 ORDER BY found_date DESC
+  </select>
+
+  <select id="unboundAudit" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select <include refid="Base_Column_List" />
+    from binding where status = 4 order by found_date DESC
+  </select>
+
+
+
+</mapper>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.ShareRuleMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.a.ShareRule" >
+    <id column="share_set_id" property="shareSetId" jdbcType="INTEGER" />
+    <result column="integral" property="integral" jdbcType="INTEGER" />
+    <result column="money" property="money" jdbcType="DECIMAL" />
+    <result column="share_rule" property="shareRule" jdbcType="INTEGER" />
+    <result column="admin_id" property="adminId" jdbcType="CHAR" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    share_set_id, integral, money, share_rule, admin_id, time, state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from share_rule
+    where share_set_id = #{shareSetId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from share_rule
+    where share_set_id = #{shareSetId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.a.ShareRule" >
+    insert into share_rule (share_set_id, integral, money, 
+      share_rule, admin_id, time, 
+      state)
+    values (#{shareSetId,jdbcType=INTEGER}, #{integral,jdbcType=INTEGER}, #{money,jdbcType=DECIMAL}, 
+      #{shareRule,jdbcType=INTEGER}, #{adminId,jdbcType=CHAR}, #{time,jdbcType=TIMESTAMP}, 
+      #{state,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.a.ShareRule" >
+    insert into share_rule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shareSetId != null" >
+        share_set_id,
+      </if>
+      <if test="integral != null" >
+        integral,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="shareRule != null" >
+        share_rule,
+      </if>
+      <if test="adminId != null" >
+        admin_id,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shareSetId != null" >
+        #{shareSetId,jdbcType=INTEGER},
+      </if>
+      <if test="integral != null" >
+        #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="shareRule != null" >
+        #{shareRule,jdbcType=INTEGER},
+      </if>
+      <if test="adminId != null" >
+        #{adminId,jdbcType=CHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.a.ShareRule" >
+    update share_rule
+    <set >
+      <if test="integral != null" >
+        integral = #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="shareRule != null" >
+        share_rule = #{shareRule,jdbcType=INTEGER},
+      </if>
+      <if test="adminId != null" >
+        admin_id = #{adminId,jdbcType=CHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+    </set>
+    where share_set_id = #{shareSetId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.a.ShareRule" >
+    update share_rule
+    set integral = #{integral,jdbcType=INTEGER},
+      money = #{money,jdbcType=DECIMAL},
+      share_rule = #{shareRule,jdbcType=INTEGER},
+      admin_id = #{adminId,jdbcType=CHAR},
+      time = #{time,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=INTEGER}
+    where share_set_id = #{shareSetId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByState" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from share_rule
+    where state = #{state}
+  </select>
+
+
+</mapper>

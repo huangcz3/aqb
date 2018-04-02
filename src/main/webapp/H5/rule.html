@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta name="author" content="zhy" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <link href="../css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="../css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../dist/summernote.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/common.css"/>
+    <link rel="stylesheet" href="../css/pulbic.css"/>
+    <link rel="stylesheet" href="../css/repair.css"/>
+</head>
+<body>
+<div id="rule" style="padding: 0 15px">
+
+</div>
+<script src="js/jquery.min.js"></script>
+<script>
+    $.ajax({
+        type: "post",//读取方式
+        url: "../api/share/findShareComment",//通过url去读取json/数据
+        contentType: "application/json",
+        success: function (data) {//result变量去接收json数据
+            $("#rule").html((data.rule).replace("\"",""));
+            console.log(data)
+        },//success
+    });
+</script>
+</body>
+</html>

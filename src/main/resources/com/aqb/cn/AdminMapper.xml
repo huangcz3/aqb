@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aqb.cn.mapper.AdminMapper" >
+  <resultMap id="BaseResultMap" type="com.aqb.cn.bean.Admin" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="admin_name" property="adminName" jdbcType="VARCHAR" />
+    <result column="admin_pass" property="adminPass" jdbcType="VARCHAR" />
+    <result column="admin_number" property="adminNumber" jdbcType="VARCHAR" />
+    <result column="admin_code1" property="adminCode1" jdbcType="VARCHAR" />
+    <result column="admin_code2" property="adminCode2" jdbcType="VARCHAR" />
+    <result column="admin_code3" property="adminCode3" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="authority1" property="authority1" jdbcType="TINYINT" />
+    <result column="authority2" property="authority2" jdbcType="TINYINT" />
+    <result column="authority3" property="authority3" jdbcType="TINYINT" />
+    <result column="authority4" property="authority4" jdbcType="TINYINT" />
+    <result column="authority5" property="authority5" jdbcType="TINYINT" />
+    <result column="authority6" property="authority6" jdbcType="TINYINT" />
+    <result column="authority7" property="authority7" jdbcType="TINYINT" />
+    <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, admin_name, admin_pass, admin_number, admin_code1, admin_code2, admin_code3, 
+    status, authority1, authority2, authority3, authority4, authority5, authority6, authority7, 
+    found_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from admin
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from admin
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aqb.cn.bean.Admin" >
+    insert into admin (id, admin_name, admin_pass, 
+      admin_number, admin_code1, admin_code2, 
+      admin_code3, status, authority1, 
+      authority2, authority3, authority4, 
+      authority5, authority6, authority7, 
+      found_date)
+    values (#{id,jdbcType=CHAR}, #{adminName,jdbcType=VARCHAR}, #{adminPass,jdbcType=VARCHAR}, 
+      #{adminNumber,jdbcType=VARCHAR}, #{adminCode1,jdbcType=VARCHAR}, #{adminCode2,jdbcType=VARCHAR}, 
+      #{adminCode3,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{authority1,jdbcType=TINYINT}, 
+      #{authority2,jdbcType=TINYINT}, #{authority3,jdbcType=TINYINT}, #{authority4,jdbcType=TINYINT}, 
+      #{authority5,jdbcType=TINYINT}, #{authority6,jdbcType=TINYINT}, #{authority7,jdbcType=TINYINT}, 
+      #{foundDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aqb.cn.bean.Admin" >
+    insert into admin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="adminName != null" >
+        admin_name,
+      </if>
+      <if test="adminPass != null" >
+        admin_pass,
+      </if>
+      <if test="adminNumber != null" >
+        admin_number,
+      </if>
+      <if test="adminCode1 != null" >
+        admin_code1,
+      </if>
+      <if test="adminCode2 != null" >
+        admin_code2,
+      </if>
+      <if test="adminCode3 != null" >
+        admin_code3,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="authority1 != null" >
+        authority1,
+      </if>
+      <if test="authority2 != null" >
+        authority2,
+      </if>
+      <if test="authority3 != null" >
+        authority3,
+      </if>
+      <if test="authority4 != null" >
+        authority4,
+      </if>
+      <if test="authority5 != null" >
+        authority5,
+      </if>
+      <if test="authority6 != null" >
+        authority6,
+      </if>
+      <if test="authority7 != null" >
+        authority7,
+      </if>
+      <if test="foundDate != null" >
+        found_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="adminName != null" >
+        #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPass != null" >
+        #{adminPass,jdbcType=VARCHAR},
+      </if>
+      <if test="adminNumber != null" >
+        #{adminNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="adminCode1 != null" >
+        #{adminCode1,jdbcType=VARCHAR},
+      </if>
+      <if test="adminCode2 != null" >
+        #{adminCode2,jdbcType=VARCHAR},
+      </if>
+      <if test="adminCode3 != null" >
+        #{adminCode3,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="authority1 != null" >
+        #{authority1,jdbcType=TINYINT},
+      </if>
+      <if test="authority2 != null" >
+        #{authority2,jdbcType=TINYINT},
+      </if>
+      <if test="authority3 != null" >
+        #{authority3,jdbcType=TINYINT},
+      </if>
+      <if test="authority4 != null" >
+        #{authority4,jdbcType=TINYINT},
+      </if>
+      <if test="authority5 != null" >
+        #{authority5,jdbcType=TINYINT},
+      </if>
+      <if test="authority6 != null" >
+        #{authority6,jdbcType=TINYINT},
+      </if>
+      <if test="authority7 != null" >
+        #{authority7,jdbcType=TINYINT},
+      </if>
+      <if test="foundDate != null" >
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aqb.cn.bean.Admin" >
+    update admin
+    <set >
+      <if test="adminName != null" >
+        admin_name = #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPass != null" >
+        admin_pass = #{adminPass,jdbcType=VARCHAR},
+      </if>
+      <if test="adminNumber != null" >
+        admin_number = #{adminNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="adminCode1 != null" >
+        admin_code1 = #{adminCode1,jdbcType=VARCHAR},
+      </if>
+      <if test="adminCode2 != null" >
+        admin_code2 = #{adminCode2,jdbcType=VARCHAR},
+      </if>
+      <if test="adminCode3 != null" >
+        admin_code3 = #{adminCode3,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="authority1 != null" >
+        authority1 = #{authority1,jdbcType=TINYINT},
+      </if>
+      <if test="authority2 != null" >
+        authority2 = #{authority2,jdbcType=TINYINT},
+      </if>
+      <if test="authority3 != null" >
+        authority3 = #{authority3,jdbcType=TINYINT},
+      </if>
+      <if test="authority4 != null" >
+        authority4 = #{authority4,jdbcType=TINYINT},
+      </if>
+      <if test="authority5 != null" >
+        authority5 = #{authority5,jdbcType=TINYINT},
+      </if>
+      <if test="authority6 != null" >
+        authority6 = #{authority6,jdbcType=TINYINT},
+      </if>
+      <if test="authority7 != null" >
+        authority7 = #{authority7,jdbcType=TINYINT},
+      </if>
+      <if test="foundDate != null" >
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aqb.cn.bean.Admin" >
+    update admin
+    set admin_name = #{adminName,jdbcType=VARCHAR},
+      admin_pass = #{adminPass,jdbcType=VARCHAR},
+      admin_number = #{adminNumber,jdbcType=VARCHAR},
+      admin_code1 = #{adminCode1,jdbcType=VARCHAR},
+      admin_code2 = #{adminCode2,jdbcType=VARCHAR},
+      admin_code3 = #{adminCode3,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      authority1 = #{authority1,jdbcType=TINYINT},
+      authority2 = #{authority2,jdbcType=TINYINT},
+      authority3 = #{authority3,jdbcType=TINYINT},
+      authority4 = #{authority4,jdbcType=TINYINT},
+      authority5 = #{authority5,jdbcType=TINYINT},
+      authority6 = #{authority6,jdbcType=TINYINT},
+      authority7 = #{authority7,jdbcType=TINYINT},
+      found_date = #{foundDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <select id="queryByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from admin
+    where admin_name = #{adminName}
+  </select>
+
+  <select id="selectByAdminNumber" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from admin
+    where admin_number = #{adminNumber}
+  </select>
+
+  <select id="selectByAdminName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from admin
+    where admin_name = #{adminName}
+  </select>
+
+  <select id="queryAdmin" parameterType="com.aqb.cn.common.QueryBase" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+    FROM admin 
+    ORDER BY status ,found_date DESC
+    LIMIT #{firstRow}, #{maxRow}
+  </select>
+
+  <select id="countAdmin" parameterType="com.aqb.cn.common.QueryBase" resultType="long">
+    SELECT COUNT(id) FROM admin
+    WHERE status = 1
+  </select>
+
+</mapper>
